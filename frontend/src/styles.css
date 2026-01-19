@@ -38,3 +38,5 @@ body {
 .logo { font-size: 1.5rem; font-weight: bold; background: linear-gradient(135deg, var(--gold) 0%, var(--gold-metallic) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
 
 .nav { display: flex; gap: 2rem; }
+
+.nav a { color: var(--text-secondary); text-decoration: none; transition: color 0.3s ease; }
