@@ -110,3 +110,5 @@ body {
 .stat-item { text-align: center; padding: 1.5rem 2rem; background: var(--black-card); border: 1px solid var(--gold-dark); border-radius: 12px; }
 
 .stat-value { font-size: 2rem; font-weight: bold; color: var(--gold); }
+
+.stat-label { color: var(--text-secondary); font-size: 0.9rem; margin-top: 0.5rem; }
