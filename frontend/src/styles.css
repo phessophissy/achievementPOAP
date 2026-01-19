@@ -50,3 +50,5 @@ body {
 .main { flex: 1; padding: 2rem; }
 
 .hero { text-align: center; padding: 4rem 2rem; background: radial-gradient(ellipse at center, var(--black-card) 0%, var(--black) 70%); border-radius: 16px; border: 1px solid var(--gold-dark); }
+
+.hero h1 { font-size: 3rem; background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 50%, var(--gold-metallic) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 1rem; }
