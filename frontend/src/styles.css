@@ -102,3 +102,5 @@ body {
 .toast.error { border-color: var(--error); }
 
 .loading-spinner { width: 40px; height: 40px; border: 3px solid var(--black-hover); border-top-color: var(--gold); border-radius: 50%; animation: spin 1s linear infinite; }
+
+@keyframes spin { to { transform: rotate(360deg); } }
