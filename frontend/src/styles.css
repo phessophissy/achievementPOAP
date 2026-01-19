@@ -118,3 +118,5 @@ body {
 .address-display { font-family: monospace; background: var(--black-hover); padding: 0.5rem 1rem; border-radius: 6px; border: 1px solid var(--gold-dark); color: var(--gold-light); }
 
 .gold-text { color: var(--gold); }
+
+.gold-border { border: 1px solid var(--gold); }
