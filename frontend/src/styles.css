@@ -80,3 +80,5 @@ body {
 .mint-btn { width: 100%; background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%); color: var(--black); border: none; padding: 0.75rem; border-radius: 8px; font-weight: bold; cursor: pointer; margin-top: 1rem; transition: all 0.3s ease; }
 
 .mint-btn:hover { background: linear-gradient(135deg, var(--gold-light) 0%, var(--gold) 100%); }
+
+.mint-btn:disabled { opacity: 0.5; cursor: not-allowed; }
