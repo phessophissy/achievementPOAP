@@ -116,3 +116,5 @@ body {
 .section-title { font-size: 1.75rem; color: var(--gold); margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 2px solid var(--gold-dark); }
 
 .address-display { font-family: monospace; background: var(--black-hover); padding: 0.5rem 1rem; border-radius: 6px; border: 1px solid var(--gold-dark); color: var(--gold-light); }
+
+.gold-text { color: var(--gold); }
