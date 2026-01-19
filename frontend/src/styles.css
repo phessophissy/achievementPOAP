@@ -86,3 +86,5 @@ body {
 .poap-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1.5rem; margin-top: 2rem; }
 
 .poap-item { text-align: center; padding: 1rem; background: var(--black-card); border: 1px solid var(--gold-dark); border-radius: 12px; }
+
+.poap-image { width: 150px; height: 150px; border-radius: 50%; border: 3px solid var(--gold); margin-bottom: 1rem; object-fit: cover; }
