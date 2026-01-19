@@ -34,3 +34,5 @@ body {
 }
 
 .header { display: flex; justify-content: space-between; align-items: center; padding: 1rem 2rem; background: linear-gradient(180deg, var(--black-card) 0%, var(--black) 100%); border-bottom: 1px solid var(--gold-dark); }
+
+.logo { font-size: 1.5rem; font-weight: bold; background: linear-gradient(135deg, var(--gold) 0%, var(--gold-metallic) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
