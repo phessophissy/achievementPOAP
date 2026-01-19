@@ -122,3 +122,5 @@ body {
 .gold-border { border: 1px solid var(--gold); }
 
 .gold-glow { box-shadow: 0 0 20px rgba(255, 215, 0, 0.3); }
+
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
