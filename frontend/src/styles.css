@@ -98,3 +98,5 @@ body {
 .toast { position: fixed; bottom: 2rem; right: 2rem; background: var(--black-card); border: 1px solid var(--gold); padding: 1rem 1.5rem; border-radius: 8px; z-index: 1001; }
 
 .toast.success { border-color: var(--success); }
+
+.toast.error { border-color: var(--error); }
