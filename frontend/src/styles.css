@@ -94,3 +94,5 @@ body {
 .modal { background: var(--black-card); border: 2px solid var(--gold); border-radius: 16px; padding: 2rem; max-width: 500px; width: 90%; }
 
 .modal h2 { color: var(--gold); margin-bottom: 1rem; }
+
+.toast { position: fixed; bottom: 2rem; right: 2rem; background: var(--black-card); border: 1px solid var(--gold); padding: 1rem 1.5rem; border-radius: 8px; z-index: 1001; }
