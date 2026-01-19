@@ -1,0 +1,21 @@
+[project]
+name = "achievementPOAP"
+description = "POAP (Proof of Attendance Protocol) NFT Minting Platform on Stacks"
+authors = []
+telemetry = false
+cache_dir = ".cache"
+requirements = []
+
+[contracts.achievement-poap]
+path = "contracts/achievement-poap.clar"
+clarity_version = 2
+epoch = 2.5
+
+[repl.analysis]
+passes = ["check_checker"]
+
+[repl.analysis.check_checker]
+strict = false
+trusted_sender = false
+trusted_caller = false
+callee_filter = false
