@@ -106,3 +106,5 @@ body {
 @keyframes spin { to { transform: rotate(360deg); } }
 
 .stats-container { display: flex; gap: 2rem; justify-content: center; margin-top: 2rem; }
+
+.stat-item { text-align: center; padding: 1.5rem 2rem; background: var(--black-card); border: 1px solid var(--gold-dark); border-radius: 12px; }
