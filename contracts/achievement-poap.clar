@@ -20,7 +20,6 @@
 (define-data-var token-id-nonce uint u0)
 (define-data-var event-id-nonce uint u0)
 (define-data-var contract-paused bool false)
-(define-data-var treasury principal CONTRACT_OWNER)
 
 ;; NFT Definition
 (define-non-fungible-token achievement-poap uint)
@@ -113,10 +112,6 @@
     (ok (var-get contract-paused))
 )
 
-(define-read-only (get-treasury)
-    (ok (var-get treasury))
-)
-
 ;; Private functions
 
 (define-private (is-event-active (event-id uint))
@@ -132,7 +127,9 @@
 
 (define-private (add-token-to-user (user principal) (token-id uint))
     (let ((current-tokens (default-to (list) (map-get? user-tokens user))))
-        (map-set user-tokens user (unwrap! (as-max-len? (append current-tokens token-id) u100) current-tokens))
+        (let ((new-list (unwrap-panic (as-max-len? (append current-tokens token-id) u100))))
+            (map-set user-tokens user new-list)
+        )
     )
 )
 
@@ -183,8 +180,8 @@
         ;; Check user hasn't already minted this event
         (asserts! (not (has-minted-event event-id tx-sender)) ERR_ALREADY_MINTED)
         
-        ;; Transfer mint fee to treasury
-        (try! (stx-transfer? MINT_FEE tx-sender (var-get treasury)))
+        ;; Transfer mint fee directly to contract owner
+        (try! (stx-transfer? MINT_FEE tx-sender CONTRACT_OWNER))
         
         ;; Mint the NFT
         (try! (nft-mint? achievement-poap token-id tx-sender))
@@ -238,14 +235,6 @@
     )
 )
 
-(define-public (set-treasury (new-treasury principal))
-    (begin
-        (asserts! (is-eq tx-sender CONTRACT_OWNER) ERR_NOT_AUTHORIZED)
-        (var-set treasury new-treasury)
-        (ok true)
-    )
-)
-
 (define-public (deactivate-event (event-id uint))
     (let ((event (unwrap! (map-get? events event-id) ERR_EVENT_NOT_FOUND)))
         (asserts! (or (is-eq tx-sender CONTRACT_OWNER) (is-eq tx-sender (get creator event))) ERR_NOT_AUTHORIZED)
@@ -253,13 +242,4 @@
         (ok true)
     )
 )
-
-(define-public (withdraw-fees)
-    (let ((balance (stx-get-balance (as-contract tx-sender))))
-        (asserts! (is-eq tx-sender CONTRACT_OWNER) ERR_NOT_AUTHORIZED)
-        (if (> balance u0)
-            (as-contract (stx-transfer? balance tx-sender CONTRACT_OWNER))
-            (ok true)
-        )
-    )
 )
