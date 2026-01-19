@@ -56,3 +56,5 @@ body {
 .hero p { color: var(--text-secondary); font-size: 1.25rem; }
 
 .footer { text-align: center; padding: 1.5rem; border-top: 1px solid var(--gold-dark); color: var(--text-secondary); }
+
+@keyframes shimmer { 0% { background-position: -200% 0; } 100% { background-position: 200% 0; } }
