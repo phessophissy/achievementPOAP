@@ -140,3 +140,5 @@ body {
 @media (max-width: 768px) { .stats-container { flex-direction: column; gap: 1rem; } }
 
 .input-field { width: 100%; background: var(--black-soft); border: 1px solid var(--gold-dark); color: var(--text-primary); padding: 0.75rem 1rem; border-radius: 8px; font-size: 1rem; }
+
+.input-field:focus { outline: none; border-color: var(--gold); box-shadow: 0 0 10px rgba(255, 215, 0, 0.2); }
