@@ -54,3 +54,5 @@ body {
 .hero h1 { font-size: 3rem; background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 50%, var(--gold-metallic) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 1rem; }
 
 .hero p { color: var(--text-secondary); font-size: 1.25rem; }
+
+.footer { text-align: center; padding: 1.5rem; border-top: 1px solid var(--gold-dark); color: var(--text-secondary); }
