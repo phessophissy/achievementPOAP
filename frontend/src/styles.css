@@ -48,3 +48,5 @@ body {
 .connect-btn:hover { transform: translateY(-2px); box-shadow: 0 4px 15px rgba(255, 215, 0, 0.4); }
 
 .main { flex: 1; padding: 2rem; }
+
+.hero { text-align: center; padding: 4rem 2rem; background: radial-gradient(ellipse at center, var(--black-card) 0%, var(--black) 70%); border-radius: 16px; border: 1px solid var(--gold-dark); }
