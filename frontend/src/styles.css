@@ -40,3 +40,5 @@ body {
 .nav { display: flex; gap: 2rem; }
 
 .nav a { color: var(--text-secondary); text-decoration: none; transition: color 0.3s ease; }
+
+.nav a:hover { color: var(--gold); }
