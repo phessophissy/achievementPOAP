@@ -68,3 +68,5 @@ body {
 .events-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.5rem; margin-top: 2rem; }
 
 .event-card { background: var(--black-card); border: 1px solid var(--gold-dark); border-radius: 12px; padding: 1.5rem; transition: all 0.3s ease; }
+
+.event-card:hover { transform: translateY(-5px); box-shadow: 0 10px 30px rgba(255, 215, 0, 0.2); border-color: var(--gold); }
