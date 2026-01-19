@@ -130,3 +130,5 @@ body {
 .animate-fadeIn { animation: fadeIn 0.5s ease-out; }
 
 .animate-slideUp { animation: slideUp 0.5s ease-out; }
+
+@media (max-width: 768px) { .header { flex-direction: column; gap: 1rem; padding: 1rem; } }
