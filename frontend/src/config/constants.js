@@ -4,6 +4,7 @@ export const CONTRACT_NAME = 'achievement-poap';
 
 // Network Configuration
 export const NETWORK = 'mainnet';
+export const NETWORK_TYPE = 'mainnet';
 export const STACKS_API_URL = 'https://api.mainnet.hiro.so';
 
 // Minting Fee (in microSTX)
@@ -32,3 +33,4 @@ export const STORAGE_KEYS = {
   THEME: 'theme',
   FAVORITES: 'favorite_poaps',
 };
+
