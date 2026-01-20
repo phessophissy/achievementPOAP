@@ -1,0 +1,121 @@
+.radio-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.radio-group__label {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--color-text);
+}
+
+.radio-group__required {
+  color: var(--color-error);
+  margin-left: 0.25rem;
+}
+
+.radio-group__options--vertical {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.radio-group__options--horizontal {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+
+.radio-group__error {
+  font-size: 0.75rem;
+  color: var(--color-error);
+}
+
+.radio-wrapper {
+  display: flex;
+}
+
+.radio-container {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  position: relative;
+}
+
+.radio__input {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.radio__circle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  background: var(--color-surface);
+  border: 2px solid var(--color-border);
+  border-radius: 50%;
+  transition: all 0.15s ease;
+}
+
+.radio__input:checked + .radio__circle {
+  border-color: var(--color-primary);
+}
+
+.radio__input:focus-visible + .radio__circle {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+.radio__input:disabled + .radio__circle {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.radio__dot {
+  width: 10px;
+  height: 10px;
+  background: var(--color-primary);
+  border-radius: 50%;
+  animation: radioScale 0.15s ease;
+}
+
+@keyframes radioScale {
+  from {
+    transform: scale(0);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+.radio__content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.125rem;
+  padding-top: 1px;
+}
+
+.radio__label {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--color-text);
+  cursor: pointer;
+  user-select: none;
+}
+
+.radio__input:disabled ~ .radio__content .radio__label {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.radio__description {
+  font-size: 0.75rem;
+  color: var(--color-text-secondary);
+}
