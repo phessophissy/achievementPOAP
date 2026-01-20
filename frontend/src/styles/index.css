@@ -1,4 +1,4 @@
-/* Global CSS Variables and Base Styles */
+﻿/* Global CSS Variables and Base Styles */
 :root {
   /* Primary Colors - Gold Theme */
   --gold: #FFD700;
@@ -6,13 +6,19 @@
   --gold-dark: #B8860B;
   --gold-metallic: #D4AF37;
   --gold-shine: #FFEC8B;
-  
+
   /* Background Colors */
   --bg-primary: #0a0a0a;
   --bg-secondary: #111111;
   --bg-card: #1a1a1a;
   --bg-hover: #222222;
-  
+
+  /* Legacy Black Variables (for compatibility) */
+  --black: #0a0a0a;
+  --black-card: #1a1a1a;
+  --black-hover: #222222;
+  --black-soft: #111111;
+
   /* Text Colors */
   --text-primary: #ffffff;
   --text-secondary: #a0a0a0;
@@ -27,35 +33,35 @@
   --warning-bg: rgba(245, 158, 11, 0.1);
   --info: #3B82F6;
   --info-bg: rgba(59, 130, 246, 0.1);
-  
+
   /* Borders */
   --border-color: #333333;
   --border-gold: rgba(255, 215, 0, 0.3);
-  
+
   /* Shadows */
   --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.5);
   --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.5);
   --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.5);
   --shadow-gold: 0 0 20px rgba(255, 215, 0, 0.2);
-  
+
   /* Border Radius */
   --radius-sm: 4px;
   --radius-md: 8px;
   --radius-lg: 12px;
   --radius-xl: 16px;
   --radius-full: 9999px;
-  
+
   /* Transitions */
   --transition-fast: 150ms ease;
   --transition-normal: 250ms ease;
   --transition-slow: 350ms ease;
-  
+
   /* Z-Index Layers */
   --z-dropdown: 100;
   --z-sticky: 200;
   --z-modal: 300;
   --z-toast: 400;
-  
+
   /* Spacing */
   --container-max: 1200px;
   --header-height: 72px;
@@ -393,11 +399,11 @@ th {
   html {
     font-size: 14px;
   }
-  
+
   h1 { font-size: 2rem; }
   h2 { font-size: 1.5rem; }
   h3 { font-size: 1.25rem; }
-  
+
   .container {
     padding: 0 1rem;
   }
@@ -409,7 +415,7 @@ th {
     background: white;
     color: black;
   }
-  
+
   .no-print {
     display: none !important;
   }
