@@ -1,0 +1,62 @@
+.address-display {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+}
+
+.address-text {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.9rem;
+  color: var(--text-primary);
+}
+
+.address-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.address-explorer-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  background: transparent;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  color: var(--text-muted);
+  font-size: 0.75rem;
+  text-decoration: none;
+  transition: all var(--transition-fast);
+}
+
+.address-explorer-link:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+}
+
+/* Compact variant */
+.address-display.compact {
+  padding: 0.25rem 0.5rem;
+  gap: 0.25rem;
+}
+
+.address-display.compact .address-text {
+  font-size: 0.8rem;
+}
+
+/* Full width variant */
+.address-display.full-width {
+  width: 100%;
+  justify-content: space-between;
+}
+
+.address-display.full-width .address-text {
+  word-break: break-all;
+  flex: 1;
+}

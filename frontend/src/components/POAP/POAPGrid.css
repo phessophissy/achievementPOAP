@@ -1,0 +1,66 @@
+.poap-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1.5rem;
+}
+
+.poap-grid-loading,
+.poap-grid-error,
+.poap-grid-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem 2rem;
+  text-align: center;
+}
+
+.poap-grid-loading {
+  gap: 1rem;
+}
+
+.poap-grid-loading p {
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+.poap-grid-error {
+  gap: 0.5rem;
+}
+
+.error-icon,
+.empty-icon {
+  font-size: 3rem;
+  margin-bottom: 0.5rem;
+}
+
+.poap-grid-error h3 {
+  color: var(--error);
+  margin: 0;
+}
+
+.poap-grid-error p,
+.poap-grid-empty p {
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+.poap-grid-empty {
+  gap: 0.5rem;
+}
+
+.empty-icon {
+  opacity: 0.7;
+}
+
+.poap-grid-empty h3 {
+  color: var(--gold);
+  margin: 0;
+}
+
+@media (max-width: 480px) {
+  .poap-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+}

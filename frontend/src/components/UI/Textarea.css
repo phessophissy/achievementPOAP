@@ -1,0 +1,104 @@
+.textarea-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  width: 100%;
+}
+
+.textarea-label {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+}
+
+.textarea-required {
+  color: var(--error);
+  margin-left: 0.25rem;
+}
+
+.textarea-wrapper {
+  position: relative;
+}
+
+.textarea {
+  width: 100%;
+  padding: 0.875rem 1rem;
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  color: var(--text-primary);
+  font-size: 1rem;
+  font-family: inherit;
+  line-height: 1.6;
+  resize: vertical;
+  min-height: 100px;
+  transition: all var(--transition-fast);
+}
+
+.textarea::placeholder {
+  color: var(--text-muted);
+}
+
+.textarea:focus {
+  outline: none;
+  border-color: var(--gold);
+  box-shadow: 0 0 0 3px rgba(255, 215, 0, 0.1);
+}
+
+.textarea:hover:not(:focus):not(:disabled) {
+  border-color: var(--gold-dark);
+}
+
+/* Error State */
+.textarea-error .textarea {
+  border-color: var(--error);
+}
+
+.textarea-error .textarea:focus {
+  border-color: var(--error);
+  box-shadow: 0 0 0 3px var(--error-bg);
+}
+
+.textarea-error .textarea-label {
+  color: var(--error);
+}
+
+/* Disabled State */
+.textarea-disabled .textarea {
+  opacity: 0.6;
+  cursor: not-allowed;
+  background-color: var(--bg-hover);
+  resize: none;
+}
+
+.textarea-disabled .textarea-label {
+  opacity: 0.6;
+}
+
+/* Footer */
+.textarea-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+
+.textarea-helper {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  flex: 1;
+}
+
+.textarea-helper.error {
+  color: var(--error);
+}
+
+.textarea-char-count {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+.textarea-char-count.limit {
+  color: var(--warning);
+}

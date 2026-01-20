@@ -1,0 +1,135 @@
+.tabs {
+  width: 100%;
+}
+
+.tabs-list {
+  display: flex;
+  gap: 0.5rem;
+  border-bottom: 1px solid var(--border-color);
+  overflow-x: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.tabs-list::-webkit-scrollbar {
+  display: none;
+}
+
+.tab-button {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem;
+  background: transparent;
+  border: none;
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+  position: relative;
+  transition: all var(--transition-fast);
+  white-space: nowrap;
+}
+
+.tab-button:hover {
+  color: var(--text-primary);
+}
+
+.tab-button.active {
+  color: var(--gold);
+}
+
+.tab-button::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--gold);
+  transform: scaleX(0);
+  transition: transform var(--transition-fast);
+}
+
+.tab-button.active::after {
+  transform: scaleX(1);
+}
+
+.tab-icon {
+  font-size: 1rem;
+}
+
+.tab-label {
+  font-size: inherit;
+}
+
+.tab-count {
+  padding: 0.125rem 0.5rem;
+  background: var(--bg-secondary);
+  border-radius: var(--radius-full);
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.tab-button.active .tab-count {
+  background: rgba(255, 215, 0, 0.1);
+  color: var(--gold);
+}
+
+/* Pill Variant */
+.tabs-pill .tabs-list {
+  border-bottom: none;
+  background: var(--bg-secondary);
+  padding: 0.25rem;
+  border-radius: var(--radius-lg);
+  gap: 0;
+}
+
+.tabs-pill .tab-button {
+  border-radius: var(--radius-md);
+  padding: 0.5rem 1rem;
+}
+
+.tabs-pill .tab-button::after {
+  display: none;
+}
+
+.tabs-pill .tab-button.active {
+  background: var(--gold);
+  color: var(--bg-primary);
+}
+
+.tabs-pill .tab-button.active .tab-count {
+  background: rgba(0, 0, 0, 0.2);
+  color: var(--bg-primary);
+}
+
+/* Card Variant */
+.tabs-card .tabs-list {
+  border-bottom: none;
+  gap: 1rem;
+}
+
+.tabs-card .tab-button {
+  padding: 1rem 1.5rem;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+}
+
+.tabs-card .tab-button::after {
+  display: none;
+}
+
+.tabs-card .tab-button.active {
+  border-color: var(--gold);
+  background: rgba(255, 215, 0, 0.05);
+}
+
+@media (max-width: 600px) {
+  .tab-button {
+    padding: 0.625rem 0.75rem;
+    font-size: 0.875rem;
+  }
+}

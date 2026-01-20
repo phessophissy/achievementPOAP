@@ -1,0 +1,249 @@
+.events-page {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.events-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.header-content {
+  flex: 1;
+}
+
+.page-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--gold);
+  margin-bottom: 0.5rem;
+}
+
+.page-subtitle {
+  color: var(--text-secondary);
+  font-size: 1.1rem;
+}
+
+.events-controls {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.search-container {
+  position: relative;
+  flex: 1;
+  min-width: 250px;
+  max-width: 400px;
+}
+
+.search-input {
+  width: 100%;
+  background: var(--black-card);
+  border: 1px solid var(--gold-dark);
+  color: var(--text-primary);
+  padding: 0.75rem 1rem 0.75rem 2.75rem;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.search-input:focus {
+  outline: none;
+  border-color: var(--gold);
+  box-shadow: 0 0 10px rgba(255, 215, 0, 0.2);
+}
+
+.search-input::placeholder {
+  color: var(--text-secondary);
+}
+
+.search-icon {
+  position: absolute;
+  left: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1rem;
+  opacity: 0.6;
+}
+
+.filter-tabs {
+  display: flex;
+  background: var(--black-card);
+  border: 1px solid var(--gold-dark);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.filter-tab {
+  background: none;
+  border: none;
+  color: var(--text-secondary);
+  padding: 0.75rem 1.25rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.filter-tab:hover {
+  background: var(--black-hover);
+  color: var(--text-primary);
+}
+
+.filter-tab.active {
+  background: var(--gold);
+  color: var(--black);
+}
+
+.events-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 1.5rem;
+}
+
+.event-card-link {
+  text-decoration: none;
+}
+
+.event-card .card-header {
+  padding: 1rem 1.25rem;
+}
+
+.event-header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.event-id {
+  color: var(--text-secondary);
+  font-size: 0.875rem;
+}
+
+.event-status {
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.event-status.active {
+  background: rgba(76, 175, 80, 0.2);
+  color: var(--success);
+  border: 1px solid var(--success);
+}
+
+.event-status.upcoming {
+  background: rgba(255, 152, 0, 0.2);
+  color: var(--warning);
+  border: 1px solid var(--warning);
+}
+
+.event-status.ended {
+  background: rgba(244, 67, 54, 0.2);
+  color: var(--error);
+  border: 1px solid var(--error);
+}
+
+.event-name {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--gold);
+  margin-bottom: 0.5rem;
+}
+
+.event-description {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  line-height: 1.5;
+  margin-bottom: 1rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.event-stats {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.event-stat {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+}
+
+.stat-icon {
+  font-size: 1rem;
+}
+
+.progress-bar {
+  height: 6px;
+  background: var(--black-hover);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--gold-dark) 0%, var(--gold) 100%);
+  border-radius: 3px;
+  transition: width 0.3s ease;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 4rem 2rem;
+  background: var(--black-card);
+  border: 1px dashed var(--gold-dark);
+  border-radius: 16px;
+}
+
+.empty-icon {
+  font-size: 4rem;
+  margin-bottom: 1rem;
+}
+
+.empty-state h3 {
+  font-size: 1.5rem;
+  color: var(--gold);
+  margin-bottom: 0.5rem;
+}
+
+.empty-state p {
+  color: var(--text-secondary);
+  margin-bottom: 1.5rem;
+}
+
+@media (max-width: 768px) {
+  .page-title {
+    font-size: 2rem;
+  }
+
+  .events-controls {
+    flex-direction: column;
+  }
+
+  .search-container {
+    max-width: 100%;
+  }
+
+  .filter-tabs {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .events-grid {
+    grid-template-columns: 1fr;
+  }
+}

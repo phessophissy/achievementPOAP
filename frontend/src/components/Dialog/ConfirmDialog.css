@@ -1,0 +1,28 @@
+.confirm-dialog {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.confirm-message {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin: 0;
+}
+
+.confirm-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-end;
+}
+
+@media (max-width: 480px) {
+  .confirm-actions {
+    flex-direction: column-reverse;
+  }
+
+  .confirm-actions .btn {
+    width: 100%;
+  }
+}

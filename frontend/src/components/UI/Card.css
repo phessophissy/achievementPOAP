@@ -1,0 +1,114 @@
+.card {
+  background: var(--black-card);
+  border: 1px solid var(--gold-dark);
+  border-radius: 16px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.card-hoverable:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(255, 215, 0, 0.15);
+  border-color: var(--gold);
+}
+
+.card-clickable {
+  cursor: pointer;
+}
+
+.card-glowing {
+  box-shadow: 0 0 20px rgba(255, 215, 0, 0.2);
+  border-color: var(--gold);
+}
+
+/* Variants */
+.card-featured {
+  border-width: 2px;
+  border-color: var(--gold);
+  background: linear-gradient(135deg, var(--black-card) 0%, rgba(255, 215, 0, 0.05) 100%);
+}
+
+.card-minimal {
+  border: none;
+  background: transparent;
+}
+
+.card-elevated {
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Card parts */
+.card-header {
+  padding: 1.25rem 1.5rem;
+  border-bottom: 1px solid var(--gold-dark);
+}
+
+.card-body {
+  padding: 1.5rem;
+}
+
+.card-footer {
+  padding: 1rem 1.5rem;
+  border-top: 1px solid var(--gold-dark);
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.card-image {
+  position: relative;
+  overflow: hidden;
+}
+
+.card-image img {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+.card-hoverable:hover .card-image img {
+  transform: scale(1.05);
+}
+
+/* POAP specific card styling */
+.card.poap-card {
+  text-align: center;
+}
+
+.card.poap-card .card-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.card.event-card .card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card.event-card .event-status {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.card.event-card .event-status.active {
+  background: rgba(76, 175, 80, 0.2);
+  color: var(--success);
+  border: 1px solid var(--success);
+}
+
+.card.event-card .event-status.ended {
+  background: rgba(244, 67, 54, 0.2);
+  color: var(--error);
+  border: 1px solid var(--error);
+}
+
+.card.event-card .event-status.upcoming {
+  background: rgba(255, 152, 0, 0.2);
+  color: var(--warning);
+  border: 1px solid var(--warning);
+}

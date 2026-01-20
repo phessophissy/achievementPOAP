@@ -1,0 +1,56 @@
+.divider {
+  border: none;
+  margin: 2rem 0;
+}
+
+.divider-horizontal {
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--border-color),
+    transparent
+  );
+}
+
+.divider-vertical {
+  width: 1px;
+  height: 100%;
+  background: linear-gradient(
+    180deg,
+    transparent,
+    var(--border-color),
+    transparent
+  );
+}
+
+/* Gold variant */
+.divider-gold {
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--gold-dark),
+    transparent
+  );
+}
+
+/* With text */
+.divider-with-text {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin: 2rem 0;
+}
+
+.divider-with-text .divider {
+  flex: 1;
+  margin: 0;
+}
+
+.divider-text {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  white-space: nowrap;
+}

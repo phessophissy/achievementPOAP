@@ -1,0 +1,92 @@
+.progress-bar-container {
+  width: 100%;
+}
+
+.progress-bar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+  font-size: 0.85rem;
+}
+
+.progress-values {
+  color: var(--text-secondary);
+}
+
+.progress-percentage {
+  color: var(--gold);
+  font-weight: 600;
+}
+
+.progress-bar {
+  width: 100%;
+  background: var(--bg-secondary);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+  position: relative;
+}
+
+/* Sizes */
+.progress-bar-small {
+  height: 4px;
+}
+
+.progress-bar-medium {
+  height: 8px;
+}
+
+.progress-bar-large {
+  height: 12px;
+}
+
+/* Fill */
+.progress-bar-fill {
+  height: 100%;
+  border-radius: var(--radius-full);
+  transition: width 0.5s ease;
+  position: relative;
+}
+
+/* Variants */
+.progress-bar-fill.progress-bar-gold {
+  background: linear-gradient(90deg, var(--gold-dark), var(--gold), var(--gold-light));
+}
+
+.progress-bar-fill.progress-bar-success {
+  background: linear-gradient(90deg, #059669, var(--success), #34D399);
+}
+
+.progress-bar-fill.progress-bar-error {
+  background: linear-gradient(90deg, #DC2626, var(--error), #F87171);
+}
+
+.progress-bar-fill.progress-bar-info {
+  background: linear-gradient(90deg, #2563EB, var(--info), #60A5FA);
+}
+
+/* Animation */
+.progress-bar-fill.animated::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
+  animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}

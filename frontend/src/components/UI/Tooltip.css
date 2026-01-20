@@ -1,0 +1,110 @@
+.tooltip-wrapper {
+  position: relative;
+  display: inline-flex;
+}
+
+.tooltip {
+  position: absolute;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  color: var(--text-primary);
+  padding: 0.5rem 0.75rem;
+  border-radius: var(--radius-md);
+  font-size: 0.8rem;
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  transition: all var(--transition-fast);
+  z-index: var(--z-dropdown);
+  box-shadow: var(--shadow-lg);
+  pointer-events: none;
+}
+
+.tooltip-wrapper:hover .tooltip {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Top Position */
+.tooltip-top {
+  bottom: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%) translateY(5px);
+}
+
+.tooltip-wrapper:hover .tooltip-top {
+  transform: translateX(-50%) translateY(0);
+}
+
+.tooltip-top::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 6px solid transparent;
+  border-top-color: var(--border-color);
+}
+
+/* Bottom Position */
+.tooltip-bottom {
+  top: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%) translateY(-5px);
+}
+
+.tooltip-wrapper:hover .tooltip-bottom {
+  transform: translateX(-50%) translateY(0);
+}
+
+.tooltip-bottom::after {
+  content: '';
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 6px solid transparent;
+  border-bottom-color: var(--border-color);
+}
+
+/* Left Position */
+.tooltip-left {
+  right: calc(100% + 8px);
+  top: 50%;
+  transform: translateY(-50%) translateX(5px);
+}
+
+.tooltip-wrapper:hover .tooltip-left {
+  transform: translateY(-50%) translateX(0);
+}
+
+.tooltip-left::after {
+  content: '';
+  position: absolute;
+  left: 100%;
+  top: 50%;
+  transform: translateY(-50%);
+  border: 6px solid transparent;
+  border-left-color: var(--border-color);
+}
+
+/* Right Position */
+.tooltip-right {
+  left: calc(100% + 8px);
+  top: 50%;
+  transform: translateY(-50%) translateX(-5px);
+}
+
+.tooltip-wrapper:hover .tooltip-right {
+  transform: translateY(-50%) translateX(0);
+}
+
+.tooltip-right::after {
+  content: '';
+  position: absolute;
+  right: 100%;
+  top: 50%;
+  transform: translateY(-50%);
+  border: 6px solid transparent;
+  border-right-color: var(--border-color);
+}
