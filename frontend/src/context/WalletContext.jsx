@@ -1,5 +1,5 @@
 ﻿import React, { createContext, useContext, useState, useCallback, useEffect } from 'react';
-import { AppConfig, UserSession, showConnect } from '@stacks/connect';
+import { AppConfig, UserSession, connect } from '@stacks/connect';
 import { APP_NAME, APP_ICON, STACKS_API_URL } from '../config/constants';
 
 const WalletContext = createContext(null);
@@ -50,31 +50,29 @@ export function WalletProvider({ children }) {
     }
   };
 
-  const connect = useCallback(() => {
+  const handleConnect = useCallback(async () => {
     console.log('Connect button clicked');
     setIsConnecting(true);
 
     try {
-      showConnect({
+      const response = await connect({
         appDetails: {
           name: APP_NAME,
           icon: window.location.origin + APP_ICON,
         },
-        onFinish: () => {
-          console.log('Connection finished');
-          const data = userSession.loadUserData();
-          const address = data.profile.stxAddress.mainnet;
-          setWalletAddress(address);
-          setUserData(data);
-          fetchBalance(address);
-          setIsConnecting(false);
-        },
-        onCancel: () => {
-          console.log('Connection cancelled');
-          setIsConnecting(false);
-        },
         userSession,
       });
+      
+      console.log('Connection response:', response);
+      
+      if (userSession.isUserSignedIn()) {
+        const data = userSession.loadUserData();
+        const address = data.profile.stxAddress.mainnet;
+        setWalletAddress(address);
+        setUserData(data);
+        fetchBalance(address);
+      }
+      setIsConnecting(false);
     } catch (error) {
       console.error('Connect error:', error);
       setIsConnecting(false);
@@ -100,7 +98,7 @@ export function WalletProvider({ children }) {
     isConnecting,
     isConnected: !!walletAddress,
     userSession,
-    connect,
+    connect: handleConnect,
     disconnect,
     shortenAddress,
     fetchBalance: () => walletAddress && fetchBalance(walletAddress),
