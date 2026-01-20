@@ -3,7 +3,12 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "scripts": {"dev": "vite", "build": "vite build", "preview": "vite preview", "test": "vitest"},
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "test": "vitest"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
@@ -13,10 +18,10 @@
     "@stacks/network": "^7.3.1",
     "@stacks/transactions": "^7.3.1",
     "@vitejs/plugin-react": "^5.1.2",
+    "buffer": "^6.0.3",
     "react": "^19.2.3",
     "react-dom": "^19.2.3",
     "react-router-dom": "^7.12.0",
     "vite": "^7.3.1"
   }
 }
-
