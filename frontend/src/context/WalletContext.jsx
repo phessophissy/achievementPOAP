@@ -15,19 +15,25 @@ export function WalletProvider({ children }) {
 
   // Check for existing session on mount
   useEffect(() => {
-    if (userSession.isUserSignedIn()) {
-      const data = userSession.loadUserData();
-      const address = data.profile.stxAddress.mainnet;
-      setWalletAddress(address);
-      setUserData(data);
-      fetchBalance(address);
-    } else if (userSession.isSignInPending()) {
-      userSession.handlePendingSignIn().then((data) => {
+    try {
+      if (userSession.isUserSignedIn()) {
+        const data = userSession.loadUserData();
         const address = data.profile.stxAddress.mainnet;
         setWalletAddress(address);
         setUserData(data);
         fetchBalance(address);
-      });
+      } else if (userSession.isSignInPending()) {
+        userSession.handlePendingSignIn().then((data) => {
+          const address = data.profile.stxAddress.mainnet;
+          setWalletAddress(address);
+          setUserData(data);
+          fetchBalance(address);
+        }).catch(err => {
+          console.error('Error handling pending sign in:', err);
+        });
+      }
+    } catch (err) {
+      console.error('Error checking session:', err);
     }
   }, []);
 
@@ -44,16 +50,18 @@ export function WalletProvider({ children }) {
     }
   };
 
-  const connect = useCallback(async () => {
+  const connect = useCallback(() => {
+    console.log('Connect button clicked');
     setIsConnecting(true);
-    
+
     try {
-      await showConnect({
+      showConnect({
         appDetails: {
           name: APP_NAME,
           icon: window.location.origin + APP_ICON,
         },
         onFinish: () => {
+          console.log('Connection finished');
           const data = userSession.loadUserData();
           const address = data.profile.stxAddress.mainnet;
           setWalletAddress(address);
@@ -62,6 +70,7 @@ export function WalletProvider({ children }) {
           setIsConnecting(false);
         },
         onCancel: () => {
+          console.log('Connection cancelled');
           setIsConnecting(false);
         },
         userSession,
