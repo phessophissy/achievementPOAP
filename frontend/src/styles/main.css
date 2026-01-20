@@ -1,0 +1,7 @@
+// Styles exports
+import './index.css';
+import './variables.css';
+import './animations.css';
+import './accessibility.css';
+
+export * from './index.css';
