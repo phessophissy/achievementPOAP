@@ -1,5 +1,7 @@
 import {
   cvToJSON,
+  cvToValue,
+  hexToCV,
   standardPrincipalCV,
   uintCV,
   stringAsciiCV,
@@ -18,6 +20,29 @@ const hexToString = (hex) => {
     str += String.fromCharCode(parseInt(hex.substr(i, 2), 16));
   }
   return str;
+};
+
+/**
+ * Call a read-only contract function
+ * @param {string} functionName - The function name to call
+ * @param {Array} args - Array of Clarity values as hex strings
+ * @returns {Promise<any>} The parsed result
+ */
+const callReadOnly = async (functionName, args = []) => {
+  const url = +"${STACKS_API_URL}/v2/contracts/call-read///"+;
+  const response = await fetch(url, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      sender: CONTRACT_ADDRESS,
+      arguments: args.map(arg => arg.toString()),
+    }),
+  });
+  const data = await response.json();
+  if (data.okay && data.result) {
+    return cvToJSON(hexToCV(data.result));
+  }
+  throw new Error(data.cause || 'Contract call failed');
 };
 
 export const fetchEvents = async () => {
@@ -39,30 +64,21 @@ export const fetchEvents = async () => {
 
 export const fetchEvent = async (eventId) => {
   try {
-    const url = STACKS_API_URL + '/v2/contracts/call-read/' + CONTRACT_ADDRESS + '/' + CONTRACT_NAME + '/get-event';
-    const response = await fetch(url, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ sender: CONTRACT_ADDRESS, arguments: [uintCV(eventId).toString()] }),
-    });
-    const data = await response.json();
-    if (data.okay && data.result) {
-      const json = cvToJSON(data.result);
-      if (json.value) {
-        const e = json.value.value;
-        return {
-          id: eventId,
-          name: hexToString(e.name?.value) || '',
-          description: hexToString(e.description?.value) || '',
-          imageUri: hexToString(e['image-uri']?.value) || '',
-          organizer: e.organizer?.value || '',
-          maxMints: parseInt(e['max-mints']?.value) || 0,
-          currentMints: parseInt(e['current-mints']?.value) || 0,
-          startTime: parseInt(e['start-time']?.value) || 0,
-          endTime: parseInt(e['end-time']?.value) || 0,
-          active: e.active?.value || false,
-        };
-      }
+    const result = await callReadOnly('get-event', [uintCV(eventId)]);
+    if (result && result.value) {
+      const e = result.value;
+      return {
+        id: eventId,
+        name: hexToString(e.name?.value) || e.name?.value || '',
+        description: hexToString(e.description?.value) || e.description?.value || '',
+        creator: e.creator?.value || '',
+        maxSupply: parseInt(e['max-supply']?.value) || 0,
+        currentSupply: parseInt(e['current-supply']?.value) || 0,
+        startBlock: parseInt(e['start-block']?.value) || 0,
+        endBlock: parseInt(e['end-block']?.value) || 0,
+        metadataUri: hexToString(e['metadata-uri']?.value) || e['metadata-uri']?.value || '',
+        active: e.active?.value === true || e.active?.value === 'true',
+      };
     }
     return null;
   } catch (error) {
@@ -71,8 +87,34 @@ export const fetchEvent = async (eventId) => {
   }
 };
 
-export const fetchEventStats = async (eventId) => ({ mintCount: 0 });
-export const checkHasMinted = async (eventId, userAddress) => false;
+export const fetchEventStats = async (eventId) => {
+  try {
+    const result = await callReadOnly('get-event-supply', [uintCV(eventId)]);
+    if (result && result.value) {
+      return {
+        currentSupply: parseInt(result.value.current?.value) || 0,
+        maxSupply: parseInt(result.value.max?.value) || 0,
+      };
+    }
+    return { currentSupply: 0, maxSupply: 0 };
+  } catch (error) {
+    console.error('Error fetching event stats:', error);
+    return { currentSupply: 0, maxSupply: 0 };
+  }
+};
+
+export const checkHasMinted = async (eventId, userAddress) => {
+  try {
+    const result = await callReadOnly('has-minted-event', [
+      uintCV(eventId),
+      standardPrincipalCV(userAddress),
+    ]);
+    return result?.value === true || result?.value === 'true';
+  } catch (error) {
+    console.error('Error checking minted status:', error);
+    return false;
+  }
+};
 
 export const mintPOAP = async (eventId, userAddress, openContractCall) => {
   const network = getNetwork();
@@ -95,7 +137,7 @@ export const mintPOAP = async (eventId, userAddress, openContractCall) => {
 
 export const createEvent = async (eventData, openContractCall) => {
   const network = getNetwork();
-  const { name, description, imageUri, maxMints, startTime, endTime } = eventData;
+  const { name, description, maxSupply, startBlock, endBlock, metadataUri } = eventData;
   return new Promise((resolve, reject) => {
     openContractCall({
       network,
@@ -103,12 +145,12 @@ export const createEvent = async (eventData, openContractCall) => {
       contractName: CONTRACT_NAME,
       functionName: 'create-event',
       functionArgs: [
-        stringAsciiCV(name.substring(0, 50)),
-        stringUtf8CV(description.substring(0, 500)),
-        stringAsciiCV(imageUri.substring(0, 256)),
-        uintCV(maxMints),
-        uintCV(Math.floor(startTime / 1000)),
-        uintCV(Math.floor(endTime / 1000)),
+        stringAsciiCV(name.substring(0, 64)),
+        stringAsciiCV(description.substring(0, 256)),
+        uintCV(maxSupply),
+        uintCV(startBlock),
+        uintCV(endBlock),
+        stringAsciiCV(metadataUri.substring(0, 256)),
       ],
       onFinish: resolve,
       onCancel: () => reject(new Error('Cancelled')),
@@ -116,10 +158,130 @@ export const createEvent = async (eventData, openContractCall) => {
   });
 };
 
-export const fetchUserPOAPs = async (userAddress) => [];
-export const fetchPOAP = async (tokenId) => null;
-export const getTotalSupply = async () => 0;
-export const transferPOAP = async (tokenId, recipient, openContractCall) => {};
+/**
+ * Fetch all POAPs owned by a user
+ * @param {string} userAddress - The user's Stacks address
+ * @returns {Promise<Array>} Array of POAP objects with token and event data
+ */
+export const fetchUserPOAPs = async (userAddress) => {
+  try {
+    // Get the list of token IDs owned by the user
+    const result = await callReadOnly('get-user-tokens', [
+      standardPrincipalCV(userAddress),
+    ]);
+    
+    if (!result || !result.value || !Array.isArray(result.value)) {
+      return [];
+    }
+    
+    const tokenIds = result.value.map(item => parseInt(item.value));
+    
+    // Fetch metadata for each token
+    const poaps = await Promise.all(
+      tokenIds.map(async (tokenId) => {
+        try {
+          const poap = await fetchPOAP(tokenId);
+          return poap;
+        } catch (e) {
+          console.error(Error fetching POAP :, e);
+          return null;
+        }
+      })
+    );
+    
+    // Filter out any failed fetches
+    return poaps.filter(p => p !== null);
+  } catch (error) {
+    console.error('Error fetching user POAPs:', error);
+    return [];
+  }
+};
+
+/**
+ * Fetch a single POAP by token ID
+ * @param {number} tokenId - The token ID
+ * @returns {Promise<Object|null>} POAP object with token and event data
+ */
+export const fetchPOAP = async (tokenId) => {
+  try {
+    // Get token metadata
+    const metadataResult = await callReadOnly('get-token-metadata', [uintCV(tokenId)]);
+    
+    if (!metadataResult || !metadataResult.value) {
+      return null;
+    }
+    
+    const metadata = metadataResult.value;
+    const eventId = parseInt(metadata['event-id']?.value) || 0;
+    const mintedAt = parseInt(metadata['minted-at']?.value) || 0;
+    const minter = metadata.minter?.value || '';
+    
+    // Get the event details for this token
+    const event = await fetchEvent(eventId);
+    
+    // Get the current owner
+    const ownerResult = await callReadOnly('get-owner', [uintCV(tokenId)]);
+    const owner = ownerResult?.value?.value || null;
+    
+    return {
+      tokenId,
+      eventId,
+      mintedAt,
+      minter,
+      owner,
+      eventName: event?.name || Event #,
+      eventDescription: event?.description || '',
+      metadataUri: event?.metadataUri || '',
+      event,
+    };
+  } catch (error) {
+    console.error('Error fetching POAP:', error);
+    return null;
+  }
+};
+
+/**
+ * Get the total number of POAPs minted
+ * @returns {Promise<number>} Total supply
+ */
+export const getTotalSupply = async () => {
+  try {
+    const result = await callReadOnly('get-last-token-id', []);
+    if (result && result.value !== undefined) {
+      return parseInt(result.value) || 0;
+    }
+    return 0;
+  } catch (error) {
+    console.error('Error fetching total supply:', error);
+    return 0;
+  }
+};
+
+/**
+ * Transfer a POAP to another address
+ * @param {number} tokenId - The token ID to transfer
+ * @param {string} recipient - The recipient's Stacks address
+ * @param {Function} openContractCall - The wallet's contract call function
+ * @returns {Promise} Transaction result
+ */
+export const transferPOAP = async (tokenId, sender, recipient, openContractCall) => {
+  const network = getNetwork();
+  return new Promise((resolve, reject) => {
+    openContractCall({
+      network,
+      contractAddress: CONTRACT_ADDRESS,
+      contractName: CONTRACT_NAME,
+      functionName: 'transfer',
+      functionArgs: [
+        uintCV(tokenId),
+        standardPrincipalCV(sender),
+        standardPrincipalCV(recipient),
+      ],
+      onFinish: resolve,
+      onCancel: () => reject(new Error('Cancelled')),
+    });
+  });
+};
 
 export default {
   fetchEvents,
