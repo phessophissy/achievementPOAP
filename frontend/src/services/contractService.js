@@ -1,11 +1,9 @@
 import {
   cvToJSON,
-  cvToValue,
   hexToCV,
   standardPrincipalCV,
   uintCV,
   stringAsciiCV,
-  stringUtf8CV,
   Pc,
 } from '@stacks/transactions';
 import { STACKS_MAINNET, STACKS_TESTNET } from '@stacks/network';
