@@ -76,37 +76,33 @@ describe('Achievement POAP Contract', () => {
 
   describe('POAP Minting', () => {
     beforeEach(() => {
-      // Create an event before each minting test
-      simnet.callPublicFn(
-        'achievement-poap',
-        'create-event',
-        [
-          Cl.stringAscii('Mint Test Event'),
-          Cl.stringAscii('Event for minting tests'),
-          Cl.uint(1000),
-          Cl.uint(1),
-          Cl.uint(999999),
-          Cl.stringAscii('ipfs://mint-test')
-        ],
-        deployer
-      );
+      createEvent(deployer, {
+        name: 'Mint Test Event',
+        description: 'Event for minting tests',
+        maxSupply: 1000,
+        endBlock: 999999,
+        metadataUri: 'ipfs://mint-test',
+      });
     });
 
     it('should mint a POAP successfully', () => {
       const mintResponse = simnet.callPublicFn(
-        'achievement-poap',
+        CONTRACT_NAME,
         'mint-poap',
         [Cl.uint(1)],
         wallet1
       );
-      
+
       expect(mintResponse.result).toBeOk(Cl.uint(1));
+
+      const ownerResponse = simnet.callReadOnlyFn(CONTRACT_NAME, 'get-owner', [Cl.uint(1)], deployer);
+      expect(ownerResponse.result).toBeOk(Cl.some(Cl.principal(wallet1)));
     });
 
     it('should prevent double minting', () => {
       // First mint
       simnet.callPublicFn(
-        'achievement-poap',
+        CONTRACT_NAME,
         'mint-poap',
         [Cl.uint(1)],
         wallet1
@@ -114,7 +110,7 @@ describe('Achievement POAP Contract', () => {
       
       // Second mint attempt
       const secondMint = simnet.callPublicFn(
-        'achievement-poap',
+        CONTRACT_NAME,
         'mint-poap',
         [Cl.uint(1)],
         wallet1
@@ -125,7 +121,7 @@ describe('Achievement POAP Contract', () => {
 
     it('should fail for non-existent event', () => {
       const mintResponse = simnet.callPublicFn(
-        'achievement-poap',
+        CONTRACT_NAME,
         'mint-poap',
         [Cl.uint(999)],
         wallet1
