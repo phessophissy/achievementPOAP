@@ -136,7 +136,7 @@ export const checkHasMinted = async (eventId, userAddress) => {
       uintCV(eventId),
       standardPrincipalCV(userAddress),
     ]);
-    return result?.value === true || result?.value === 'true';
+    return toBoolean(result?.value);
   } catch (error) {
     console.error('Error checking minted status:', error);
     return false;
@@ -279,7 +279,7 @@ export const getTotalSupply = async () => {
   try {
     const result = await callReadOnly('get-last-token-id', []);
     if (result && result.value !== undefined) {
-      return parseInt(result.value) || 0;
+      return toNumber(result.value);
     }
     return 0;
   } catch (error) {
