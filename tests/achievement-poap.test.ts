@@ -265,22 +265,15 @@ describe('Achievement POAP Contract', () => {
 
   describe('Transfer', () => {
     beforeEach(() => {
+      createEvent(deployer, {
+        name: 'Transfer Test',
+        description: 'Event for transfer tests',
+        metadataUri: 'ipfs://transfer-test',
+        endBlock: 999999,
+      });
+
       simnet.callPublicFn(
-        'achievement-poap',
-        'create-event',
-        [
-          Cl.stringAscii('Transfer Test'),
-          Cl.stringAscii('Event for transfer tests'),
-          Cl.uint(100),
-          Cl.uint(1),
-          Cl.uint(999999),
-          Cl.stringAscii('ipfs://transfer-test')
-        ],
-        deployer
-      );
-      
-      simnet.callPublicFn(
-        'achievement-poap',
+        CONTRACT_NAME,
         'mint-poap',
         [Cl.uint(1)],
         wallet1
@@ -289,23 +282,26 @@ describe('Achievement POAP Contract', () => {
 
     it('should transfer POAP successfully', () => {
       const transferResponse = simnet.callPublicFn(
-        'achievement-poap',
+        CONTRACT_NAME,
         'transfer',
         [Cl.uint(1), Cl.principal(wallet1), Cl.principal(wallet2)],
         wallet1
       );
-      
+
       expect(transferResponse.result).toBeOk(Cl.bool(true));
+      expect(simnet.callReadOnlyFn(CONTRACT_NAME, 'get-owner', [Cl.uint(1)], deployer).result).toBeOk(
+        Cl.some(Cl.principal(wallet2))
+      );
     });
 
     it('should fail transfer from non-owner', () => {
       const transferResponse = simnet.callPublicFn(
-        'achievement-poap',
+        CONTRACT_NAME,
         'transfer',
         [Cl.uint(1), Cl.principal(wallet1), Cl.principal(wallet2)],
         wallet2
       );
-      
+
       expect(transferResponse.result).toBeErr(Cl.uint(100));
     });
   });
