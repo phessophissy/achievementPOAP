@@ -78,17 +78,27 @@ export const fetchEvent = async (eventId) => {
     const result = await callReadOnly('get-event', [uintCV(eventId)]);
     if (result && result.value) {
       const e = result.value;
+      const maxSupply = toNumber(e['max-supply']?.value);
+      const currentSupply = toNumber(e['current-supply']?.value);
+      const startBlock = toNumber(e['start-block']?.value);
+      const endBlock = toNumber(e['end-block']?.value);
+
       return {
         id: eventId,
         name: hexToString(e.name?.value) || e.name?.value || '',
         description: hexToString(e.description?.value) || e.description?.value || '',
         creator: e.creator?.value || '',
-        maxSupply: parseInt(e['max-supply']?.value) || 0,
-        currentSupply: parseInt(e['current-supply']?.value) || 0,
-        startBlock: parseInt(e['start-block']?.value) || 0,
-        endBlock: parseInt(e['end-block']?.value) || 0,
+        maxSupply,
+        currentSupply,
+        startBlock,
+        endBlock,
+        maxMints: maxSupply,
+        currentMints: currentSupply,
+        startTime: startBlock,
+        endTime: endBlock,
         metadataUri: hexToString(e['metadata-uri']?.value) || e['metadata-uri']?.value || '',
-        active: e.active?.value === true || e.active?.value === 'true',
+        imageUri: '',
+        active: toBoolean(e.active?.value),
       };
     }
     return null;
