@@ -133,51 +133,57 @@ describe('Achievement POAP Contract', () => {
 
   describe('Read Functions', () => {
     beforeEach(() => {
-      simnet.callPublicFn(
-        'achievement-poap',
-        'create-event',
-        [
-          Cl.stringAscii('Read Test Event'),
-          Cl.stringAscii('Event for read tests'),
-          Cl.uint(500),
-          Cl.uint(1),
-          Cl.uint(999999),
-          Cl.stringAscii('ipfs://read-test')
-        ],
-        deployer
-      );
+      createEvent(deployer, {
+        name: 'Read Test Event',
+        description: 'Event for read tests',
+        maxSupply: 500,
+        endBlock: 999999,
+        metadataUri: 'ipfs://read-test',
+      });
     });
 
     it('should return correct mint fee', () => {
       const feeResponse = simnet.callReadOnlyFn(
-        'achievement-poap',
+        CONTRACT_NAME,
         'get-mint-fee',
         [],
         deployer
       );
-      
+
       expect(feeResponse.result).toBeOk(Cl.uint(25000));
     });
 
     it('should return event details', () => {
       const eventResponse = simnet.callReadOnlyFn(
-        'achievement-poap',
+        CONTRACT_NAME,
         'get-event',
         [Cl.uint(1)],
         deployer
       );
-      
-      expect(eventResponse.result).toBeDefined();
+
+      expect(eventResponse.result).toBeSome(
+        Cl.tuple({
+          name: Cl.stringAscii('Read Test Event'),
+          description: Cl.stringAscii('Event for read tests'),
+          creator: Cl.principal(deployer),
+          'max-supply': Cl.uint(500),
+          'current-supply': Cl.uint(0),
+          'start-block': Cl.uint(1),
+          'end-block': Cl.uint(999999),
+          'metadata-uri': Cl.stringAscii('ipfs://read-test'),
+          active: Cl.bool(true),
+        })
+      );
     });
 
     it('should check minting status', () => {
       const hasMinted = simnet.callReadOnlyFn(
-        'achievement-poap',
+        CONTRACT_NAME,
         'has-minted-event',
         [Cl.uint(1), Cl.principal(wallet1)],
         deployer
       );
-      
+
       expect(hasMinted.result).toBeBool(false);
     });
   });
