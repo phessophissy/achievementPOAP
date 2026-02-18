@@ -45,56 +45,31 @@ const createEvent = (
 describe('Achievement POAP Contract', () => {
   describe('Event Creation', () => {
     it('should create a new event successfully', () => {
-      const createEventResponse = simnet.callPublicFn(
-        'achievement-poap',
-        'create-event',
-        [
-          Cl.stringAscii('Test Event'),
-          Cl.stringAscii('A test POAP event'),
-          Cl.uint(100),
-          Cl.uint(1),
-          Cl.uint(100000),
-          Cl.stringAscii('ipfs://test-metadata')
-        ],
-        deployer
-      );
-      
+      const createEventResponse = createEvent();
       expect(createEventResponse.result).toBeOk(Cl.uint(1));
     });
 
+    it('should increment event IDs for subsequent events', () => {
+      expect(createEvent().result).toBeOk(Cl.uint(1));
+      expect(
+        createEvent(deployer, {
+          name: 'Second Event',
+          metadataUri: 'ipfs://second-event',
+        }).result
+      ).toBeOk(Cl.uint(2));
+    });
+
     it('should fail with invalid URI', () => {
-      const createEventResponse = simnet.callPublicFn(
-        'achievement-poap',
-        'create-event',
-        [
-          Cl.stringAscii('Test Event'),
-          Cl.stringAscii('A test POAP event'),
-          Cl.uint(100),
-          Cl.uint(1),
-          Cl.uint(100000),
-          Cl.stringAscii('')
-        ],
-        deployer
-      );
-      
+      const createEventResponse = createEvent(deployer, { metadataUri: '' });
       expect(createEventResponse.result).toBeErr(Cl.uint(107));
     });
 
     it('should fail with invalid block range', () => {
-      const createEventResponse = simnet.callPublicFn(
-        'achievement-poap',
-        'create-event',
-        [
-          Cl.stringAscii('Test Event'),
-          Cl.stringAscii('A test POAP event'),
-          Cl.uint(100),
-          Cl.uint(100000),
-          Cl.uint(1),
-          Cl.stringAscii('ipfs://test')
-        ],
-        deployer
-      );
-      
+      const createEventResponse = createEvent(deployer, {
+        startBlock: 100000,
+        endBlock: 1,
+      });
+
       expect(createEventResponse.result).toBeErr(Cl.uint(103));
     });
   });
