@@ -119,6 +119,12 @@ describe('Achievement POAP Contract', () => {
       expect(secondMint.result).toBeErr(Cl.uint(101));
     });
 
+    it('should reject minting while contract is paused', () => {
+      simnet.callPublicFn(CONTRACT_NAME, 'pause-contract', [], deployer);
+      const mintResponse = simnet.callPublicFn(CONTRACT_NAME, 'mint-poap', [Cl.uint(1)], wallet1);
+      expect(mintResponse.result).toBeErr(Cl.uint(100));
+    });
+
     it('should fail for non-existent event', () => {
       const mintResponse = simnet.callPublicFn(
         CONTRACT_NAME,
@@ -185,6 +191,16 @@ describe('Achievement POAP Contract', () => {
       );
 
       expect(hasMinted.result).toBeBool(false);
+    });
+
+    it('should return event supply details', () => {
+      const supplyResponse = simnet.callReadOnlyFn(CONTRACT_NAME, 'get-event-supply', [Cl.uint(1)], deployer);
+      expect(supplyResponse.result).toBeOk(
+        Cl.tuple({
+          current: Cl.uint(0),
+          max: Cl.uint(500),
+        })
+      );
     });
   });
 

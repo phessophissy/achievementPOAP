@@ -16,6 +16,7 @@ export default defineConfig({
       clarinet: {
         ...getClarinetVitestsArgv(),
         manifestPath: './Clarinet.toml',
+        initBeforeEach: true,
       },
     },
   },
