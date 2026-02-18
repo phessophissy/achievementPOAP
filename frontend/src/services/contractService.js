@@ -113,8 +113,8 @@ export const fetchEventStats = async (eventId) => {
     const result = await callReadOnly('get-event-supply', [uintCV(eventId)]);
     if (result && result.value) {
       return {
-        currentSupply: parseInt(result.value.current?.value) || 0,
-        maxSupply: parseInt(result.value.max?.value) || 0,
+        currentSupply: toNumber(result.value.current?.value),
+        maxSupply: toNumber(result.value.max?.value),
       };
     }
     return { currentSupply: 0, maxSupply: 0 };
