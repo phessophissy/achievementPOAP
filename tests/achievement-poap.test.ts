@@ -1,10 +1,46 @@
 import { describe, it, expect, beforeEach } from 'vitest';
 import { Cl } from '@stacks/transactions';
 
+const CONTRACT_NAME = 'achievement-poap';
 const accounts = simnet.getAccounts();
 const deployer = accounts.get('deployer')!;
 const wallet1 = accounts.get('wallet_1')!;
 const wallet2 = accounts.get('wallet_2')!;
+
+const createEvent = (
+  sender = deployer,
+  overrides: Partial<{
+    name: string;
+    description: string;
+    maxSupply: number;
+    startBlock: number;
+    endBlock: number;
+    metadataUri: string;
+  }> = {}
+) => {
+  const {
+    name = 'Test Event',
+    description = 'A test POAP event',
+    maxSupply = 100,
+    startBlock = 1,
+    endBlock = 100000,
+    metadataUri = 'ipfs://test-metadata',
+  } = overrides;
+
+  return simnet.callPublicFn(
+    CONTRACT_NAME,
+    'create-event',
+    [
+      Cl.stringAscii(name),
+      Cl.stringAscii(description),
+      Cl.uint(maxSupply),
+      Cl.uint(startBlock),
+      Cl.uint(endBlock),
+      Cl.stringAscii(metadataUri),
+    ],
+    sender
+  );
+};
 
 describe('Achievement POAP Contract', () => {
   describe('Event Creation', () => {
