@@ -21,6 +21,13 @@ const hexToString = (hex) => {
   return str;
 };
 
+const toNumber = (value, fallback = 0) => {
+  const parsed = Number.parseInt(value, 10);
+  return Number.isNaN(parsed) ? fallback : parsed;
+};
+
+const toBoolean = (value) => value === true || value === 'true';
+
 /**
  * Call a read-only contract function
  * @param {string} functionName - The function name to call
