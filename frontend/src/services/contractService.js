@@ -28,6 +28,12 @@ const toNumber = (value, fallback = 0) => {
 
 const toBoolean = (value) => value === true || value === 'true';
 
+const ensureContractCall = (openContractCall) => {
+  if (typeof openContractCall !== 'function') {
+    throw new Error('Wallet contract-call handler is required');
+  }
+};
+
 /**
  * Call a read-only contract function
  * @param {string} functionName - The function name to call
@@ -138,6 +144,7 @@ export const checkHasMinted = async (eventId, userAddress) => {
 };
 
 export const mintPOAP = async (eventId, userAddress, openContractCall) => {
+  ensureContractCall(openContractCall);
   const network = getNetwork();
   const postConditions = [
     Pc.principal(userAddress).willSendEq(MINT_FEE).ustx(),
@@ -157,6 +164,7 @@ export const mintPOAP = async (eventId, userAddress, openContractCall) => {
 };
 
 export const createEvent = async (eventData, openContractCall) => {
+  ensureContractCall(openContractCall);
   const network = getNetwork();
   const { name, description, maxSupply, startBlock, endBlock, metadataUri } = eventData;
   return new Promise((resolve, reject) => {
@@ -288,6 +296,7 @@ export const getTotalSupply = async () => {
  * @returns {Promise} Transaction result
  */
 export const transferPOAP = async (tokenId, sender, recipient, openContractCall) => {
+  ensureContractCall(openContractCall);
   const network = getNetwork();
   return new Promise((resolve, reject) => {
     openContractCall({
