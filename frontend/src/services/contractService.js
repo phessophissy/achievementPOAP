@@ -195,7 +195,9 @@ export const fetchUserPOAPs = async (userAddress) => {
       return [];
     }
     
-    const tokenIds = result.value.map(item => parseInt(item.value));
+    const tokenIds = result.value
+      .map((item) => toNumber(item.value, -1))
+      .filter((id) => id > 0);
     
     // Fetch metadata for each token
     const poaps = await Promise.all(
@@ -204,7 +206,7 @@ export const fetchUserPOAPs = async (userAddress) => {
           const poap = await fetchPOAP(tokenId);
           return poap;
         } catch (e) {
-          console.error(Error fetching POAP :, e);
+          console.error('Error fetching POAP:', e);
           return null;
         }
       })
