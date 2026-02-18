@@ -233,6 +233,36 @@ describe('Achievement POAP Contract', () => {
     });
   });
 
+  describe('Event Deactivation', () => {
+    beforeEach(() => {
+      createEvent(deployer, {
+        name: 'Deactivate Test',
+        description: 'Event for deactivation tests',
+        metadataUri: 'ipfs://deactivate',
+      });
+    });
+
+    it('should allow event creator to deactivate an event', () => {
+      const response = simnet.callPublicFn(
+        CONTRACT_NAME,
+        'deactivate-event',
+        [Cl.uint(1)],
+        deployer
+      );
+      expect(response.result).toBeOk(Cl.bool(true));
+    });
+
+    it('should prevent unrelated users from deactivating events', () => {
+      const response = simnet.callPublicFn(
+        CONTRACT_NAME,
+        'deactivate-event',
+        [Cl.uint(1)],
+        wallet1
+      );
+      expect(response.result).toBeErr(Cl.uint(100));
+    });
+  });
+
   describe('Transfer', () => {
     beforeEach(() => {
       simnet.callPublicFn(
