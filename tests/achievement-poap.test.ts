@@ -191,35 +191,45 @@ describe('Achievement POAP Contract', () => {
   describe('Admin Functions', () => {
     it('should allow owner to pause contract', () => {
       const pauseResponse = simnet.callPublicFn(
-        'achievement-poap',
+        CONTRACT_NAME,
         'pause-contract',
         [],
         deployer
       );
-      
+
       expect(pauseResponse.result).toBeOk(Cl.bool(true));
     });
 
     it('should prevent non-owner from pausing', () => {
       const pauseResponse = simnet.callPublicFn(
-        'achievement-poap',
+        CONTRACT_NAME,
         'pause-contract',
         [],
         wallet1
       );
-      
+
       expect(pauseResponse.result).toBeErr(Cl.uint(100));
     });
 
-    it('should allow owner to set treasury', () => {
-      const setTreasuryResponse = simnet.callPublicFn(
-        'achievement-poap',
-        'set-treasury',
-        [Cl.principal(wallet2)],
+    it('should allow owner to unpause contract', () => {
+      simnet.callPublicFn(
+        CONTRACT_NAME,
+        'pause-contract',
+        [],
         deployer
       );
-      
-      expect(setTreasuryResponse.result).toBeOk(Cl.bool(true));
+
+      const unpauseResponse = simnet.callPublicFn(
+        CONTRACT_NAME,
+        'unpause-contract',
+        [],
+        deployer
+      );
+
+      expect(unpauseResponse.result).toBeOk(Cl.bool(true));
+      expect(
+        simnet.callReadOnlyFn(CONTRACT_NAME, 'is-contract-paused', [], deployer).result
+      ).toBeOk(Cl.bool(false));
     });
   });
 
