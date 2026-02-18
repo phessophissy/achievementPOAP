@@ -1,5 +1,6 @@
 import {
   cvToJSON,
+  cvToHex,
   hexToCV,
   standardPrincipalCV,
   uintCV,
@@ -27,15 +28,20 @@ const hexToString = (hex) => {
  * @returns {Promise<any>} The parsed result
  */
 const callReadOnly = async (functionName, args = []) => {
-  const url = +"${STACKS_API_URL}/v2/contracts/call-read///"+;
+  const url = `${STACKS_API_URL}/v2/contracts/call-read/${CONTRACT_ADDRESS}/${CONTRACT_NAME}/${functionName}`;
   const response = await fetch(url, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       sender: CONTRACT_ADDRESS,
-      arguments: args.map(arg => arg.toString()),
+      arguments: args.map(arg => cvToHex(arg)),
     }),
   });
+
+  if (!response.ok) {
+    throw new Error(`Contract call failed (${response.status})`);
+  }
+
   const data = await response.json();
   if (data.okay && data.result) {
     return cvToJSON(hexToCV(data.result));
