@@ -235,8 +235,8 @@ export const fetchPOAP = async (tokenId) => {
     }
     
     const metadata = metadataResult.value;
-    const eventId = parseInt(metadata['event-id']?.value) || 0;
-    const mintedAt = parseInt(metadata['minted-at']?.value) || 0;
+    const eventId = toNumber(metadata['event-id']?.value);
+    const mintedAt = toNumber(metadata['minted-at']?.value);
     const minter = metadata.minter?.value || '';
     
     // Get the event details for this token
@@ -252,7 +252,7 @@ export const fetchPOAP = async (tokenId) => {
       mintedAt,
       minter,
       owner,
-      eventName: event?.name || Event #,
+      eventName: event?.name || `Event #${eventId}`,
       eventDescription: event?.description || '',
       metadataUri: event?.metadataUri || '',
       event,
