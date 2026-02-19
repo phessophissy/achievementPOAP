@@ -1,11 +1,10 @@
 import {
   cvToJSON,
-  cvToValue,
+  cvToHex,
   hexToCV,
   standardPrincipalCV,
   uintCV,
   stringAsciiCV,
-  stringUtf8CV,
   Pc,
 } from '@stacks/transactions';
 import { STACKS_MAINNET, STACKS_TESTNET } from '@stacks/network';
@@ -22,6 +21,19 @@ const hexToString = (hex) => {
   return str;
 };
 
+const toNumber = (value, fallback = 0) => {
+  const parsed = Number.parseInt(value, 10);
+  return Number.isNaN(parsed) ? fallback : parsed;
+};
+
+const toBoolean = (value) => value === true || value === 'true';
+
+const ensureContractCall = (openContractCall) => {
+  if (typeof openContractCall !== 'function') {
+    throw new Error('Wallet contract-call handler is required');
+  }
+};
+
 /**
  * Call a read-only contract function
  * @param {string} functionName - The function name to call
@@ -29,15 +41,20 @@ const hexToString = (hex) => {
  * @returns {Promise<any>} The parsed result
  */
 const callReadOnly = async (functionName, args = []) => {
-  const url = +"${STACKS_API_URL}/v2/contracts/call-read///"+;
+  const url = `${STACKS_API_URL}/v2/contracts/call-read/${CONTRACT_ADDRESS}/${CONTRACT_NAME}/${functionName}`;
   const response = await fetch(url, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       sender: CONTRACT_ADDRESS,
-      arguments: args.map(arg => arg.toString()),
+      arguments: args.map(arg => cvToHex(arg)),
     }),
   });
+
+  if (!response.ok) {
+    throw new Error(`Contract call failed (${response.status})`);
+  }
+
   const data = await response.json();
   if (data.okay && data.result) {
     return cvToJSON(hexToCV(data.result));
@@ -67,17 +84,27 @@ export const fetchEvent = async (eventId) => {
     const result = await callReadOnly('get-event', [uintCV(eventId)]);
     if (result && result.value) {
       const e = result.value;
+      const maxSupply = toNumber(e['max-supply']?.value);
+      const currentSupply = toNumber(e['current-supply']?.value);
+      const startBlock = toNumber(e['start-block']?.value);
+      const endBlock = toNumber(e['end-block']?.value);
+
       return {
         id: eventId,
         name: hexToString(e.name?.value) || e.name?.value || '',
         description: hexToString(e.description?.value) || e.description?.value || '',
         creator: e.creator?.value || '',
-        maxSupply: parseInt(e['max-supply']?.value) || 0,
-        currentSupply: parseInt(e['current-supply']?.value) || 0,
-        startBlock: parseInt(e['start-block']?.value) || 0,
-        endBlock: parseInt(e['end-block']?.value) || 0,
+        maxSupply,
+        currentSupply,
+        startBlock,
+        endBlock,
+        maxMints: maxSupply,
+        currentMints: currentSupply,
+        startTime: startBlock,
+        endTime: endBlock,
         metadataUri: hexToString(e['metadata-uri']?.value) || e['metadata-uri']?.value || '',
-        active: e.active?.value === true || e.active?.value === 'true',
+        imageUri: '',
+        active: toBoolean(e.active?.value),
       };
     }
     return null;
@@ -92,8 +119,8 @@ export const fetchEventStats = async (eventId) => {
     const result = await callReadOnly('get-event-supply', [uintCV(eventId)]);
     if (result && result.value) {
       return {
-        currentSupply: parseInt(result.value.current?.value) || 0,
-        maxSupply: parseInt(result.value.max?.value) || 0,
+        currentSupply: toNumber(result.value.current?.value),
+        maxSupply: toNumber(result.value.max?.value),
       };
     }
     return { currentSupply: 0, maxSupply: 0 };
@@ -109,7 +136,7 @@ export const checkHasMinted = async (eventId, userAddress) => {
       uintCV(eventId),
       standardPrincipalCV(userAddress),
     ]);
-    return result?.value === true || result?.value === 'true';
+    return toBoolean(result?.value);
   } catch (error) {
     console.error('Error checking minted status:', error);
     return false;
@@ -117,6 +144,7 @@ export const checkHasMinted = async (eventId, userAddress) => {
 };
 
 export const mintPOAP = async (eventId, userAddress, openContractCall) => {
+  ensureContractCall(openContractCall);
   const network = getNetwork();
   const postConditions = [
     Pc.principal(userAddress).willSendEq(MINT_FEE).ustx(),
@@ -136,6 +164,7 @@ export const mintPOAP = async (eventId, userAddress, openContractCall) => {
 };
 
 export const createEvent = async (eventData, openContractCall) => {
+  ensureContractCall(openContractCall);
   const network = getNetwork();
   const { name, description, maxSupply, startBlock, endBlock, metadataUri } = eventData;
   return new Promise((resolve, reject) => {
@@ -174,7 +203,9 @@ export const fetchUserPOAPs = async (userAddress) => {
       return [];
     }
     
-    const tokenIds = result.value.map(item => parseInt(item.value));
+    const tokenIds = result.value
+      .map((item) => toNumber(item.value, -1))
+      .filter((id) => id > 0);
     
     // Fetch metadata for each token
     const poaps = await Promise.all(
@@ -183,7 +214,7 @@ export const fetchUserPOAPs = async (userAddress) => {
           const poap = await fetchPOAP(tokenId);
           return poap;
         } catch (e) {
-          console.error(Error fetching POAP :, e);
+          console.error('Error fetching POAP:', e);
           return null;
         }
       })
@@ -212,8 +243,8 @@ export const fetchPOAP = async (tokenId) => {
     }
     
     const metadata = metadataResult.value;
-    const eventId = parseInt(metadata['event-id']?.value) || 0;
-    const mintedAt = parseInt(metadata['minted-at']?.value) || 0;
+    const eventId = toNumber(metadata['event-id']?.value);
+    const mintedAt = toNumber(metadata['minted-at']?.value);
     const minter = metadata.minter?.value || '';
     
     // Get the event details for this token
@@ -229,7 +260,7 @@ export const fetchPOAP = async (tokenId) => {
       mintedAt,
       minter,
       owner,
-      eventName: event?.name || Event #,
+      eventName: event?.name || `Event #${eventId}`,
       eventDescription: event?.description || '',
       metadataUri: event?.metadataUri || '',
       event,
@@ -248,7 +279,7 @@ export const getTotalSupply = async () => {
   try {
     const result = await callReadOnly('get-last-token-id', []);
     if (result && result.value !== undefined) {
-      return parseInt(result.value) || 0;
+      return toNumber(result.value);
     }
     return 0;
   } catch (error) {
@@ -265,6 +296,7 @@ export const getTotalSupply = async () => {
  * @returns {Promise} Transaction result
  */
 export const transferPOAP = async (tokenId, sender, recipient, openContractCall) => {
+  ensureContractCall(openContractCall);
   const network = getNetwork();
   return new Promise((resolve, reject) => {
     openContractCall({
