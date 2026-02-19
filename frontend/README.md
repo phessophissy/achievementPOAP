@@ -144,10 +144,12 @@ The frontend uses a custom gold-themed design system with CSS variables:
 The frontend interacts with the `achievement-poap` Clarity smart contract:
 
 ### Read Functions
-- `get-event-count` - Get total number of events
 - `get-event` - Get event details
-- `has-minted` - Check if user has minted
-- `get-last-token-id` - Get total supply
+- `get-event-supply` - Get current and max supply for an event
+- `has-minted-event` - Check if a wallet minted from an event
+- `get-user-tokens` - Get token IDs owned by a wallet
+- `get-token-metadata` - Get metadata for a specific token
+- `get-last-token-id` - Get total minted supply
 
 ### Write Functions
 - `mint-poap` - Mint a POAP for an event
