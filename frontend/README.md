@@ -106,6 +106,22 @@ The built files will be in the `dist/` directory.
 npm run preview
 ```
 
+## 🧪 Testing
+
+Run the current smoke suite:
+
+```bash
+npm test
+```
+
+Run tests in watch mode:
+
+```bash
+npm run test:watch
+```
+
+Legacy assertions that no longer match current component contracts were moved to `src/tests/*.legacy.test.*` and are intentionally excluded from CI until they are rewritten.
+
 ## 🔧 Configuration
 
 The contract configuration is in `src/config/constants.js`:

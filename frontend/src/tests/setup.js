@@ -1,5 +1,7 @@
 import '@testing-library/jest-dom';
+import { cleanup } from '@testing-library/react';
 import { vi } from 'vitest';
+import { afterAll, afterEach, beforeAll } from 'vitest';
 
 // Mock window.matchMedia
 Object.defineProperty(window, 'matchMedia', {
@@ -39,6 +41,10 @@ Object.assign(navigator, {
     writeText: vi.fn().mockResolvedValue(undefined),
     readText: vi.fn().mockResolvedValue(''),
   },
+});
+
+afterEach(() => {
+  cleanup();
 });
 
 // Suppress console errors during tests
