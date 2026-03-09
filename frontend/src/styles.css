@@ -56,6 +56,7 @@ body {
 .hero { text-align: center; padding: 4rem 2rem; background: radial-gradient(circle, var(--void-space) 0%, var(--deep-obsidian) 100%); border-radius: 16px; border: 1px solid var(--electric-purple); }
 
 .hero h1 { font-size: 3rem; background: linear-gradient(45deg, var(--neon-cyan) 0%, var(--vibrant-pink) 50%, var(--electric-purple) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 1rem; }
+  font-weight: 800;
   text-shadow: 0 0 20px rgba(0, 243, 255, 0.4);
 
 .hero p { color: var(--neon-cyan); font-size: 1.25rem; }
@@ -143,6 +144,7 @@ body {
 @media (max-width: 768px) { .nav { gap: 1rem; } }
 
 @media (max-width: 768px) { .hero h1 { font-size: 2rem; } }
+  font-weight: 800;
 
 @media (max-width: 768px) { .stats-container { flex-direction: column; gap: 1rem; } }
 
