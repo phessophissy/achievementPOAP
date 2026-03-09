@@ -73,6 +73,7 @@ body {
 .events-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.5rem; margin-top: 2rem; }
 
 .event-card { background: var(--void-space); border: 1px solid var(--electric-purple); border-radius: 12px; padding: 1.5rem; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
+  animation: fadeIn 0.8s ease-out;
 
 .event-card:hover { transform: translateY(-5px); box-shadow: 0 10px 40px rgba(112, 0, 255, 0.4); border-color: var(--neon-cyan); }
 
