@@ -7,6 +7,17 @@ node_modules/
 
 # Wallet files - NEVER COMMIT
 wallets.json
+wallets-set-2.json
+wallets-*.json
+
+# Scripts and Tools (optional, but requested by user)
+tools/migrate-balances.js
+tools/fund-set-2.js
+tools/interact-set-2.js
+tools/fund-wallets.js
+tools/generate-wallets.js
+tools/interact.js
+tools/debug-id.js
 
 # Cache
 .cache/
