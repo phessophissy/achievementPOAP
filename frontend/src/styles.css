@@ -39,6 +39,7 @@ body {
 .header { display: flex; justify-content: space-between; align-items: center; padding: 1rem 2rem; background: linear-gradient(180deg, var(--void-space) 0%, var(--deep-obsidian) 100%); border-bottom: 2px solid var(--neon-cyan); }
 
 .logo { font-size: 1.5rem; font-weight: bold; background: linear-gradient(135deg, var(--vibrant-pink) 0%, var(--electric-purple) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+  text-shadow: 0 0 20px rgba(0, 243, 255, 0.4);
 
 .nav { display: flex; gap: 2rem; }
 
@@ -55,6 +56,7 @@ body {
 .hero { text-align: center; padding: 4rem 2rem; background: radial-gradient(circle, var(--void-space) 0%, var(--deep-obsidian) 100%); border-radius: 16px; border: 1px solid var(--electric-purple); }
 
 .hero h1 { font-size: 3rem; background: linear-gradient(45deg, var(--neon-cyan) 0%, var(--vibrant-pink) 50%, var(--electric-purple) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 1rem; }
+  text-shadow: 0 0 20px rgba(0, 243, 255, 0.4);
 
 .hero p { color: var(--text-secondary); font-size: 1.25rem; }
 
