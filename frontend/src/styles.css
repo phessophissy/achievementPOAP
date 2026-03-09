@@ -148,7 +148,7 @@ body {
 
 .input-field { width: 100%; background: var(--void-space); border: 1px solid var(--electric-purple); color: var(--text-primary); padding: 0.75rem 1rem; border-radius: 8px; font-size: 1rem; }
 
-.input-field:focus { outline: none; border-color: var(--neon-cyan); box-shadow: 0 0 10px rgba(255, 215, 0, 0.2); }
+.input-field:focus { outline: none; border-color: var(--neon-cyan); box-shadow: 0 0 15px var(--shadow-neon); }
 .border-sweep {
   position: relative;
   overflow: hidden;
