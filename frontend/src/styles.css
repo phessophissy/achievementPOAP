@@ -176,3 +176,4 @@ body {
 .animate-float { animation: neonFloat 3s ease-in-out infinite; }
 .animate-glow { animation: textGlow 2s ease-in-out infinite; }
 .tooltip { background: var(--bg-card); color: var(--text-primary); border: 1px solid var(--primary-vibrant); padding: 5px 10px; border-radius: 4px; box-shadow: var(--shadow-vivid); }
+.text-neon-cyan { color: var(--neon-cyan); text-shadow: var(--shadow-neon); }
