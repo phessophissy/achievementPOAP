@@ -169,3 +169,4 @@ body {
 @keyframes textGlow { 0%, 100% { text-shadow: 0 0 5px var(--neon-cyan); } 50% { text-shadow: 0 0 20px var(--neon-cyan); } }
 @keyframes scannerLine { 0% { top: 0%; } 100% { top: 100%; } }
 .animate-float { animation: neonFloat 3s ease-in-out infinite; }
+.animate-glow { animation: textGlow 2s ease-in-out infinite; }
