@@ -160,3 +160,4 @@ body {
   animation: rotate 4s linear infinite;
 }
 @keyframes rotate { to { transform: rotate(360deg); } }
+.neo-shadow { box-shadow: 0 0 15px var(--secondary-neon); }
