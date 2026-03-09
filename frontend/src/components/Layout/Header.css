@@ -47,7 +47,7 @@
 }
 
 .nav-link {
-  color: var(--text-secondary);
+  color: var(--info-neon);
   text-decoration: none;
   font-weight: 500;
   padding: 0.5rem 0;
@@ -136,7 +136,7 @@
 }
 
 .balance-currency {
-  color: var(--text-secondary);
+  color: var(--info-neon);
   font-size: 0.875rem;
 }
 
