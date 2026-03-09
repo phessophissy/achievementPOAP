@@ -586,3 +586,4 @@ th {
   50% { border-color: var(--primary-vibrant); box-shadow: 0 0 15px var(--primary-vibrant); }
   100% { border-color: var(--secondary-neon); box-shadow: 0 0 5px var(--secondary-neon); }
 }
+.glow-primary { text-shadow: var(--shadow-vivid); color: var(--primary-vibrant); }
