@@ -167,3 +167,4 @@ body {
 .glass-neon { background: rgba(0, 243, 255, 0.1); backdrop-filter: blur(8px); border: 1px solid rgba(0, 243, 255, 0.3); }
 @keyframes neonFloat { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
 @keyframes textGlow { 0%, 100% { text-shadow: 0 0 5px var(--neon-cyan); } 50% { text-shadow: 0 0 20px var(--neon-cyan); } }
+@keyframes scannerLine { 0% { top: 0%; } 100% { top: 100%; } }
