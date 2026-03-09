@@ -68,7 +68,7 @@
 
 .nav-link:hover,
 .nav-link.active {
-  color: var(--gold);
+  color: var(--primary-vibrant);
 }
 
 .nav-link:hover::after,
@@ -130,7 +130,7 @@
 }
 
 .balance-amount {
-  color: var(--gold);
+  color: var(--primary-vibrant);
   font-weight: 600;
   margin-right: 0.25rem;
 }
