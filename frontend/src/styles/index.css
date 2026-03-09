@@ -378,7 +378,7 @@ th {
 
 /* Glass Effect */
 .glass {
-  background: rgba(26, 26, 26, 0.8);
+  background: var(--glass-bg); border-color: var(--glass-border);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   border: 1px solid var(--border-gold);
