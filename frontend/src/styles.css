@@ -48,7 +48,7 @@ body {
 
 .connect-btn { background: linear-gradient(135deg, var(--vibrant-pink) 0%, var(--electric-purple) 100%); color: var(--black); border: none; padding: 0.75rem 1.5rem; border-radius: 8px; font-weight: bold; cursor: pointer; transition: all 0.3s ease; }
 
-.connect-btn:hover { transform: translateY(-2px); box-shadow: 0 4px 15px rgba(255, 215, 0, 0.4); }
+.connect-btn:hover { transform: translateY(-2px); box-shadow: 0 0 20px rgba(255, 0, 127, 0.6); }
 
 .main { flex: 1; padding: 2rem; }
 
