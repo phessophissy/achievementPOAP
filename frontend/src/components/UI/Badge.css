@@ -34,7 +34,7 @@
 
 .badge-success {
   background: var(--success-bg);
-  color: var(--success);
+  color: var(--success-neon);
   border: 1px solid rgba(16, 185, 129, 0.3);
 }
 
