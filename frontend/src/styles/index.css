@@ -43,6 +43,8 @@
   --text-muted: #8a2be2;
   /* Blue Violet muted */
   --text-neon: #ff00ff;
+  --shadow-neon: 0 0 10px rgba(0, 243, 255, 0.8);
+  --shadow-vivid: 0 0 15px rgba(255, 0, 127, 0.9);
   /* Magenta High-energy */
 
   /* Status Colors */
