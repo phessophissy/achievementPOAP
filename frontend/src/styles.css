@@ -38,7 +38,7 @@ body {
 
 .header { display: flex; justify-content: space-between; align-items: center; padding: 1rem 2rem; background: linear-gradient(180deg, var(--void-space) 0%, var(--deep-obsidian) 100%); border-bottom: 2px solid var(--neon-cyan); }
 
-.logo { font-size: 1.5rem; font-weight: bold; background: linear-gradient(135deg, var(--gold) 0%, var(--gold-metallic) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.logo { font-size: 1.5rem; font-weight: bold; background: linear-gradient(135deg, var(--vibrant-pink) 0%, var(--electric-purple) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
 
 .nav { display: flex; gap: 2rem; }
 
