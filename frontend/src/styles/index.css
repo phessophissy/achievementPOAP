@@ -581,3 +581,8 @@ th {
   50% { transform: scale(1.02); filter: brightness(1.2); }
   100% { transform: scale(1); filter: brightness(1); }
 }
+@keyframes neonBorderGlow {
+  0% { border-color: var(--secondary-neon); box-shadow: 0 0 5px var(--secondary-neon); }
+  50% { border-color: var(--primary-vibrant); box-shadow: 0 0 15px var(--primary-vibrant); }
+  100% { border-color: var(--secondary-neon); box-shadow: 0 0 5px var(--secondary-neon); }
+}
