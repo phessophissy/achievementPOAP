@@ -74,7 +74,7 @@ body {
 
 .event-card { background: var(--void-space); border: 1px solid var(--electric-purple); border-radius: 12px; padding: 1.5rem; transition: all 0.3s ease; }
 
-.event-card:hover { transform: translateY(-5px); box-shadow: 0 10px 30px rgba(255, 215, 0, 0.2); border-color: var(--neon-cyan); }
+.event-card:hover { transform: translateY(-5px); box-shadow: 0 10px 40px rgba(112, 0, 255, 0.4); border-color: var(--neon-cyan); }
 
 .event-card h3 { color: var(--neon-cyan); margin-bottom: 0.5rem; }
 
