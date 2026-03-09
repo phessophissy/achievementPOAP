@@ -58,6 +58,7 @@
   --warning-bg: rgba(245, 158, 11, 0.1);
   --info: #3B82F6;
   --info-bg: rgba(59, 130, 246, 0.1);
+  --gradient-vivid: linear-gradient(45deg, var(--primary-vibrant), var(--accent-glow));
 
   /* Borders */
   --border-color: #333333;
