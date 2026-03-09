@@ -263,12 +263,12 @@ th {
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--gold);
+  background: var(--primary-vibrant);
 }
 
 /* Selection */
 ::selection {
-  background: var(--gold);
+  background: var(--primary-vibrant);
   color: var(--bg-primary);
 }
 
