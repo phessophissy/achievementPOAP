@@ -159,3 +159,4 @@ body {
   background: conic-gradient(var(--vibrant-pink), var(--neon-cyan), var(--electric-purple), var(--vibrant-pink));
   animation: rotate 4s linear infinite;
 }
+@keyframes rotate { to { transform: rotate(360deg); } }
