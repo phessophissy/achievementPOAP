@@ -6,7 +6,7 @@ node_modules/
 .env.local
 
 # Wallet files - NEVER COMMIT
-tools/wallets.json
+wallets.json
 
 # Cache
 .cache/
@@ -31,6 +31,4 @@ build/
 # Test coverage
 coverage/
 
-settings/
 
-tools/

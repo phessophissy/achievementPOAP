@@ -7,7 +7,11 @@
   "scripts": {
     "test": "vitest run",
     "deploy": "node deploy.js",
-    "interact": "node tools/interact.js"
+    "generate-wallets": "node tools/generate-wallets.js",
+    "fund-wallets": "node tools/fund-wallets.js",
+    "interact": "node tools/interact.js",
+    "mint": "node tools/interact.js mint",
+    "status": "node tools/interact.js status"
   },
   "keywords": [
     "stacks",
