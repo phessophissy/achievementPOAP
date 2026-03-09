@@ -576,4 +576,8 @@ th {
   .no-print {
     display: none !important;
   }
+}@keyframes vibrantPulse {
+  0% { transform: scale(1); filter: brightness(1); }
+  50% { transform: scale(1.02); filter: brightness(1.2); }
+  100% { transform: scale(1); filter: brightness(1); }
 }
