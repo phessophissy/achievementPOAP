@@ -161,3 +161,4 @@ body {
 }
 @keyframes rotate { to { transform: rotate(360deg); } }
 .neo-shadow { box-shadow: 0 0 15px var(--secondary-neon); }
+.vibe-shadow { box-shadow: 0 0 20px var(--primary-vibrant); }
