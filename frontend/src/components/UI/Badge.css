@@ -40,7 +40,7 @@
 
 .badge-error {
   background: var(--error-bg);
-  color: var(--error);
+  color: var(--error-neon);
   border: 1px solid rgba(239, 68, 68, 0.3);
 }
 
