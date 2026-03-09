@@ -170,7 +170,7 @@ a {
   transition: color var(--transition-fast);
 }
 
-a:hover {
+a:hover { text-shadow: var(--shadow-neon);
   color: var(--gold-light);
 }
 
