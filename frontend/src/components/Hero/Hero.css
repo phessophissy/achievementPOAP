@@ -71,7 +71,7 @@
 .hero-stat-value {
   font-size: 2rem;
   font-weight: 700;
-  color: var(--gold);
+  color: var(--primary-vibrant);
 }
 
 .hero-stat-label {
