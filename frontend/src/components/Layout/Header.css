@@ -1,6 +1,6 @@
 .header {
   background: linear-gradient(180deg, var(--black-card) 0%, var(--black) 100%);
-  border-bottom: 1px solid var(--gold-dark);
+  border-bottom: 2px solid var(--secondary-neon);
   position: sticky;
   top: 0;
   z-index: 100;
@@ -83,8 +83,8 @@
 }
 
 .connect-btn {
-  background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
-  color: var(--black);
+  background: var(--gradient-vivid);
+  color: #ffffff;
   border: none;
   padding: 0.75rem 1.5rem;
   border-radius: 8px;
@@ -126,7 +126,7 @@
   background: var(--black-hover);
   padding: 0.5rem 1rem;
   border-radius: 8px;
-  border: 1px solid var(--gold-dark);
+  border: 1px solid var(--secondary-neon);
 }
 
 .balance-amount {
@@ -145,8 +145,8 @@
 }
 
 .wallet-address-btn {
-  background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
-  color: var(--black);
+  background: var(--gradient-neon);
+  color: #ffffff;
   border: none;
   padding: 0.75rem 1.25rem;
   border-radius: 8px;

@@ -44,3 +44,4 @@ yarn-error.log*
 .eslintcache
 *.tsbuildinfo
 .vercel
+.env*.local

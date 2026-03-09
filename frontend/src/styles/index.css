@@ -13,11 +13,15 @@
   /* Bright Red Blast */
   --warning-neon: #ffdf00;
   /* Solar Yellow */
-  --info-neon: #00ffff;
-  /* Cool Aqua */
+  --info-neon: #00f3ff;
+  /* Glowing Cyan */
 
-  /* Gold Theme (Deprecated, keeping for back-compat) */
-  --gold: #FFD700;
+  /* Gold Theme (Legacy Mapping for Vibrant Theme) */
+  --gold: var(--primary-vibrant);
+  --gold-light: var(--secondary-neon);
+  --gold-dark: var(--accent-glow);
+  --gold-metallic: var(--accent-glow);
+  --gold-shine: var(--secondary-neon);
 
   /* Deep Dark Palette */
   --bg-primary: #05010a;
@@ -170,7 +174,8 @@ a {
   transition: color var(--transition-fast);
 }
 
-a:hover { text-shadow: var(--shadow-neon);
+a:hover {
+  text-shadow: var(--shadow-neon);
   color: var(--gold-light);
 }
 
@@ -378,7 +383,8 @@ th {
 
 /* Glass Effect */
 .glass {
-  background: var(--glass-bg); border-color: var(--glass-border);
+  background: var(--glass-bg);
+  border-color: var(--glass-border);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   border: 1px solid var(--border-gold);
@@ -576,14 +582,43 @@ th {
   .no-print {
     display: none !important;
   }
-}@keyframes vibrantPulse {
-  0% { transform: scale(1); filter: brightness(1); }
-  50% { transform: scale(1.02); filter: brightness(1.2); }
-  100% { transform: scale(1); filter: brightness(1); }
 }
+
+@keyframes vibrantPulse {
+  0% {
+    transform: scale(1);
+    filter: brightness(1);
+  }
+
+  50% {
+    transform: scale(1.02);
+    filter: brightness(1.2);
+  }
+
+  100% {
+    transform: scale(1);
+    filter: brightness(1);
+  }
+}
+
 @keyframes neonBorderGlow {
-  0% { border-color: var(--secondary-neon); box-shadow: 0 0 5px var(--secondary-neon); }
-  50% { border-color: var(--primary-vibrant); box-shadow: 0 0 15px var(--primary-vibrant); }
-  100% { border-color: var(--secondary-neon); box-shadow: 0 0 5px var(--secondary-neon); }
+  0% {
+    border-color: var(--secondary-neon);
+    box-shadow: 0 0 5px var(--secondary-neon);
+  }
+
+  50% {
+    border-color: var(--primary-vibrant);
+    box-shadow: 0 0 15px var(--primary-vibrant);
+  }
+
+  100% {
+    border-color: var(--secondary-neon);
+    box-shadow: 0 0 5px var(--secondary-neon);
+  }
 }
-.glow-primary { text-shadow: var(--shadow-vivid); color: var(--primary-vibrant); }
+
+.glow-primary {
+  text-shadow: var(--shadow-vivid);
+  color: var(--primary-vibrant);
+}
