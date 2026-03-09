@@ -68,7 +68,7 @@ body {
 
 @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
 
-.shimmer { background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.3), transparent); background-size: 200% 100%; animation: shimmer 2s infinite; }
+.shimmer { background: linear-gradient(90deg, transparent, rgba(0, 243, 255, 0.5), transparent); background-size: 200% 100%; animation: shimmer 2s infinite; }
 
 .events-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.5rem; margin-top: 2rem; }
 
@@ -126,7 +126,7 @@ body {
 
 .gold-border { border: 1px solid var(--gold); }
 
-.gold-glow { box-shadow: 0 0 20px rgba(255, 215, 0, 0.3); }
+.gold-glow { box-shadow: 0 0 20px rgba(0, 243, 255, 0.5); }
 
 @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
