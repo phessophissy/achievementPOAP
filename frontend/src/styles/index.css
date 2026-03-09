@@ -258,7 +258,7 @@ th {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--gold-dark);
+  background: var(--accent-glow);
   border-radius: var(--radius-full);
 }
 
