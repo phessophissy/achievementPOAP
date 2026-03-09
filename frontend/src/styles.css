@@ -165,3 +165,4 @@ body {
 .deep-shadow { box-shadow: 0 10px 30px rgba(112, 0, 255, 0.5); }
 .glass-vivid { background: rgba(255, 0, 127, 0.1); backdrop-filter: blur(8px); border: 1px solid rgba(255, 0, 127, 0.3); }
 .glass-neon { background: rgba(0, 243, 255, 0.1); backdrop-filter: blur(8px); border: 1px solid rgba(0, 243, 255, 0.3); }
+@keyframes neonFloat { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
