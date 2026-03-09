@@ -44,7 +44,7 @@ body {
 
 .nav a { color: var(--text-secondary); text-decoration: none; transition: color 0.3s ease; }
 
-.nav a:hover { color: var(--gold); }
+.nav a:hover { color: var(--neon-cyan); }
 
 .connect-btn { background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%); color: var(--black); border: none; padding: 0.75rem 1.5rem; border-radius: 8px; font-weight: bold; cursor: pointer; transition: all 0.3s ease; }
 
@@ -72,9 +72,9 @@ body {
 
 .event-card { background: var(--black-card); border: 1px solid var(--gold-dark); border-radius: 12px; padding: 1.5rem; transition: all 0.3s ease; }
 
-.event-card:hover { transform: translateY(-5px); box-shadow: 0 10px 30px rgba(255, 215, 0, 0.2); border-color: var(--gold); }
+.event-card:hover { transform: translateY(-5px); box-shadow: 0 10px 30px rgba(255, 215, 0, 0.2); border-color: var(--neon-cyan); }
 
-.event-card h3 { color: var(--gold); margin-bottom: 0.5rem; }
+.event-card h3 { color: var(--neon-cyan); margin-bottom: 0.5rem; }
 
 .event-card p { color: var(--text-secondary); font-size: 0.9rem; line-height: 1.5; }
 
@@ -96,7 +96,7 @@ body {
 
 .modal { background: var(--black-card); border: 2px solid var(--gold); border-radius: 16px; padding: 2rem; max-width: 500px; width: 90%; }
 
-.modal h2 { color: var(--gold); margin-bottom: 1rem; }
+.modal h2 { color: var(--neon-cyan); margin-bottom: 1rem; }
 
 .toast { position: fixed; bottom: 2rem; right: 2rem; background: var(--black-card); border: 1px solid var(--gold); padding: 1rem 1.5rem; border-radius: 8px; z-index: 1001; }
 
@@ -104,7 +104,7 @@ body {
 
 .toast.error { border-color: var(--error); }
 
-.loading-spinner { width: 40px; height: 40px; border: 3px solid var(--black-hover); border-top-color: var(--gold); border-radius: 50%; animation: spin 1s linear infinite; }
+.loading-spinner { width: 40px; height: 40px; border: 3px solid var(--black-hover); border-top-color: var(--neon-cyan); border-radius: 50%; animation: spin 1s linear infinite; }
 
 @keyframes spin { to { transform: rotate(360deg); } }
 
@@ -112,15 +112,15 @@ body {
 
 .stat-item { text-align: center; padding: 1.5rem 2rem; background: var(--black-card); border: 1px solid var(--gold-dark); border-radius: 12px; }
 
-.stat-value { font-size: 2rem; font-weight: bold; color: var(--gold); }
+.stat-value { font-size: 2rem; font-weight: bold; color: var(--neon-cyan); }
 
 .stat-label { color: var(--text-secondary); font-size: 0.9rem; margin-top: 0.5rem; }
 
-.section-title { font-size: 1.75rem; color: var(--gold); margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 2px solid var(--gold-dark); }
+.section-title { font-size: 1.75rem; color: var(--neon-cyan); margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 2px solid var(--gold-dark); }
 
 .address-display { font-family: monospace; background: var(--black-hover); padding: 0.5rem 1rem; border-radius: 6px; border: 1px solid var(--gold-dark); color: var(--gold-light); }
 
-.gold-text { color: var(--gold); }
+.gold-text { color: var(--neon-cyan); }
 
 .gold-border { border: 1px solid var(--gold); }
 
@@ -144,4 +144,4 @@ body {
 
 .input-field { width: 100%; background: var(--black-soft); border: 1px solid var(--gold-dark); color: var(--text-primary); padding: 0.75rem 1rem; border-radius: 8px; font-size: 1rem; }
 
-.input-field:focus { outline: none; border-color: var(--gold); box-shadow: 0 0 10px rgba(255, 215, 0, 0.2); }
+.input-field:focus { outline: none; border-color: var(--neon-cyan); box-shadow: 0 0 10px rgba(255, 215, 0, 0.2); }
