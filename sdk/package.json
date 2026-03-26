@@ -1,6 +1,6 @@
 {
   "name": "achievement-poap",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "Achievement POAP SDK on Stacks (Bitcoin L2)",
   "main": "index.js",
   "type": "module",

@@ -9,7 +9,6 @@ import {
 } from '@stacks/transactions';
 import { StacksMainnet } from '@stacks/network';
 
-export const DEFAULT_CONTRACT_ADDRESS = 'SP2KYZRNME33Y39GP3RKC90DQJ45EF1N0NZNVRE09';
 export const DEFAULT_CONTRACT_NAME = 'achievement-poap';
 
 /**
@@ -19,15 +18,16 @@ export class AchievementPOAP {
     /**
      * Initialize SDK
      * @param {Object} options 
-     * @param {string} [options.contractAddress] The Stacks address that deployed the contract
+     * @param {string} options.contractAddress The Stacks address that deployed the contract
      * @param {string} [options.contractName] The POAP contract name
      * @param {object} [options.network] Network object (e.g. StacksMainnet)
      */
     constructor({ 
-        contractAddress = DEFAULT_CONTRACT_ADDRESS, 
+        contractAddress, 
         contractName = DEFAULT_CONTRACT_NAME, 
         network = new StacksMainnet() 
     } = {}) {
+        if (!contractAddress) throw new Error("contractAddress is required");
         this.contractAddress = contractAddress;
         this.contractName = contractName;
         this.network = network;

@@ -18,12 +18,14 @@ Import and initialize the `AchievementPOAP` class. By default, it points to the 
 import { AchievementPOAP } from 'achievement-poap';
 import { StacksMainnet, StacksTestnet } from '@stacks/network';
 
-// 1. Default setup (Mainnet)
-const poap = new AchievementPOAP();
+// 1. Setup for Mainnet (Contract Deployer Address Required)
+const poap = new AchievementPOAP({
+    contractAddress: '<DEPLOYER_STX_ADDRESS>'
+});
 
 // 2. Custom setup (e.g. Testnet or custom contract deployment)
 const customPoap = new AchievementPOAP({
-    contractAddress: 'ST2KYZRNME33Y39GP3RKC90DQJ45EF1N0NZNVRE09',
+    contractAddress: '<TESTNET_STX_ADDRESS>',
     contractName: 'achievement-poap',
     network: new StacksTestnet()
 });
@@ -90,8 +92,8 @@ async function transferToken() {
     
     const transaction = await poap.buildTransferTransaction(
         5, // Token ID
-        'SP1QPNQB6R...VEVX4', // Sender Stacks Address
-        'SP2KYZRNME...VRE09', // Recipient Stacks Address
+        '<SENDER_STX_ADDRESS>', // Sender Stacks Address
+        '<RECIPIENT_STX_ADDRESS>', // Recipient Stacks Address
         senderKey
     );
 
