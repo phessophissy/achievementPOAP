@@ -1,158 +1,130 @@
-# achievementPOAP
+# Achievement POAP SDK
 
-A POAP (Proof of Attendance Protocol) NFT minting platform built on Stacks, Bitcoin's Layer 2 smart contract network.
+A professional, lightweight JavaScript/TypeScript SDK for interacting with the **Achievement POAP** smart contract on Stacks (Bitcoin's Layer 2).
 
-## Overview
+This SDK provides utility classes to effortlessly fetch POAP events from the blockchain and build standardized transaction objects for minting, transferring, and creating events, which can be broadcasted via `@stacks/transactions` or used with Stacks wallets.
 
-achievementPOAP enables event organizers to create achievement-based NFTs that can be claimed by participants. Each POAP serves as a verifiable on-chain proof of attendance or achievement.
-
-## Features
-
-- **Event Creation**: Create custom POAP events with configurable parameters
-- **Time-Bound Minting**: Set start and end blocks for minting windows
-- **Supply Limits**: Define maximum supply per event
-- **Unique Claims**: One POAP per wallet per event
-- **On-chain Metadata**: Full metadata stored on Stacks blockchain
-- **Low Minting Fee**: Only 0.025 STX per mint
-
-## Contract Architecture
-
-### Core Functions
-
-#### Event Management
-- `create-event`: Create a new POAP event
-- `deactivate-event`: Deactivate an existing event
-
-#### Minting
-- `mint-poap`: Mint a POAP for a specific event (costs 0.025 STX)
-
-#### Transfers
-- `transfer`: Transfer a POAP to another address
-
-#### Read Functions
-- `get-event`: Get event details
-- `get-token-metadata`: Get token metadata
-- `get-user-tokens`: Get all tokens owned by a user
-- `has-minted-event`: Check if user has minted from an event
-- `get-event-supply`: Get current and max supply for an event
-
-### Error Codes
-
-| Code | Description |
-|------|-------------|
-| u100 | Not authorized |
-| u101 | Already minted this event |
-| u102 | Event not found |
-| u103 | Event expired |
-| u104 | Insufficient funds |
-| u105 | Mint failed |
-| u106 | Event not active |
-| u107 | Invalid URI |
-
-## Getting Started
-
-### Prerequisites
-
-- [Clarinet](https://github.com/hirosystems/clarinet) installed
-- Node.js v18+
-- STX tokens for deployment and testing
-
-### Installation
+## Installation
 
 ```bash
-npm install
+npm install achievement-poap @stacks/transactions @stacks/network
 ```
 
-### Testing
+## Initialization
 
-```bash
-clarinet test
+Import and initialize the `AchievementPOAP` class. By default, it points to the official mainnet smart contract.
+
+```javascript
+import { AchievementPOAP } from 'achievement-poap';
+import { StacksMainnet, StacksTestnet } from '@stacks/network';
+
+// 1. Default setup (Mainnet)
+const poap = new AchievementPOAP();
+
+// 2. Custom setup (e.g. Testnet or custom contract deployment)
+const customPoap = new AchievementPOAP({
+    contractAddress: 'ST2KYZRNME33Y39GP3RKC90DQJ45EF1N0NZNVRE09',
+    contractName: 'achievement-poap',
+    network: new StacksTestnet()
+});
 ```
 
-### Deployment
+## Usage
 
-1. Configure your deployment settings in `settings/Devnet.toml`
-2. Run deployment:
+### 1. Fetching Event Information
 
-```bash
-clarinet deployments apply -p deployments/default.devnet-plan.yaml
-```
+Fetch on-chain metadata for a specific POAP event ID.
 
-## Usage Examples
+```javascript
+import { cvToJSON } from '@stacks/transactions';
 
-### Create an Event
-
-```clarity
-(contract-call? .achievement-poap create-event 
-    "Stacks Hackathon 2024"
-    "Participated in the Stacks Global Hackathon"
-    u1000
-    u100000
-    u200000
-    "ipfs://QmXxx.../metadata.json"
-)
-```
-
-### Mint a POAP
-
-```clarity
-(contract-call? .achievement-poap mint-poap u1)
-```
-
-### Check Ownership
-
-```clarity
-(contract-call? .achievement-poap get-user-tokens 'ST1PQHQKV0RJXZFY1DGX8MNSNYVE3VGZJSRTPGZGM)
-```
-
-## Integration
-
-The contract follows the SIP-009 NFT standard and can be integrated with:
-- Stacks wallets (Hiro Wallet, Xverse)
-- NFT marketplaces
-- Event platforms
-- Achievement systems
-
-## API Reference
-
-### Data Structures
-
-#### Event
-```clarity
-{
-    name: (string-ascii 64),
-    description: (string-ascii 256),
-    creator: principal,
-    max-supply: uint,
-    current-supply: uint,
-    start-block: uint,
-    end-block: uint,
-    metadata-uri: (string-ascii 256),
-    active: bool
+async function checkEvent() {
+    // Get raw Clarity value
+    const eventCV = await poap.getEvent(1);
+    
+    // Convert to readable JSON
+    console.log(cvToJSON(eventCV));
 }
 ```
 
-#### Token Metadata
-```clarity
-{
-    event-id: uint,
-    minted-at: uint,
-    minter: principal
+### 2. Getting the Global Mint Fee
+
+The minting fee is configured globally on the contract.
+
+```javascript
+import { cvToValue } from '@stacks/transactions';
+
+async function checkFee() {
+    const feeCV = await poap.getMintFee();
+    console.log(`Current Mint Fee: ${cvToValue(feeCV)} microSTX`);
 }
 ```
 
-## Configuration
+### 3. Minting a POAP
 
-| Parameter | Value |
-|-----------|-------|
-| Minting Fee | 0.025 STX |
-| Max Tokens Per User | 100 |
-| Contract Name | achievement-poap |
+Build a transaction payload to mint an NFT for a specific event. This outputs a standard `makeContractCall` transaction object.
+
+```javascript
+import { broadcastTransaction } from '@stacks/transactions';
+
+async function mint() {
+    const senderKey = 'YOUR_PRIVATE_KEY_HERE';
+    const eventId = 1;
+
+    // Generate the unsigned or strictly signed transaction payload
+    const transaction = await poap.buildMintTransaction(eventId, senderKey);
+
+    // Broadcast to the network
+    const txid = await broadcastTransaction(transaction, poap.network);
+    console.log(`Mint TX successfully broadcasted! TXID: ${txid}`);
+}
+```
+
+### 4. Transferring a POAP
+
+Build a transaction to transfer an owned POAP to another Principal address.
+
+```javascript
+async function transferToken() {
+    const senderKey = 'YOUR_PRIVATE_KEY_HERE';
+    
+    const transaction = await poap.buildTransferTransaction(
+        5, // Token ID
+        'SP1QPNQB6R...VEVX4', // Sender Stacks Address
+        'SP2KYZRNME...VRE09', // Recipient Stacks Address
+        senderKey
+    );
+
+    const txid = await broadcastTransaction(transaction, poap.network);
+    console.log(`Transfer TXID: ${txid}`);
+}
+```
+
+### 5. Creating a POAP Event (Admin Only)
+
+If you are the deployer of the contract, you can create new POAP events using the SDK.
+
+```javascript
+async function deployEvent() {
+    const adminKey = 'ADMIN_PRIVATE_KEY';
+    
+    const eventDetails = {
+        name: "My Awesome Hackathon",
+        description: "Awarded to participants of the 2026 Hackathon",
+        maxSupply: 1000,
+        startBlock: 120000, // Stacks block height
+        endBlock: 140000,
+        metadataUri: "ipfs://QmYourHashHere"
+    };
+
+    const transaction = await poap.buildCreateEventTransaction(eventDetails, adminKey);
+    const txid = await broadcastTransaction(transaction, poap.network);
+}
+```
+
+## Dependencies
+- peer dependencies: `@stacks/transactions`, `@stacks/network`
 
 ## License
 
 MIT License
-
-## Contributing
-
-Contributions are welcome! Please open an issue or submit a pull request.
