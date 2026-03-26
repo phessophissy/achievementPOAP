@@ -1,11 +1,11 @@
 {
   "name": "achievement-poap",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "POAP Minting Platform on Stacks (Bitcoin L2) and SDK",
-  "main": "index.js",
+  "main": "sdk/index.js",
   "type": "module",
   "files": [
-    "index.js"
+    "sdk/index.js"
   ],
   "scripts": {
     "test": "vitest run",
@@ -26,10 +26,11 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
+    "@stacks/encryption": "^6.11.0",
     "@stacks/network": "^6.11.0",
     "@stacks/transactions": "^6.11.0",
     "@stacks/wallet-sdk": "^6.0.0",
-    "@stacks/encryption": "^6.11.0",
+    "achievement-poap": "^1.0.2",
     "bip39": "^3.1.0",
     "dotenv": "^16.3.1"
   },
