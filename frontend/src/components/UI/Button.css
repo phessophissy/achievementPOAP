@@ -40,8 +40,8 @@
 
 /* Variants */
 .btn-primary {
-  background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
-  color: var(--black);
+  background: var(--gradient-vivid);
+  color: #ffffff;
 }
 
 .btn-primary:hover:not(:disabled) {
@@ -55,8 +55,8 @@
 
 .btn-secondary {
   background: transparent;
-  color: var(--gold);
-  border: 2px solid var(--gold);
+  color: var(--secondary-neon);
+  border: 2px solid var(--secondary-neon);
 }
 
 .btn-secondary:hover:not(:disabled) {

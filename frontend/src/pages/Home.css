@@ -17,12 +17,12 @@
 
 .hero-badge {
   display: inline-block;
-  background: linear-gradient(135deg, rgba(255, 215, 0, 0.2) 0%, rgba(255, 215, 0, 0.1) 100%);
-  border: 1px solid var(--gold-dark);
+  background: var(--gradient-neon);
+  border: 1px solid var(--secondary-neon);
   padding: 0.5rem 1rem;
   border-radius: 20px;
   font-size: 0.875rem;
-  color: var(--gold);
+  color: #ffffff;
   margin-bottom: 1.5rem;
 }
 
@@ -39,10 +39,11 @@
 }
 
 .title-line.gradient {
-  background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 50%, var(--gold-metallic) 100%);
+  background: var(--gradient-vivid);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  text-shadow: 0 0 30px rgba(255, 0, 127, 0.3);
 }
 
 .hero-description {
@@ -70,7 +71,7 @@
 .hero-ring {
   position: absolute;
   border-radius: 50%;
-  border: 2px solid var(--gold-dark);
+  border: 2px solid var(--accent-glow);
   animation: rotate 20s linear infinite;
 }
 
@@ -128,15 +129,19 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
 }
 
 @keyframes float {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: translateY(0) rotate(0deg);
   }
+
   50% {
     transform: translateY(-15px) rotate(5deg);
   }
@@ -147,7 +152,7 @@
   padding: 3rem;
   background: linear-gradient(135deg, rgba(255, 215, 0, 0.05) 0%, rgba(255, 215, 0, 0.02) 100%);
   border-radius: 20px;
-  border: 1px solid var(--gold-dark);
+  border: 1px solid var(--accent-glow);
 }
 
 .stats-grid {
@@ -164,7 +169,7 @@
 .stat-value {
   font-size: 2.5rem;
   font-weight: 700;
-  color: var(--gold);
+  color: var(--primary-vibrant);
   margin-bottom: 0.5rem;
 }
 
@@ -182,7 +187,7 @@
 .section-title {
   font-size: 2.5rem;
   font-weight: 700;
-  color: var(--gold);
+  color: var(--primary-vibrant);
   margin-bottom: 0.75rem;
 }
 
@@ -214,7 +219,7 @@
 .feature-title {
   font-size: 1.25rem;
   font-weight: 600;
-  color: var(--gold);
+  color: var(--primary-vibrant);
   margin-bottom: 0.75rem;
 }
 
@@ -241,7 +246,7 @@
 .step-number {
   font-size: 3rem;
   font-weight: 800;
-  background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
+  background: linear-gradient(135deg, var(--primary-vibrant) 0%, var(--accent-glow) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -267,7 +272,7 @@
   right: -1rem;
   width: 2rem;
   height: 2px;
-  background: linear-gradient(90deg, var(--gold) 0%, var(--gold-dark) 100%);
+  background: linear-gradient(90deg, var(--primary-vibrant) 0%, var(--accent-glow) 100%);
   transform: translateY(-50%);
 }
 
@@ -284,7 +289,7 @@
 .cta-title {
   font-size: 2rem;
   font-weight: 700;
-  color: var(--gold);
+  color: var(--primary-vibrant);
   margin-bottom: 1rem;
 }
 

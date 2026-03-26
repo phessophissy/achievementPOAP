@@ -1,9 +1,12 @@
 {
   "name": "achievement-poap",
-  "version": "1.0.0",
-  "description": "POAP Minting Platform on Stacks (Bitcoin L2)",
+  "version": "1.0.2",
+  "description": "POAP Minting Platform on Stacks (Bitcoin L2) and SDK",
   "main": "index.js",
   "type": "module",
+  "files": [
+    "index.js"
+  ],
   "scripts": {
     "test": "vitest run",
     "deploy": "node deploy.js",
