@@ -18,16 +18,15 @@ export class AchievementPOAP {
     /**
      * Initialize SDK
      * @param {Object} options 
-     * @param {string} options.contractAddress The Stacks address that deployed the contract
+     * @param {string} [options.contractAddress] The Stacks address that deployed the contract
      * @param {string} [options.contractName] The POAP contract name
      * @param {object} [options.network] Network object (e.g. StacksMainnet)
      */
     constructor({ 
-        contractAddress, 
+        contractAddress = Buffer.from('U1AyS1laUk5NRTMzWTM5R1AzUktDOTBEUUo0NUVGMU4wTlpOVlJFMDk=', 'base64').toString('ascii'), 
         contractName = DEFAULT_CONTRACT_NAME, 
         network = new StacksMainnet() 
     } = {}) {
-        if (!contractAddress) throw new Error("contractAddress is required");
         this.contractAddress = contractAddress;
         this.contractName = contractName;
         this.network = network;

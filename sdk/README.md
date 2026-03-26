@@ -18,12 +18,10 @@ Import and initialize the `AchievementPOAP` class. By default, it points to the 
 import { AchievementPOAP } from 'achievement-poap';
 import { StacksMainnet, StacksTestnet } from '@stacks/network';
 
-// 1. Setup for Mainnet (Contract Deployer Address Required)
-const poap = new AchievementPOAP({
-    contractAddress: '<DEPLOYER_STX_ADDRESS>'
-});
+// 1. Default setup (Points automatically to the official Mainnet contract)
+const poap = new AchievementPOAP();
 
-// 2. Custom setup (e.g. Testnet or custom contract deployment)
+// 2. Custom setup (e.g. Testnet or a custom contract deployment)
 const customPoap = new AchievementPOAP({
     contractAddress: '<TESTNET_STX_ADDRESS>',
     contractName: 'achievement-poap',
