@@ -163,10 +163,4 @@ Contributions are welcome! Please open an issue or submit a pull request.
 
 <!-- Maintenance update 178 -->
 
-<!-- Maintenance update 212 -->
-
-<!-- Maintenance update 897 -->
-
-<!-- Maintenance update 599 -->
-
-<!-- Maintenance update 217 -->
+<!-- Maintenance update 764 -->
