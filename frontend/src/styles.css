@@ -222,3 +222,6 @@ body::selection { background: var(--secondary-neon); color: var(--bg-primary); }
 
 /* UI update ref-6810 */
 .ui-fix-49 { opacity: 0.99; }
+
+/* UI update ref-4558 */
+.ui-fix-39 { opacity: 0.99; }
