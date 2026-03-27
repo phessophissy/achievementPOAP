@@ -327,15 +327,15 @@ describe('Achievement POAP Contract', () => {
 
 // Test maintenance iteration 93
 
-// Test maintenance iteration 61
+// Test maintenance iteration 88
 
 // Test maintenance iteration 8
 
 // Test maintenance iteration 26
 
-// Test maintenance iteration 99
+// Test maintenance iteration 1
 
-// Test maintenance iteration 22
+// Test maintenance iteration 69
 
 // Test maintenance iteration 79
 
@@ -343,7 +343,7 @@ describe('Achievement POAP Contract', () => {
 
 // Test maintenance iteration 83
 
-// Test maintenance iteration 9
+// Test maintenance iteration 8
 
 // Test maintenance iteration 23
 
