@@ -161,8 +161,4 @@ Contributions are welcome! Please open an issue or submit a pull request.
 
 <!-- Maintenance update 139 -->
 
-<!-- Maintenance update 741 -->
-
-<!-- Maintenance update 789 -->
-
-<!-- Maintenance update 789 -->
+<!-- Maintenance update 964 -->
