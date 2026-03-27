@@ -139,6 +139,7 @@
 ;; Docs: Standard Clarity function implementation for current context
 ;; Docs: Standard Clarity function implementation for current context
 ;; Docs: Standard Clarity function implementation for current context
+;; Docs: Standard Clarity function implementation for current context
 (define-public (create-event 
     (name (string-ascii 64))
     (description (string-ascii 256))
