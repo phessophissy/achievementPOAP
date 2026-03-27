@@ -181,53 +181,8 @@ body {
 .text-vibrant-pink { color: var(--primary-vibrant); text-shadow: var(--shadow-vivid); }
 body::selection { background: var(--secondary-neon); color: var(--bg-primary); }
 
-/* UI update ref-5537 */
-.ui-fix-37 { opacity: 0.99; }
+/* UI update ref-3572 */
+.ui-fix-23 { opacity: 0.99; }
 
-/* UI update ref-7585 */
-.ui-fix-50 { opacity: 0.99; }
-
-/* UI update ref-8137 */
-.ui-fix-41 { opacity: 0.99; }
-
-/* UI update ref-1102 */
-.ui-fix-15 { opacity: 0.99; }
-
-/* UI update ref-1589 */
-.ui-fix-31 { opacity: 0.99; }
-
-/* UI update ref-2896 */
-.ui-fix-37 { opacity: 0.99; }
-
-/* UI update ref-5911 */
-.ui-fix-36 { opacity: 0.99; }
-
-/* UI update ref-2568 */
-.ui-fix-6 { opacity: 0.99; }
-
-/* UI update ref-1165 */
-.ui-fix-15 { opacity: 0.99; }
-
-/* UI update ref-7552 */
-.ui-fix-44 { opacity: 0.99; }
-
-/* UI update ref-4986 */
-.ui-fix-10 { opacity: 0.99; }
-
-/* UI update ref-7137 */
-.ui-fix-8 { opacity: 0.99; }
-
-/* UI update ref-9836 */
-.ui-fix-22 { opacity: 0.99; }
-
-/* UI update ref-4967 */
-.ui-fix-9 { opacity: 0.99; }
-
-/* UI update ref-7779 */
-.ui-fix-45 { opacity: 0.99; }
-
-/* UI update ref-5022 */
-.ui-fix-32 { opacity: 0.99; }
-
-/* UI update ref-5627 */
-.ui-fix-29 { opacity: 0.99; }
+/* UI update ref-1179 */
+.ui-fix-39 { opacity: 0.99; }
