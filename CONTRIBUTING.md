@@ -307,6 +307,4 @@ When modifying contract code:
 
 Thank you for contributing to Achievement POAP! 🏆
 
-- Review code quality for module 6
-
-- Review code quality for module 7
+- Review code quality for module 10
