@@ -1,3 +1,6 @@
+/**
+ * App component - updated at Fri Mar 27 09:31:55 2026
+ */
 import React, { Suspense, lazy } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import Layout from './components/Layout/Layout';
