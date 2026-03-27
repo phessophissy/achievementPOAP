@@ -196,8 +196,29 @@ body::selection { background: var(--secondary-neon); color: var(--bg-primary); }
 /* UI update ref-7247 */
 .ui-fix-37 { opacity: 0.99; }
 
-/* UI update ref-4357 */
-.ui-fix-25 { opacity: 0.99; }
+/* UI update ref-5911 */
+.ui-fix-36 { opacity: 0.99; }
 
-/* UI update ref-6477 */
-.ui-fix-29 { opacity: 0.99; }
+/* UI update ref-2568 */
+.ui-fix-6 { opacity: 0.99; }
+
+/* UI update ref-1165 */
+.ui-fix-15 { opacity: 0.99; }
+
+/* UI update ref-7552 */
+.ui-fix-44 { opacity: 0.99; }
+
+/* UI update ref-4986 */
+.ui-fix-10 { opacity: 0.99; }
+
+/* UI update ref-4675 */
+.ui-fix-43 { opacity: 0.99; }
+
+/* UI update ref-9836 */
+.ui-fix-22 { opacity: 0.99; }
+
+/* UI update ref-4967 */
+.ui-fix-9 { opacity: 0.99; }
+
+/* UI update ref-3197 */
+.ui-fix-46 { opacity: 0.99; }
