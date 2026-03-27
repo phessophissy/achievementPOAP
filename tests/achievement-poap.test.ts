@@ -323,4 +323,4 @@ describe('Achievement POAP Contract', () => {
   });
 });
 
-// Test maintenance iteration 42
+// Test maintenance iteration 28

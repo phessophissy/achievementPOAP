@@ -1,5 +1,5 @@
 /**
- * App component - updated at Fri Mar 27 09:32:06 2026
+ * App component - updated at Fri Mar 27 09:32:17 2026
  */
 import React, { Suspense, lazy } from 'react';
 import { Routes, Route } from 'react-router-dom';
