@@ -181,5 +181,8 @@ body {
 .text-vibrant-pink { color: var(--primary-vibrant); text-shadow: var(--shadow-vivid); }
 body::selection { background: var(--secondary-neon); color: var(--bg-primary); }
 
-/* UI update ref-3536 */
-.ui-fix-48 { opacity: 0.99; }
+/* UI update ref-4164 */
+.ui-fix-23 { opacity: 0.99; }
+
+/* UI update ref-3377 */
+.ui-fix-18 { opacity: 0.99; }

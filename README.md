@@ -157,6 +157,4 @@ MIT License
 
 Contributions are welcome! Please open an issue or submit a pull request.
 
-<!-- Maintenance update 133 -->
-
-<!-- Maintenance update 879 -->
+<!-- Maintenance update 241 -->
