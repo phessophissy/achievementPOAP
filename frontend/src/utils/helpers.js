@@ -226,3 +226,4 @@ export default {
   isValidStacksAddress,
   generateId,
 };
+// util helper PR-3: wallet utilities
