@@ -66,6 +66,7 @@
   width: 0;
   height: 2px;
   background: var(--gold);
+  box-shadow: 0 0 10px var(--gold);
   transition: width 0.3s ease;
 }
 
