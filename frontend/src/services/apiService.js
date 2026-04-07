@@ -171,5 +171,4 @@ export default {
   fetchTransactionStatus,
   fetchNFTMetadata,
 };
-// api helpers PR-3
-// api helpers PR-7
+// api helpers PR-5
