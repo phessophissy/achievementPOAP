@@ -228,4 +228,4 @@ export default {
 };
 // util helper PR-3: wallet utilities
 // util helper PR-6: gallery utilities
-// util helper PR-11: ux utilities
+// util helper PR-10: api utilities
