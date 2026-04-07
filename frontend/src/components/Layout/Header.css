@@ -30,6 +30,7 @@
 }
 
 .logo-icon {
+  transition: transform 0.3s ease;
   font-size: 1.75rem;
 }
 
