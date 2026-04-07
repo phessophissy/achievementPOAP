@@ -30,6 +30,7 @@
 body {
   cursor: default;
   font-family: 'Inter', sans-serif;
+  line-height: 1.6;
   background: var(--deep-obsidian);
   color: var(--text-primary);
   min-height: 100vh;
