@@ -189,4 +189,4 @@ Contributions are welcome! Please open an issue or submit a pull request.
 
 <!-- PR-13: ux progress -->
 
-<!-- PR-18: pages progress -->
+<!-- PR-17: leaderboard progress -->
