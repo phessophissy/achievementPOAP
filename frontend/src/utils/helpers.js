@@ -236,4 +236,4 @@ export default {
 // util helper PR-26: gallery utilities
 // util helper PR-37: ui utilities
 // util helper PR-48: docs utilities
-// util helper PR-55: nft utilities
+// util helper PR-54: ui utilities
