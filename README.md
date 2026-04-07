@@ -204,3 +204,5 @@ Contributions are welcome! Please open an issue or submit a pull request.
 <!-- PR-52: a11y progress -->
 
 <!-- PR-58: profile progress -->
+
+<!-- PR-63: ui progress -->
