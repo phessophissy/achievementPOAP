@@ -231,5 +231,4 @@ export default {
 // util helper PR-9: events utilities
 // util helper PR-13: ux utilities
 // util helper PR-16: ux utilities
-// util helper PR-19: settings utilities
-// util helper PR-21: wallet utilities
+// util helper PR-20: a11y utilities
