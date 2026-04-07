@@ -133,6 +133,22 @@ function Home() {
         </div>
       </section>
 
+      {/* Recent Activity Ticker */}
+      <section className="activity-section">
+        <div className="activity-container">
+          <div className="activity-label">Recent Activity:</div>
+          <div className="activity-ticker">
+            <div className="ticker-content">
+              <span className="ticker-item">🏆 SP1..2k3 minted 'Stacks OG' POAP</span>
+              <span className="ticker-item">⭐ SP2..4m5 minted 'Testnet Hero' POAP</span>
+              <span className="ticker-item">🎯 SP3..6n7 created 'Art Hackathon' event</span>
+              <span className="ticker-item">🚀 SP4..8p9 minted 'Genesis Collector' POAP</span>
+              <span className="ticker-item">🏆 SP1..2k3 minted 'Stacks OG' POAP</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Features Section */}
       <section className="features-section">
         <div className="section-header">
