@@ -36,7 +36,7 @@
 .logo-text {
   font-family: var(--font-heading);
   font-size: 1.5rem;
-  font-weight: 700;
+  font-weight: 800;
   background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 50%, var(--gold-metallic) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
