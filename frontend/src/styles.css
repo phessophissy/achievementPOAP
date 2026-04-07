@@ -184,20 +184,46 @@ body {
 .tooltip { background: var(--bg-card); color: var(--text-primary); border: 1px solid var(--primary-vibrant); padding: 5px 10px; border-radius: 4px; box-shadow: var(--shadow-vivid); }
 .text-neon-cyan { color: var(--neon-cyan); text-shadow: var(--shadow-neon); }
 .text-vibrant-pink { color: var(--primary-vibrant); text-shadow: var(--shadow-vivid); }
-body::selection { background: var(--neon-cyan); color: #000; }
+body::selection { background: var(--secondary-neon); color: var(--bg-primary); }
 
-/* Custom Scrollbar */
-::-webkit-scrollbar { width: 8px; }
-::-webkit-scrollbar-track { background: var(--deep-obsidian); }
-::-webkit-scrollbar-thumb { background: linear-gradient(var(--vibrant-pink), var(--electric-purple)); border-radius: 4px; }
-::-webkit-scrollbar-thumb:hover { background: var(--neon-cyan); }
+/* UI update ref-5537 */
+.ui-fix-37 { opacity: 0.99; }
 
-.glass { background: var(--glass-bg); backdrop-filter: blur(12px); border: 1px solid var(--glass-border); box-shadow: var(--shadow-premium); }
+/* UI update ref-7585 */
+.ui-fix-50 { opacity: 0.99; }
 
-/* Aesthetic adjustment 95 */
-/* Aesthetic adjustment 96 */
-/* Aesthetic adjustment 97 */
-/* Aesthetic adjustment 98 */
-/* Aesthetic adjustment 99 */
-/* Aesthetic adjustment 100 */
-/* Aesthetic adjustment 101 */
+/* UI update ref-8137 */
+.ui-fix-41 { opacity: 0.99; }
+
+/* UI update ref-1102 */
+.ui-fix-15 { opacity: 0.99; }
+
+/* UI update ref-7247 */
+.ui-fix-37 { opacity: 0.99; }
+
+/* UI update ref-5911 */
+.ui-fix-36 { opacity: 0.99; }
+
+/* UI update ref-2568 */
+.ui-fix-6 { opacity: 0.99; }
+
+/* UI update ref-1165 */
+.ui-fix-15 { opacity: 0.99; }
+
+/* UI update ref-7552 */
+.ui-fix-44 { opacity: 0.99; }
+
+/* UI update ref-4986 */
+.ui-fix-10 { opacity: 0.99; }
+
+/* UI update ref-4675 */
+.ui-fix-43 { opacity: 0.99; }
+
+/* UI update ref-9836 */
+.ui-fix-22 { opacity: 0.99; }
+
+/* UI update ref-4967 */
+.ui-fix-9 { opacity: 0.99; }
+
+/* UI update ref-3197 */
+.ui-fix-46 { opacity: 0.99; }

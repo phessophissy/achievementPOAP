@@ -1,0 +1,39 @@
+---
+id: 0
+name: "Simulated deployment, used as a default for `clarinet console`, `clarinet test` and `clarinet check`"
+network: simnet
+genesis:
+  wallets:
+    - name: deployer
+      address: ST1PQHQKV0RJXZFY1DGX8MNSNYVE3VGZJSRTPGZGM
+      balance: "100000000000000"
+      sbtc-balance: "1000000000"
+    - name: wallet_1
+      address: ST1SJ3DTE5DN7X54YDH5D64R3BCB6A2AG2ZQ8YPD5
+      balance: "100000000000000"
+      sbtc-balance: "1000000000"
+    - name: wallet_2
+      address: ST2CY5V39NHDPWSXMW9QDT3HC3GD6Q6XX4CFRK9AG
+      balance: "100000000000000"
+      sbtc-balance: "1000000000"
+  contracts:
+    - costs
+    - pox
+    - pox-2
+    - pox-3
+    - pox-4
+    - lockup
+    - costs-2
+    - costs-3
+    - cost-voting
+    - bns
+plan:
+  batches:
+    - id: 0
+      transactions:
+        - emulated-contract-publish:
+            contract-name: achievement-poap
+            emulated-sender: ST1PQHQKV0RJXZFY1DGX8MNSNYVE3VGZJSRTPGZGM
+            path: contracts/achievement-poap.clar
+            clarity-version: 2
+      epoch: "2.5"
