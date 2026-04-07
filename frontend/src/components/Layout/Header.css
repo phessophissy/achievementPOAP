@@ -248,3 +248,4 @@
     display: none;
   }
 }
+.logo:hover .logo-icon { transform: rotate(15deg); }
