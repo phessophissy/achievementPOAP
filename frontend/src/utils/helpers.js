@@ -226,4 +226,4 @@ export default {
   isValidStacksAddress,
   generateId,
 };
-// util helper PR-5: hooks utilities
+// util helper PR-4: theme utilities

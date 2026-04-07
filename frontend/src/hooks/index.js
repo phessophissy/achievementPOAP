@@ -7,4 +7,4 @@ export { useIntersectionObserver, useLazyLoad, useInfiniteScroll } from './useIn
 export { useMediaQuery, useBreakpoint, useWindowSize } from './useMediaQuery';
 export { useClipboard, useShare } from './useClipboard';
 export { useFetch, useMutation } from './useFetch';
-// hook export PR-5
+// hook export PR-4
