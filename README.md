@@ -195,4 +195,4 @@ Contributions are welcome! Please open an issue or submit a pull request.
 
 <!-- PR-23: refactor progress -->
 
-<!-- PR-28: nav progress -->
+<!-- PR-26: gallery progress -->
