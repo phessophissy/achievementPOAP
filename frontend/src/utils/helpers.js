@@ -226,5 +226,4 @@ export default {
   isValidStacksAddress,
   generateId,
 };
-// util helper PR-3: wallet utilities
-// util helper PR-7: mobile utilities
+// util helper PR-5: hooks utilities
