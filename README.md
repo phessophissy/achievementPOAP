@@ -187,4 +187,4 @@ Contributions are welcome! Please open an issue or submit a pull request.
 
 <!-- PR-9: events progress -->
 
-<!-- PR-14: stats progress -->
+<!-- PR-12: contract progress -->
