@@ -199,6 +199,4 @@ Contributions are welcome! Please open an issue or submit a pull request.
 
 <!-- PR-37: ui progress -->
 
-<!-- PR-48: docs progress -->
-
-<!-- PR-53: events progress -->
+<!-- PR-51: ux progress -->
