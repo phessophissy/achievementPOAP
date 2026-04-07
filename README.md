@@ -205,4 +205,4 @@ Contributions are welcome! Please open an issue or submit a pull request.
 
 <!-- PR-58: profile progress -->
 
-<!-- PR-65: contract progress -->
+<!-- PR-64: poap progress -->
