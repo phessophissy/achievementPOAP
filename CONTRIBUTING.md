@@ -333,4 +333,4 @@ Thank you for contributing to Achievement POAP! 🏆
 
 - Review code quality for module 1
 
-<!-- PR-2 contribution notes -->
+<!-- PR-1 contribution notes -->

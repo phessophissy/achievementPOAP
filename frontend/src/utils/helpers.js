@@ -226,4 +226,4 @@ export default {
   isValidStacksAddress,
   generateId,
 };
-// util helper PR-2: anim utilities
+// util helper PR-1: a11y utilities
