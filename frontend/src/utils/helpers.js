@@ -227,3 +227,4 @@ export default {
   generateId,
 };
 // util helper PR-3: wallet utilities
+// util helper PR-6: gallery utilities
