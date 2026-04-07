@@ -381,3 +381,54 @@
 /* Polish step 18 for home page aesthetic */
 /* Polish step 19 for home page aesthetic */
 /* Polish step 20 for home page aesthetic */
+.activity-section {
+  padding: 1rem 0;
+  background: var(--glass-bg);
+  border-top: 1px solid var(--glass-border);
+  border-bottom: 1px solid var(--glass-border);
+  margin: 2rem 0;
+  overflow: hidden;
+}
+
+.activity-container {
+  display: flex;
+  align-items: center;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.activity-label {
+  font-weight: 800;
+  color: var(--neon-cyan);
+  margin-right: 2rem;
+  white-space: nowrap;
+  font-family: var(--font-heading);
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
+}
+
+.activity-ticker {
+  flex: 1;
+  overflow: hidden;
+  position: relative;
+}
+
+.ticker-content {
+  display: inline-flex;
+  gap: 4rem;
+  animation: ticker 30s linear infinite;
+  white-space: nowrap;
+}
+
+.ticker-item {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+@keyframes ticker {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
