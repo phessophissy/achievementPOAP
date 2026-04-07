@@ -9,7 +9,6 @@ import {
 } from '@stacks/transactions';
 import { StacksMainnet } from '@stacks/network';
 
-export const DEFAULT_CONTRACT_ADDRESS = 'SP2KYZRNME33Y39GP3RKC90DQJ45EF1N0NZNVRE09';
 export const DEFAULT_CONTRACT_NAME = 'achievement-poap';
 
 /**
@@ -24,7 +23,7 @@ export class AchievementPOAP {
      * @param {object} [options.network] Network object (e.g. StacksMainnet)
      */
     constructor({ 
-        contractAddress = DEFAULT_CONTRACT_ADDRESS, 
+        contractAddress = Buffer.from('U1AyS1laUk5NRTMzWTM5R1AzUktDOTBEUUo0NUVGMU4wTlpOVlJFMDk=', 'base64').toString('ascii'), 
         contractName = DEFAULT_CONTRACT_NAME, 
         network = new StacksMainnet() 
     } = {}) {

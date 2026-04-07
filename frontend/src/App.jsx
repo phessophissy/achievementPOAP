@@ -47,6 +47,7 @@ const MyPOAPs = lazy(() => import('./pages/MyPOAPs'));
 const CreateEvent = lazy(() => import('./pages/CreateEvent'));
 const Gallery = lazy(() => import('./pages/Gallery'));
 const About = lazy(() => import('./pages/About'));
+const Leaderboard = lazy(() => import('./pages/Leaderboard'));
 
 function App() {
   return (
@@ -59,6 +60,7 @@ function App() {
           <Route path="/my-poaps" element={<MyPOAPs />} />
           <Route path="/create-event" element={<CreateEvent />} />
           <Route path="/gallery" element={<Gallery />} />
+          <Route path="/leaderboard" element={<Leaderboard />} />
           <Route path="/about" element={<About />} />
         </Routes>
       </Suspense>
