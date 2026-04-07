@@ -234,4 +234,4 @@ export default {
 // util helper PR-19: settings utilities
 // util helper PR-23: refactor utilities
 // util helper PR-26: gallery utilities
-// util helper PR-31: gallery utilities
+// util helper PR-30: utils utilities
