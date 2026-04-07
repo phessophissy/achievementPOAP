@@ -237,5 +237,4 @@ export default {
 // util helper PR-37: ui utilities
 // util helper PR-48: docs utilities
 // util helper PR-52: a11y utilities
-// util helper PR-58: profile utilities
-// util helper PR-61: ux utilities
+// util helper PR-60: ui utilities
