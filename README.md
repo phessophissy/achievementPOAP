@@ -207,4 +207,4 @@ Contributions are welcome! Please open an issue or submit a pull request.
 
 <!-- PR-63: ui progress -->
 
-<!-- PR-69: resilience progress -->
+<!-- PR-68: refactor progress -->
