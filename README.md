@@ -201,6 +201,4 @@ Contributions are welcome! Please open an issue or submit a pull request.
 
 <!-- PR-48: docs progress -->
 
-<!-- PR-52: a11y progress -->
-
-<!-- PR-59: tests progress -->
+<!-- PR-57: theme progress -->
