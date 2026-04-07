@@ -181,6 +181,4 @@ Contributions are welcome! Please open an issue or submit a pull request.
 
 <!-- Maintenance update 377 -->
 
-<!-- PR-3: wallet progress -->
-
-<!-- PR-7: mobile progress -->
+<!-- PR-5: hooks progress -->
