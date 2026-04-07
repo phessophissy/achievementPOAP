@@ -190,3 +190,5 @@ Contributions are welcome! Please open an issue or submit a pull request.
 <!-- PR-13: ux progress -->
 
 <!-- PR-16: ux progress -->
+
+<!-- PR-19: settings progress -->
