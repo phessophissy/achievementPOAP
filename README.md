@@ -193,4 +193,4 @@ Contributions are welcome! Please open an issue or submit a pull request.
 
 <!-- PR-19: settings progress -->
 
-<!-- PR-24: events progress -->
+<!-- PR-22: ux progress -->
