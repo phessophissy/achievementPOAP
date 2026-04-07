@@ -197,4 +197,4 @@ Contributions are welcome! Please open an issue or submit a pull request.
 
 <!-- PR-26: gallery progress -->
 
-<!-- PR-38: dev progress -->
+<!-- PR-36: profile progress -->
