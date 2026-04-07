@@ -1,7 +1,7 @@
 .header {
   background: rgba(10, 1, 26, 0.8);
   backdrop-filter: blur(12px);
-  border-bottom: 2px solid var(--secondary-neon);
+  border-bottom: 1px solid var(--glass-border);
   position: sticky;
   top: 0;
   z-index: 100;
