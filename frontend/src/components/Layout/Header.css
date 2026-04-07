@@ -1,5 +1,6 @@
 .header {
-  background: linear-gradient(180deg, var(--black-card) 0%, var(--black) 100%);
+  background: rgba(10, 1, 26, 0.8);
+  backdrop-filter: blur(12px);
   border-bottom: 2px solid var(--secondary-neon);
   position: sticky;
   top: 0;
