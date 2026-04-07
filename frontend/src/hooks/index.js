@@ -8,5 +8,4 @@ export { useMediaQuery, useBreakpoint, useWindowSize } from './useMediaQuery';
 export { useClipboard, useShare } from './useClipboard';
 export { useFetch, useMutation } from './useFetch';
 // hook export PR-3
-// hook export PR-6
-// hook export PR-8
+// hook export PR-7

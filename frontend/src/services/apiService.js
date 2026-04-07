@@ -172,5 +172,4 @@ export default {
   fetchNFTMetadata,
 };
 // api helpers PR-3
-// api helpers PR-6
-// api helpers PR-8
+// api helpers PR-7
