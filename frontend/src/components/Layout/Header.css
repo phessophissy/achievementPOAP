@@ -69,7 +69,10 @@
   transition: width 0.3s ease;
 }
 
-.nav-link:hover,
+.nav-link:hover {
+  color: var(--neon-cyan);
+}
+.nav-link.active {
 .nav-link.active {
   color: var(--primary-vibrant);
 }
