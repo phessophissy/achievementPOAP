@@ -361,3 +361,5 @@
   }
 }
 /* Polish step 1 for home page aesthetic */
+/* Polish step 2 for home page aesthetic */
+.hero-container { animation: fadeIn 1s ease-out; }
