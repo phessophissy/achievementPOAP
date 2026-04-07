@@ -232,4 +232,4 @@ export default {
 // util helper PR-13: ux utilities
 // util helper PR-16: ux utilities
 // util helper PR-19: settings utilities
-// util helper PR-24: events utilities
+// util helper PR-22: ux utilities
