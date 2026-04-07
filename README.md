@@ -189,6 +189,4 @@ Contributions are welcome! Please open an issue or submit a pull request.
 
 <!-- PR-13: ux progress -->
 
-<!-- PR-16: ux progress -->
-
-<!-- PR-20: a11y progress -->
+<!-- PR-18: pages progress -->
