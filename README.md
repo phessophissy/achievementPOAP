@@ -197,4 +197,4 @@ Contributions are welcome! Please open an issue or submit a pull request.
 
 <!-- PR-26: gallery progress -->
 
-<!-- PR-32: a11y progress -->
+<!-- PR-31: gallery progress -->
