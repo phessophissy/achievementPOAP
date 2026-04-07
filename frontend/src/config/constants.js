@@ -35,5 +35,4 @@ export const STORAGE_KEYS = {
 };
 
 // constants for PR-3
-// constants for PR-6
-// constants for PR-8
+// constants for PR-7
