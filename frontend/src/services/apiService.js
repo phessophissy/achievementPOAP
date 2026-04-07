@@ -179,5 +179,4 @@ export default {
 // api helpers PR-19
 // api helpers PR-23
 // api helpers PR-26
-// api helpers PR-37
-// api helpers PR-40
+// api helpers PR-39
