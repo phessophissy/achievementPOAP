@@ -185,6 +185,4 @@ Contributions are welcome! Please open an issue or submit a pull request.
 
 <!-- PR-6: gallery progress -->
 
-<!-- PR-9: events progress -->
-
-<!-- PR-12: contract progress -->
+<!-- PR-11: ux progress -->
