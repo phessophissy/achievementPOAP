@@ -40,5 +40,4 @@ export const STORAGE_KEYS = {
 // constants for PR-13
 // constants for PR-16
 // constants for PR-19
-// constants for PR-23
-// constants for PR-25
+// constants for PR-24
