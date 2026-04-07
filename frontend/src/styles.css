@@ -16,6 +16,7 @@
   --success: #4CAF50;
   --error: #f44336;
   --warning: #ff9800;
+  --glass-bg: rgba(255, 255, 255, 0.03);
 }
 
 * {
