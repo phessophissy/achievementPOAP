@@ -29,7 +29,7 @@
 
 body {
   cursor: default;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: 'Inter', sans-serif;
   background: var(--deep-obsidian);
   color: var(--text-primary);
   min-height: 100vh;
