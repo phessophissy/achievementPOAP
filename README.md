@@ -197,6 +197,4 @@ Contributions are welcome! Please open an issue or submit a pull request.
 
 <!-- PR-26: gallery progress -->
 
-<!-- PR-37: ui progress -->
-
-<!-- PR-40: poap progress -->
+<!-- PR-39: ui progress -->
