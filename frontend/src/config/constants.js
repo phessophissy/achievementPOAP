@@ -34,5 +34,4 @@ export const STORAGE_KEYS = {
   FAVORITES: 'favorite_poaps',
 };
 
-// constants for PR-3
-// constants for PR-7
+// constants for PR-5
