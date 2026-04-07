@@ -239,4 +239,4 @@ export default {
 // util helper PR-52: a11y utilities
 // util helper PR-58: profile utilities
 // util helper PR-63: ui utilities
-// util helper PR-67: gallery utilities
+// util helper PR-68: refactor utilities
