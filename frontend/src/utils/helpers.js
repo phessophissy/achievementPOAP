@@ -229,5 +229,4 @@ export default {
 // util helper PR-3: wallet utilities
 // util helper PR-6: gallery utilities
 // util helper PR-9: events utilities
-// util helper PR-13: ux utilities
-// util helper PR-17: leaderboard utilities
+// util helper PR-15: css utilities
