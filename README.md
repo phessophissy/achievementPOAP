@@ -196,3 +196,5 @@ Contributions are welcome! Please open an issue or submit a pull request.
 <!-- PR-23: refactor progress -->
 
 <!-- PR-26: gallery progress -->
+
+<!-- PR-34: home progress -->
