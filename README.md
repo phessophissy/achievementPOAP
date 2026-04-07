@@ -185,4 +185,4 @@ Contributions are welcome! Please open an issue or submit a pull request.
 
 <!-- PR-6: gallery progress -->
 
-<!-- PR-10: api progress -->
+<!-- PR-8: search progress -->
