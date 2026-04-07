@@ -341,4 +341,4 @@ Thank you for contributing to Achievement POAP! 🏆
 
 <!-- PR-13 contribution notes -->
 
-<!-- PR-18 contribution notes -->
+<!-- PR-17 contribution notes -->
