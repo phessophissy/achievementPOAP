@@ -1,6 +1,7 @@
 :root {
+  --font-heading: "Outfit", sans-serif;
   --vibrant-pink: #ff007f;
-  --neon-cyan: #00f3ff;
+  --neon-cyan: #00D1FF;
   --electric-purple: #7000ff;
   --laser-yellow: #fefe00;
   --gold-dark: #B8860B;
@@ -15,6 +16,9 @@
   --success: #4CAF50;
   --error: #f44336;
   --warning: #ff9800;
+  --glass-bg: rgba(255, 255, 255, 0.03);
+  --glass-border: rgba(255, 255, 255, 0.1);
+  --shadow-premium: 0 8px 32px 0 rgba(0, 0, 0, 0.61);
 }
 
 * {
@@ -25,7 +29,8 @@
 
 body {
   cursor: default;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: 'Inter', sans-serif;
+  line-height: 1.6;
   background: var(--deep-obsidian);
   color: var(--text-primary);
   min-height: 100vh;

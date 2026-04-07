@@ -1,6 +1,7 @@
 .header {
-  background: linear-gradient(180deg, var(--black-card) 0%, var(--black) 100%);
-  border-bottom: 2px solid var(--secondary-neon);
+  background: rgba(10, 1, 26, 0.8);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--glass-border);
   position: sticky;
   top: 0;
   z-index: 100;
@@ -10,7 +11,7 @@
 .header-container {
   max-width: 1400px;
   margin: 0 auto;
-  padding: 1rem 2rem;
+  padding: 0.75rem 2rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -29,12 +30,14 @@
 }
 
 .logo-icon {
+  transition: transform 0.3s ease;
   font-size: 1.75rem;
 }
 
 .logo-text {
-  font-size: 1.5rem;
-  font-weight: 700;
+  font-family: var(--font-heading);
+  font-size: 1.8rem;
+  font-weight: 800;
   background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 50%, var(--gold-metallic) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -43,13 +46,13 @@
 
 .nav {
   display: flex;
-  gap: 2rem;
+  gap: 2.5rem;
 }
 
 .nav-link {
   color: var(--info-neon);
   text-decoration: none;
-  font-weight: 500;
+  font-weight: 600;
   padding: 0.5rem 0;
   position: relative;
   transition: color 0.3s ease;
@@ -63,10 +66,14 @@
   width: 0;
   height: 2px;
   background: var(--gold);
+  box-shadow: 0 0 10px var(--gold);
   transition: width 0.3s ease;
 }
 
-.nav-link:hover,
+.nav-link:hover {
+  color: var(--neon-cyan);
+}
+.nav-link.active {
 .nav-link.active {
   color: var(--primary-vibrant);
 }
@@ -123,10 +130,10 @@
 }
 
 .balance-display {
-  background: var(--black-hover);
+  background: rgba(255, 255, 255, 0.05);
   padding: 0.5rem 1rem;
   border-radius: 8px;
-  border: 1px solid var(--secondary-neon);
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .balance-amount {
@@ -151,7 +158,7 @@
   padding: 0.75rem 1.25rem;
   border-radius: 8px;
   font-weight: 600;
-  font-family: monospace;
+  font-family: 'JetBrains Mono', monospace;
   cursor: pointer;
   transition: all 0.3s ease;
 }
@@ -245,3 +252,4 @@
     display: none;
   }
 }
+.logo:hover .logo-icon { transform: rotate(15deg); }

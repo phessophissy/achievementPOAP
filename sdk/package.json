@@ -1,0 +1,21 @@
+{
+  "name": "achievement-poap",
+  "version": "1.0.7",
+  "description": "Achievement POAP SDK on Stacks (Bitcoin L2)",
+  "main": "index.js",
+  "type": "module",
+  "author": "phessophissy <adefesobi@yahoo.com>",
+  "license": "MIT",
+  "keywords": [
+    "stacks",
+    "bitcoin",
+    "poap",
+    "nft",
+    "clarity",
+    "sdk"
+  ],
+  "dependencies": {
+    "@stacks/network": "^6.11.0",
+    "@stacks/transactions": "^6.11.0"
+  }
+}

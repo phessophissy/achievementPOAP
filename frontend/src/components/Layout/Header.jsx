@@ -12,6 +12,7 @@ function Header() {
     { path: '/events', label: 'Events' },
     { path: '/my-poaps', label: 'My POAPs' },
     { path: '/gallery', label: 'Gallery' },
+    { path: '/leaderboard', label: 'Leaderboard' },
     { path: '/about', label: 'About' },
   ];
 
