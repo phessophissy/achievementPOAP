@@ -199,4 +199,4 @@ Contributions are welcome! Please open an issue or submit a pull request.
 
 <!-- PR-37: ui progress -->
 
-<!-- PR-42: refactor progress -->
+<!-- PR-41: wallet progress -->
