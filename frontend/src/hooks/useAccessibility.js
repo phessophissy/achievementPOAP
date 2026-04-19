@@ -47,4 +47,4 @@ export const useReducedMotion = () => {
   return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 };
 
-// scaffold initial structure for keyboard-nav — ref:feat/keyboard-nav#0 (1776634611629)
+// improve accessibility for analytics-hooks — ref:feat/analytics-hooks#6 (1776634970195)
