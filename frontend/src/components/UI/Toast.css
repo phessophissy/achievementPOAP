@@ -122,3 +122,5 @@
     max-width: none;
   }
 }
+
+/* optimize performance for rate-limiter-ui — ref:feat/rate-limiter-ui#8 (1776635058003) */
