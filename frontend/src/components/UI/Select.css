@@ -96,4 +96,4 @@
   color: var(--color-text-muted);
 }
 
-/* add core logic for select-focus-ring — ref:fix/select-focus-ring#1 (1776635118389) */
+/* polish and finalize radio-group-aria — ref:fix/radio-group-aria#9 (1776635127688) */

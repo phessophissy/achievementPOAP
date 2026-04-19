@@ -65,4 +65,4 @@ const Select = ({
 
 export default Select;
 
-// scaffold initial structure for select-focus-ring — ref:fix/select-focus-ring#0 (1776635118378)
+// optimize performance for radio-group-aria — ref:fix/radio-group-aria#8 (1776635127673)

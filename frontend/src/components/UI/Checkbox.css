@@ -107,4 +107,4 @@
   padding-left: calc(20px + 0.75rem);
 }
 
-/* polish and finalize select-focus-ring — ref:fix/select-focus-ring#9 (1776635118485) */
+/* add event handlers and state management for radio-group-aria — ref:fix/radio-group-aria#3 (1776635127593) */

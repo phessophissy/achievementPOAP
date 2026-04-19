@@ -119,3 +119,5 @@
   font-size: 0.75rem;
   color: var(--color-text-secondary);
 }
+
+/* add core logic for radio-group-aria — ref:fix/radio-group-aria#1 (1776635127561) */
