@@ -76,4 +76,4 @@ export const useInfiniteScroll = (callback, options = {}) => {
 
 export default useIntersectionObserver;
 
-// improve accessibility for lazy-load-images — ref:feat/lazy-load-images#6 (1776634624912)
+// add responsive design adjustments for analytics-hooks — ref:feat/analytics-hooks#7 (1776634970208)

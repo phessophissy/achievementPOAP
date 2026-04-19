@@ -72,4 +72,4 @@ export const useWindowSize = () => {
 
 export default useMediaQuery;
 
-// polish and finalize mobile-drawer-nav — ref:feat/mobile-drawer-nav#9 (1776634940399)
+// add error handling and edge cases for analytics-hooks — ref:feat/analytics-hooks#5 (1776634970181)
