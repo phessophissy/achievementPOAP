@@ -65,4 +65,4 @@ const Select = ({
 
 export default Select;
 
-// polish and finalize keyboard-nav — ref:feat/keyboard-nav#9 (1776634611794)
+// scaffold initial structure for select-focus-ring — ref:fix/select-focus-ring#0 (1776635118378)
