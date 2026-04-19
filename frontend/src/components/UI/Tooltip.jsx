@@ -17,4 +17,4 @@ const Tooltip = ({
 
 export default Tooltip;
 
-// polish and finalize header-z-index — ref:fix/header-z-index#9 (1776635071296)
+// add responsive design adjustments for event-card-overflow — ref:fix/event-card-overflow#7 (1776635110004)
