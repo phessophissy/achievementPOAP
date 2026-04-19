@@ -114,4 +114,4 @@ export const useSettings = () => {
 
 export default SettingsContext;
 
-// add error handling and edge cases for theme-customizer — ref:feat/theme-customizer#5 (1776634981627)
+// polish and finalize hook-composition — ref:refactor/hook-composition#9 (1776635155602)

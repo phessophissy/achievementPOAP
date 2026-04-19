@@ -9,4 +9,4 @@ export { useClipboard, useShare } from './useClipboard';
 export { useFetch, useMutation } from './useFetch';
 // hook export PR-1
 
-// optimize performance for analytics-hooks — ref:feat/analytics-hooks#8 (1776634970222)
+// optimize performance for hook-composition — ref:refactor/hook-composition#8 (1776635155578)

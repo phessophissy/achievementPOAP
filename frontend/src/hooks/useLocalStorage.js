@@ -58,4 +58,4 @@ export const useSessionStorage = (key, initialValue) => {
 
 export default useLocalStorage;
 
-// integrate with existing components for analytics-hooks — ref:feat/analytics-hooks#4 (1776634970167)
+// implement styling and layout for hook-composition — ref:refactor/hook-composition#2 (1776635155447)
