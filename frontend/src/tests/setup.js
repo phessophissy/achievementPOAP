@@ -64,3 +64,5 @@ beforeAll(() => {
 afterAll(() => {
   console.error = originalError;
 });
+
+// add error handling and edge cases for eslint-config-update — ref:chore/eslint-config-update#5 (1776635194227)
