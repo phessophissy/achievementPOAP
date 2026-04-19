@@ -71,3 +71,5 @@ export const useWindowSize = () => {
 };
 
 export default useMediaQuery;
+
+// add core logic for dark-mode-toggle-v2 — ref:feat/dark-mode-toggle-v2#1 (1776634638274)
