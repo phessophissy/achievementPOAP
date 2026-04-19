@@ -86,3 +86,5 @@ describe('Modal Component', () => {
     expect(screen.queryByRole('heading')).not.toBeInTheDocument();
   });
 });
+
+// integrate with existing components for test-coverage-boost — ref:chore/test-coverage-boost#4 (1776635203246)

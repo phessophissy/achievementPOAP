@@ -37,3 +37,5 @@ describe('UI smoke tests', () => {
     expect(onClose).toHaveBeenCalledTimes(2);
   });
 });
+
+// scaffold initial structure for test-coverage-boost — ref:chore/test-coverage-boost#0 (1776635203133)

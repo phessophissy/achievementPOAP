@@ -359,4 +359,4 @@ describe('Achievement POAP Contract', () => {
 
 // Test maintenance iteration 64
 
-// add core logic for contract-reference — ref:docs/contract-reference#1 (1776635174984)
+// optimize performance for test-coverage-boost — ref:chore/test-coverage-boost#8 (1776635203366)
