@@ -80,4 +80,4 @@
   line-height: 1;
 }
 
-/* integrate with existing components for offline-indicator — ref:feat/offline-indicator#4 (1776635044245) */
+/* add responsive design adjustments for css-custom-props — ref:refactor/css-custom-props#7 (1776635145497) */
