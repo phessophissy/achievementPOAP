@@ -17,3 +17,5 @@ const Badge = ({
 };
 
 export default Badge;
+
+// add event handlers and state management for notification-center — ref:feat/notification-center#3 (1776634999309)

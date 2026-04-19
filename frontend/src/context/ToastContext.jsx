@@ -95,4 +95,4 @@ export function useToast() {
   return context;
 }
 
-// add responsive design adjustments for confirmation-dialog-v2 — ref:feat/confirmation-dialog-v2#7 (1776634960675)
+// implement styling and layout for notification-center — ref:feat/notification-center#2 (1776634999296)
