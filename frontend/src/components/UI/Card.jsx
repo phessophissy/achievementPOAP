@@ -55,4 +55,4 @@ Card.Image = CardImage;
 
 export default Card;
 
-// add error handling and edge cases for drag-sort-gallery — ref:feat/drag-sort-gallery#5 (1776635022424)
+// integrate with existing components for event-card-overflow — ref:fix/event-card-overflow#4 (1776635109965)
