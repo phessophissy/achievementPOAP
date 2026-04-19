@@ -109,3 +109,5 @@
   opacity: 0.5;
   cursor: not-allowed;
 }
+
+/* add error handling and edge cases for radio-group-aria — ref:fix/radio-group-aria#5 (1776635127624) */
