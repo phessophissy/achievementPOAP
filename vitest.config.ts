@@ -21,3 +21,5 @@ export default defineConfig({
     },
   },
 });
+
+// integrate with existing components for eslint-config-update — ref:chore/eslint-config-update#4 (1776635194214)
