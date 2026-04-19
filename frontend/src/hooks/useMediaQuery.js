@@ -72,4 +72,4 @@ export const useWindowSize = () => {
 
 export default useMediaQuery;
 
-// add error handling and edge cases for analytics-hooks — ref:feat/analytics-hooks#5 (1776634970181)
+// add event handlers and state management for hook-composition — ref:refactor/hook-composition#3 (1776635155467)
