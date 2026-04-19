@@ -178,4 +178,4 @@ export default {
   isEventsCacheValid,
 };
 
-// integrate with existing components for export-poaps — ref:feat/export-poaps#4 (1776635011524)
+// implement styling and layout for api-service-split — ref:refactor/api-service-split#2 (1776635136254)
