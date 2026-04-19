@@ -5,3 +5,5 @@ import './animations.css';
 import './accessibility.css';
 
 export * from './index.css';
+
+/* add core logic for scroll-to-top — ref:feat/scroll-to-top#1 (1776634618218) */
