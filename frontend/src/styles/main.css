@@ -6,4 +6,4 @@ import './accessibility.css';
 
 export * from './index.css';
 
-/* polish and finalize toast-stacking — ref:fix/toast-stacking#9 (1776635100330) */
+/* improve accessibility for event-card-overflow — ref:fix/event-card-overflow#6 (1776635109991) */
