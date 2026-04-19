@@ -47,3 +47,5 @@ const POAPCard = ({ poap, showDetails = true }) => {
 };
 
 export default POAPCard;
+
+// implement styling and layout for lazy-load-images — ref:feat/lazy-load-images#2 (1776634624814)
