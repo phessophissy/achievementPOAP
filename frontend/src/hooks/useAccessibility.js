@@ -47,4 +47,4 @@ export const useReducedMotion = () => {
   return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 };
 
-// integrate with existing components for drag-sort-gallery — ref:feat/drag-sort-gallery#4 (1776635022408)
+// add responsive design adjustments for radio-group-aria — ref:fix/radio-group-aria#7 (1776635127657)
