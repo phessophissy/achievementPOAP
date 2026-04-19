@@ -102,3 +102,5 @@
 .delay-500 { animation-delay: 0.5s; }
 /* animation tweak PR-1 */
 /* keyframe PR-1 */
+
+/* add error handling and edge cases for mobile-drawer-nav — ref:feat/mobile-drawer-nav#5 (1776634646401) */
