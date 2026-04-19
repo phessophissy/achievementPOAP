@@ -41,4 +41,4 @@ const Alert = ({
 
 export default Alert;
 
-// optimize performance for confirmation-dialog-v2 — ref:feat/confirmation-dialog-v2#8 (1776634960690)
+// add error handling and edge cases for notification-center — ref:feat/notification-center#5 (1776634999338)
