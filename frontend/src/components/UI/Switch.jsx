@@ -48,3 +48,5 @@ const Switch = ({
 };
 
 export default Switch;
+
+// integrate with existing components for radio-group-aria — ref:fix/radio-group-aria#4 (1776635127609)
