@@ -334,3 +334,5 @@ Thank you for contributing to Achievement POAP! 🏆
 - Review code quality for module 1
 
 <!-- PR-1 contribution notes -->
+
+<!-- add responsive design adjustments for contract-reference — ref:docs/contract-reference#7 (1776635175067) -->
