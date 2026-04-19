@@ -79,4 +79,4 @@ export const DropdownDivider = () => <div className="dropdown__divider" role="se
 
 export default Dropdown;
 
-// add responsive design adjustments for keyboard-nav — ref:feat/keyboard-nav#7 (1776634611757)
+// add responsive design adjustments for search-autocomplete — ref:feat/search-autocomplete#7 (1776634950864)
