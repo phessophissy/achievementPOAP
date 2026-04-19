@@ -227,3 +227,5 @@ export default {
   generateId,
 };
 // util helper PR-1: a11y utilities
+
+// polish and finalize rate-limiter-ui — ref:feat/rate-limiter-ui#9 (1776635058023)
