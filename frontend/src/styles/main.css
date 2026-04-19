@@ -6,4 +6,4 @@ import './accessibility.css';
 
 export * from './index.css';
 
-/* improve accessibility for modal-scroll-lock — ref:fix/modal-scroll-lock#6 (1776635081928) */
+/* polish and finalize toast-stacking — ref:fix/toast-stacking#9 (1776635100330) */
