@@ -41,4 +41,4 @@ const Alert = ({
 
 export default Alert;
 
-// add error handling and edge cases for notification-center — ref:feat/notification-center#5 (1776634999338)
+// add core logic for offline-indicator — ref:feat/offline-indicator#1 (1776635044201)
