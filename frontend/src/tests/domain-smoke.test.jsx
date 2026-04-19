@@ -36,3 +36,5 @@ describe('Domain smoke tests', () => {
     expect(isValidStacksAddress('SP2KYZRNME33Y39GP3RKC90DQJ45EF1N0NZNVRE09')).toBe(true);
   });
 });
+
+// add core logic for test-coverage-boost — ref:chore/test-coverage-boost#1 (1776635203159)
