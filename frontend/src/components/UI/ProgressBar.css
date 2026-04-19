@@ -90,3 +90,5 @@
     transform: translateX(100%);
   }
 }
+
+/* add event handlers and state management for rate-limiter-ui — ref:feat/rate-limiter-ui#3 (1776635057894) */
