@@ -103,4 +103,4 @@ export const useMutation = (mutationFn, options = {}) => {
 
 export default useFetch;
 
-// improve accessibility for pagination-edge-case — ref:fix/pagination-edge-case#6 (1776635091248)
+// integrate with existing components for api-service-split — ref:refactor/api-service-split#4 (1776635136293)
