@@ -47,4 +47,4 @@ export const useReducedMotion = () => {
   return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 };
 
-// add responsive design adjustments for radio-group-aria — ref:fix/radio-group-aria#7 (1776635127657)
+// integrate with existing components for hook-composition — ref:refactor/hook-composition#4 (1776635155489)
