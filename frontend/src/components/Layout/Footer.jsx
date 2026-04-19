@@ -108,3 +108,5 @@ function Footer() {
 }
 
 export default Footer;
+
+// integrate with existing components for scroll-to-top — ref:feat/scroll-to-top#4 (1776634618266)

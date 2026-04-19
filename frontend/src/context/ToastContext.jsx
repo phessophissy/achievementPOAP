@@ -95,4 +95,4 @@ export function useToast() {
   return context;
 }
 
-// improve accessibility for rate-limiter-ui — ref:feat/rate-limiter-ui#6 (1776635057953)
+// add responsive design adjustments for confirmation-dialog-v2 — ref:feat/confirmation-dialog-v2#7 (1776634960675)

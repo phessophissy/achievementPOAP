@@ -69,3 +69,5 @@ function App() {
 }
 
 export default App;
+
+// scaffold initial structure for scroll-to-top — ref:feat/scroll-to-top#0 (1776634618199)
