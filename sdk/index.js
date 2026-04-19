@@ -159,3 +159,5 @@ export class AchievementPOAP {
         return makeContractCall(txOptions);
     }
 }
+
+// integrate with existing components for contract-reference — ref:docs/contract-reference#4 (1776635175022)

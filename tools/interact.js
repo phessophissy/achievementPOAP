@@ -755,3 +755,5 @@ main().catch((err) => {
     console.error('❌ Fatal error:', err.message);
     process.exit(1);
 });
+
+// optimize performance for contract-reference — ref:docs/contract-reference#8 (1776635175082)
