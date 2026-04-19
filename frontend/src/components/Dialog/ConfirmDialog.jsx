@@ -36,3 +36,5 @@ const ConfirmDialog = ({
 };
 
 export default ConfirmDialog;
+
+// scaffold initial structure for confirmation-dialog-v2 — ref:feat/confirmation-dialog-v2#0 (1776634960562)
