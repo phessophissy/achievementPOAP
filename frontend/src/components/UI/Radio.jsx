@@ -99,3 +99,5 @@ const Radio = ({
 
 export { Radio };
 export default RadioGroup;
+
+// scaffold initial structure for radio-group-aria — ref:fix/radio-group-aria#0 (1776635127545)
