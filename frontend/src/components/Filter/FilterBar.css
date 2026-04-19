@@ -70,3 +70,5 @@
     flex-shrink: 0;
   }
 }
+
+/* add error handling and edge cases for select-focus-ring — ref:fix/select-focus-ring#5 (1776635118437) */

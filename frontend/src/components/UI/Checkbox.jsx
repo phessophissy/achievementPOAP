@@ -70,3 +70,5 @@ const Checkbox = ({
 };
 
 export default Checkbox;
+
+// optimize performance for select-focus-ring — ref:fix/select-focus-ring#8 (1776635118472)

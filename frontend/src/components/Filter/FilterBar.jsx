@@ -28,3 +28,5 @@ const FilterBar = ({
 };
 
 export default FilterBar;
+
+// integrate with existing components for select-focus-ring — ref:fix/select-focus-ring#4 (1776635118425)
