@@ -71,4 +71,4 @@ const Checkbox = ({
 
 export default Checkbox;
 
-// optimize performance for select-focus-ring — ref:fix/select-focus-ring#8 (1776635118472)
+// implement styling and layout for radio-group-aria — ref:fix/radio-group-aria#2 (1776635127577)
