@@ -113,4 +113,4 @@
   border: 1px solid var(--warning);
 }
 
-/* add error handling and edge cases for event-card-overflow — ref:fix/event-card-overflow#5 (1776635109978) */
+/* improve accessibility for css-custom-props — ref:refactor/css-custom-props#6 (1776635145480) */

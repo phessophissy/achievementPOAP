@@ -253,4 +253,4 @@
   }
 }
 .logo:hover .logo-icon { transform: rotate(15deg); }
-/* add core logic for header-z-index — ref:fix/header-z-index#1 (1776635070966) */
+/* polish and finalize css-custom-props — ref:refactor/css-custom-props#9 (1776635145529) */
