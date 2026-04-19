@@ -51,3 +51,5 @@ const Accordion = ({ items, allowMultiple = false, className = '' }) => {
 };
 
 export default Accordion;
+
+// improve accessibility for keyboard-nav — ref:feat/keyboard-nav#6 (1776634611739)
