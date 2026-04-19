@@ -113,4 +113,4 @@
   border: 1px solid var(--warning);
 }
 
-/* polish and finalize theme-customizer — ref:feat/theme-customizer#9 (1776634981680) */
+/* add error handling and edge cases for event-card-overflow — ref:fix/event-card-overflow#5 (1776635109978) */

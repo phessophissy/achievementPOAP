@@ -48,4 +48,4 @@ const POAPCard = ({ poap, showDetails = true }) => {
 
 export default POAPCard;
 
-// implement styling and layout for export-poaps — ref:feat/export-poaps#2 (1776635011452)
+// implement styling and layout for event-card-overflow — ref:fix/event-card-overflow#2 (1776635109939)

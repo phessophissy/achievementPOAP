@@ -108,3 +108,5 @@
   border: 6px solid transparent;
   border-right-color: var(--border-color);
 }
+
+/* optimize performance for event-card-overflow — ref:fix/event-card-overflow#8 (1776635110016) */
