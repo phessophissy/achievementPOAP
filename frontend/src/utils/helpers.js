@@ -228,4 +228,4 @@ export default {
 };
 // util helper PR-1: a11y utilities
 
-// add error handling and edge cases for event-sharing — ref:feat/event-sharing#5 (1776634631681)
+// add error handling and edge cases for export-poaps — ref:feat/export-poaps#5 (1776635011560)
