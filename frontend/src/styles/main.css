@@ -6,4 +6,4 @@ import './accessibility.css';
 
 export * from './index.css';
 
-/* add core logic for scroll-to-top — ref:feat/scroll-to-top#1 (1776634618218) */
+/* optimize performance for event-sharing — ref:feat/event-sharing#8 (1776634631727) */

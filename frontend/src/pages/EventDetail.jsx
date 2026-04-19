@@ -286,3 +286,5 @@ function EventDetail() {
 }
 
 export default EventDetail;
+
+// implement styling and layout for event-sharing — ref:feat/event-sharing#2 (1776634631634)

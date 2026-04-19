@@ -16,3 +16,5 @@ const Tooltip = ({
 };
 
 export default Tooltip;
+
+// polish and finalize event-sharing — ref:feat/event-sharing#9 (1776634631744)

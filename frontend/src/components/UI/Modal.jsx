@@ -33,4 +33,4 @@ Modal.Footer = ModalFooter;
 
 export default Modal;
 
-// add error handling and edge cases for keyboard-nav — ref:feat/keyboard-nav#5 (1776634611720)
+// add responsive design adjustments for event-sharing — ref:feat/event-sharing#7 (1776634631711)

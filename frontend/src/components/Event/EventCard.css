@@ -121,3 +121,5 @@
   color: transparent;
   border-radius: var(--radius-sm);
 }
+
+/* add core logic for event-sharing — ref:feat/event-sharing#1 (1776634631620) */
