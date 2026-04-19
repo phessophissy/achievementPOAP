@@ -39,4 +39,4 @@ const Toast = ({ toasts, removeToast }) => {
 
 export default Toast;
 
-// add responsive design adjustments for rate-limiter-ui — ref:feat/rate-limiter-ui#7 (1776635057976)
+// scaffold initial structure for notification-center — ref:feat/notification-center#0 (1776634999268)
