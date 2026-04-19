@@ -121,4 +121,4 @@ export function useWallet() {
 
 export { userSession };
 
-// polish and finalize offline-indicator — ref:feat/offline-indicator#9 (1776635044320)
+// polish and finalize api-service-split — ref:refactor/api-service-split#9 (1776635136392)
