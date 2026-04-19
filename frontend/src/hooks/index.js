@@ -8,3 +8,5 @@ export { useMediaQuery, useBreakpoint, useWindowSize } from './useMediaQuery';
 export { useClipboard, useShare } from './useClipboard';
 export { useFetch, useMutation } from './useFetch';
 // hook export PR-1
+
+// optimize performance for analytics-hooks — ref:feat/analytics-hooks#8 (1776634970222)
