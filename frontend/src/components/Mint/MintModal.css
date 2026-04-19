@@ -116,3 +116,5 @@
     flex-direction: column;
   }
 }
+
+/* add responsive design adjustments for header-z-index — ref:fix/header-z-index#7 (1776635071213) */
