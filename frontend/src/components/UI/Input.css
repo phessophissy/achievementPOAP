@@ -115,4 +115,4 @@ input[type="time"]::-webkit-calendar-picker-indicator {
   cursor: pointer;
 }
 
-/* improve accessibility for search-autocomplete — ref:feat/search-autocomplete#6 (1776634950849) */
+/* add event handlers and state management for select-focus-ring — ref:fix/select-focus-ring#3 (1776635118413) */
