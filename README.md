@@ -183,4 +183,4 @@ Contributions are welcome! Please open an issue or submit a pull request.
 
 <!-- PR-1: a11y progress -->
 
-<!-- improve accessibility for contract-reference — ref:docs/contract-reference#6 (1776635175053) -->
+<!-- add core logic for deployment-runbook — ref:docs/deployment-runbook#1 (1776635184233) -->

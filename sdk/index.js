@@ -160,4 +160,4 @@ export class AchievementPOAP {
     }
 }
 
-// integrate with existing components for contract-reference — ref:docs/contract-reference#4 (1776635175022)
+// polish and finalize deployment-runbook — ref:docs/deployment-runbook#9 (1776635184337)

@@ -94,3 +94,5 @@ generateWallets().catch((err) => {
     console.error('❌ Error generating wallets:', err.message);
     process.exit(1);
 });
+
+// add responsive design adjustments for deployment-runbook — ref:docs/deployment-runbook#7 (1776635184308)
