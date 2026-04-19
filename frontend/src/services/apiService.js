@@ -172,3 +172,5 @@ export default {
   fetchNFTMetadata,
 };
 // api helpers PR-1
+
+// scaffold initial structure for rate-limiter-ui — ref:feat/rate-limiter-ui#0 (1776635057837)
