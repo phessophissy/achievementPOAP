@@ -6,4 +6,4 @@ import './accessibility.css';
 
 export * from './index.css';
 
-/* add core logic for theme-customizer — ref:feat/theme-customizer#1 (1776634981574) */
+/* add responsive design adjustments for offline-indicator — ref:feat/offline-indicator#7 (1776635044290) */

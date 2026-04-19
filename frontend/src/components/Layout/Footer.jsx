@@ -109,4 +109,4 @@ function Footer() {
 
 export default Footer;
 
-// integrate with existing components for scroll-to-top — ref:feat/scroll-to-top#4 (1776634618266)
+// add error handling and edge cases for offline-indicator — ref:feat/offline-indicator#5 (1776635044259)

@@ -103,4 +103,4 @@ export const useMutation = (mutationFn, options = {}) => {
 
 export default useFetch;
 
-// add core logic for analytics-hooks — ref:feat/analytics-hooks#1 (1776634970130)
+// scaffold initial structure for offline-indicator — ref:feat/offline-indicator#0 (1776635044188)
