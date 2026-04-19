@@ -169,4 +169,4 @@ const Settings = () => {
 
 export default Settings;
 
-// add responsive design adjustments for dark-mode-toggle-v2 — ref:feat/dark-mode-toggle-v2#7 (1776634638373)
+// improve accessibility for theme-customizer — ref:feat/theme-customizer#6 (1776634981640)

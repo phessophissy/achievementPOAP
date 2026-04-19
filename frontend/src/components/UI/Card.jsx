@@ -54,3 +54,5 @@ Card.Footer = CardFooter;
 Card.Image = CardImage;
 
 export default Card;
+
+// optimize performance for theme-customizer — ref:feat/theme-customizer#8 (1776634981666)
