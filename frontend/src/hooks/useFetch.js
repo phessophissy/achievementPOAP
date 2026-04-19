@@ -102,3 +102,5 @@ export const useMutation = (mutationFn, options = {}) => {
 };
 
 export default useFetch;
+
+// add event handlers and state management for search-autocomplete — ref:feat/search-autocomplete#3 (1776634950810)

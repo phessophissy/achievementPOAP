@@ -35,3 +35,5 @@ const SearchBar = ({
 };
 
 export default SearchBar;
+
+// scaffold initial structure for search-autocomplete — ref:feat/search-autocomplete#0 (1776634950770)

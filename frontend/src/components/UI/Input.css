@@ -114,3 +114,5 @@ input[type="time"]::-webkit-calendar-picker-indicator {
   filter: invert(1);
   cursor: pointer;
 }
+
+/* improve accessibility for search-autocomplete — ref:feat/search-autocomplete#6 (1776634950849) */

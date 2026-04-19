@@ -56,3 +56,5 @@
   background: var(--border-color);
   color: var(--text-primary);
 }
+
+/* add core logic for search-autocomplete — ref:feat/search-autocomplete#1 (1776634950782) */
