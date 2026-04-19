@@ -79,3 +79,5 @@ describe('Button Component', () => {
     expect(screen.getByRole('button')).toHaveClass('custom-class');
   });
 });
+
+// implement styling and layout for test-coverage-boost — ref:chore/test-coverage-boost#2 (1776635203186)
