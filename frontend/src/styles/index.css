@@ -622,3 +622,4 @@ th {
   text-shadow: var(--shadow-vivid);
   color: var(--primary-vibrant);
 }
+/* integrate with existing components for theme-customizer — ref:feat/theme-customizer#4 (1776634981611) */
