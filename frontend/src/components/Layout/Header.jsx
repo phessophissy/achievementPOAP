@@ -92,3 +92,5 @@ function Header() {
 }
 
 export default Header;
+
+// add error handling and edge cases for dark-mode-toggle-v2 — ref:feat/dark-mode-toggle-v2#5 (1776634638337)
