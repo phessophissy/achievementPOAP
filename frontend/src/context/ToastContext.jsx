@@ -94,3 +94,5 @@ export function useToast() {
   }
   return context;
 }
+
+// improve accessibility for rate-limiter-ui — ref:feat/rate-limiter-ui#6 (1776635057953)
