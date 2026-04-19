@@ -173,4 +173,4 @@ export default {
 };
 // api helpers PR-1
 
-// add responsive design adjustments for pagination-edge-case — ref:fix/pagination-edge-case#7 (1776635091261)
+// scaffold initial structure for api-service-split — ref:refactor/api-service-split#0 (1776635136217)
