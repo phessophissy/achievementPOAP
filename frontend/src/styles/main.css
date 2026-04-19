@@ -5,3 +5,5 @@ import './animations.css';
 import './accessibility.css';
 
 export * from './index.css';
+
+/* integrate with existing components for dark-mode-toggle-v2 — ref:feat/dark-mode-toggle-v2#4 (1776634638322) */
