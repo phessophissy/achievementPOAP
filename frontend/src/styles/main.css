@@ -6,4 +6,4 @@ import './accessibility.css';
 
 export * from './index.css';
 
-/* optimize performance for event-sharing — ref:feat/event-sharing#8 (1776634631727) */
+/* improve accessibility for mobile-drawer-nav — ref:feat/mobile-drawer-nav#6 (1776634940238) */
