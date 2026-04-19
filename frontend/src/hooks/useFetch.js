@@ -103,4 +103,4 @@ export const useMutation = (mutationFn, options = {}) => {
 
 export default useFetch;
 
-// integrate with existing components for api-service-split — ref:refactor/api-service-split#4 (1776635136293)
+// improve accessibility for hook-composition — ref:refactor/hook-composition#6 (1776635155533)
