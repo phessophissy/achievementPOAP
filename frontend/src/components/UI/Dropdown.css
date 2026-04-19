@@ -95,4 +95,4 @@
   margin: 0.5rem 0;
 }
 
-/* optimize performance for search-autocomplete — ref:feat/search-autocomplete#8 (1776634950878) */
+/* add error handling and edge cases for header-z-index — ref:fix/header-z-index#5 (1776635071133) */

@@ -79,4 +79,4 @@ export const DropdownDivider = () => <div className="dropdown__divider" role="se
 
 export default Dropdown;
 
-// add responsive design adjustments for search-autocomplete — ref:feat/search-autocomplete#7 (1776634950864)
+// integrate with existing components for header-z-index — ref:fix/header-z-index#4 (1776635071090)

@@ -93,4 +93,4 @@ function Header() {
 
 export default Header;
 
-// add responsive design adjustments for notification-center — ref:feat/notification-center#7 (1776634999372)
+// scaffold initial structure for header-z-index — ref:fix/header-z-index#0 (1776635070924)

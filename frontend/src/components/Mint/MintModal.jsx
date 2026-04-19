@@ -64,3 +64,5 @@ const MintModal = ({
 };
 
 export default MintModal;
+
+// improve accessibility for header-z-index — ref:fix/header-z-index#6 (1776635071170)
