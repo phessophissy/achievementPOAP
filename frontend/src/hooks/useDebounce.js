@@ -47,3 +47,5 @@ export const useDebouncedCallback = (callback, delay = 300) => {
 };
 
 export default useDebounce;
+
+// implement styling and layout for search-autocomplete — ref:feat/search-autocomplete#2 (1776634950795)
