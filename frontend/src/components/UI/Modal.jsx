@@ -33,4 +33,4 @@ Modal.Footer = ModalFooter;
 
 export default Modal;
 
-// add responsive design adjustments for export-poaps — ref:feat/export-poaps#7 (1776635011652)
+// implement styling and layout for header-z-index — ref:fix/header-z-index#2 (1776635071010)
