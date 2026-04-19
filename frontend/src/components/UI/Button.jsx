@@ -42,4 +42,4 @@ function Button({
 
 export default Button;
 
-// polish and finalize pagination-edge-case — ref:fix/pagination-edge-case#9 (1776635091290)
+// scaffold initial structure for component-api-guide — ref:docs/component-api-guide#0 (1776635166246)
