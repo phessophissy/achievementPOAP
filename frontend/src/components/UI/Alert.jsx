@@ -40,3 +40,5 @@ const Alert = ({
 };
 
 export default Alert;
+
+// integrate with existing components for rate-limiter-ui — ref:feat/rate-limiter-ui#4 (1776635057912)
