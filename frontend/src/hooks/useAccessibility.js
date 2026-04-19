@@ -47,4 +47,4 @@ export const useReducedMotion = () => {
   return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 };
 
-// improve accessibility for analytics-hooks — ref:feat/analytics-hooks#6 (1776634970195)
+// integrate with existing components for drag-sort-gallery — ref:feat/drag-sort-gallery#4 (1776635022408)

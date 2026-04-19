@@ -19,3 +19,5 @@ const EmptyState = ({
 };
 
 export default EmptyState;
+
+// optimize performance for drag-sort-gallery — ref:feat/drag-sort-gallery#8 (1776635022473)

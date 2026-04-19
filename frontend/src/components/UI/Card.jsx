@@ -55,4 +55,4 @@ Card.Image = CardImage;
 
 export default Card;
 
-// optimize performance for theme-customizer — ref:feat/theme-customizer#8 (1776634981666)
+// add error handling and edge cases for drag-sort-gallery — ref:feat/drag-sort-gallery#5 (1776635022424)
