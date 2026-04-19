@@ -67,3 +67,5 @@ const EventCard = ({ event, showProgress = true }) => {
 };
 
 export default EventCard;
+
+// scaffold initial structure for event-sharing — ref:feat/event-sharing#0 (1776634631603)
