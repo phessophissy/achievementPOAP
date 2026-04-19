@@ -335,4 +335,4 @@ Thank you for contributing to Achievement POAP! 🏆
 
 <!-- PR-1 contribution notes -->
 
-<!-- add responsive design adjustments for contract-reference — ref:docs/contract-reference#7 (1776635175067) -->
+<!-- implement styling and layout for deployment-runbook — ref:docs/deployment-runbook#2 (1776635184247) -->
