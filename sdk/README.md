@@ -128,3 +128,5 @@ async function deployEvent() {
 ## License
 
 MIT License
+
+<!-- add error handling and edge cases for contract-reference — ref:docs/contract-reference#5 (1776635175038) -->
