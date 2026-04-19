@@ -5,3 +5,5 @@ import './animations.css';
 import './accessibility.css';
 
 export * from './index.css';
+
+/* improve accessibility for mobile-drawer-nav — ref:feat/mobile-drawer-nav#6 (1776634646418) */
