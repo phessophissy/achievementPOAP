@@ -39,4 +39,4 @@ const ProgressBar = ({
 
 export default ProgressBar;
 
-// implement styling and layout for rate-limiter-ui — ref:feat/rate-limiter-ui#2 (1776635057878)
+// optimize performance for export-poaps — ref:feat/export-poaps#8 (1776635011679)
