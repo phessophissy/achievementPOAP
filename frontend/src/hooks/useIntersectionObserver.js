@@ -76,4 +76,4 @@ export const useInfiniteScroll = (callback, options = {}) => {
 
 export default useIntersectionObserver;
 
-// add responsive design adjustments for analytics-hooks — ref:feat/analytics-hooks#7 (1776634970208)
+// add error handling and edge cases for hook-composition — ref:refactor/hook-composition#5 (1776635155511)
