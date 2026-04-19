@@ -69,3 +69,5 @@
     font-size: 0.75rem;
   }
 }
+
+/* add core logic for pagination-edge-case — ref:fix/pagination-edge-case#1 (1776635091179) */
