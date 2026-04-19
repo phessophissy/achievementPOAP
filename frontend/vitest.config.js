@@ -11,3 +11,5 @@ export default defineConfig({
     exclude: ['src/tests/**/*.legacy.test.{js,jsx}'],
   },
 });
+
+// implement styling and layout for eslint-config-update — ref:chore/eslint-config-update#2 (1776635194191)
