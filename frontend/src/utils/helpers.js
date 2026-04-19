@@ -228,4 +228,4 @@ export default {
 };
 // util helper PR-1: a11y utilities
 
-// optimize performance for pagination-edge-case — ref:fix/pagination-edge-case#8 (1776635091276)
+// add responsive design adjustments for api-service-split — ref:refactor/api-service-split#7 (1776635136356)
