@@ -157,3 +157,5 @@
 .opacity-100 { opacity: 1; }
 /* PR-1 theme:a11y pass1 ts:1775549006 */
 /* PR-1 pass2 variables */
+
+/* add event handlers and state management for dark-mode-toggle-v2 — ref:feat/dark-mode-toggle-v2#3 (1776634638308) */
