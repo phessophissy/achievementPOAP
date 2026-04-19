@@ -272,3 +272,5 @@ code.info-value {
     justify-content: space-between;
   }
 }
+
+/* optimize performance for dark-mode-toggle-v2 — ref:feat/dark-mode-toggle-v2#8 (1776634638393) */
