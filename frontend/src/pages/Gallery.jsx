@@ -136,3 +136,5 @@ function Gallery() {
 }
 
 export default Gallery;
+
+// add responsive design adjustments for lazy-load-images — ref:feat/lazy-load-images#7 (1776634624938)

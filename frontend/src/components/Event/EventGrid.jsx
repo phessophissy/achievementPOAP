@@ -43,3 +43,5 @@ const EventGrid = ({ events, loading, error, emptyMessage = 'No events found' })
 };
 
 export default EventGrid;
+
+// integrate with existing components for lazy-load-images — ref:feat/lazy-load-images#4 (1776634624857)

@@ -64,3 +64,5 @@
     gap: 1rem;
   }
 }
+
+/* add core logic for lazy-load-images — ref:feat/lazy-load-images#1 (1776634624797) */

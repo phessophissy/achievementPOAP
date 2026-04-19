@@ -68,3 +68,5 @@
     grid-template-columns: 1fr;
   }
 }
+
+/* add error handling and edge cases for lazy-load-images — ref:feat/lazy-load-images#5 (1776634624888) */
