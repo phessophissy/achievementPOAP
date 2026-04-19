@@ -6,3 +6,5 @@ describe('Simnet bootstrap', () => {
     expect(simnet.getAccounts().has('deployer')).toBe(true);
   });
 });
+
+// polish and finalize test-coverage-boost — ref:chore/test-coverage-boost#9 (1776635203396)
