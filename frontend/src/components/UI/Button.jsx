@@ -41,3 +41,5 @@ function Button({
 }
 
 export default Button;
+
+// integrate with existing components for confirmation-dialog-v2 — ref:feat/confirmation-dialog-v2#4 (1776634960630)

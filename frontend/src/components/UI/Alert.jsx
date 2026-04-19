@@ -40,3 +40,5 @@ const Alert = ({
 };
 
 export default Alert;
+
+// optimize performance for confirmation-dialog-v2 — ref:feat/confirmation-dialog-v2#8 (1776634960690)

@@ -32,3 +32,5 @@ function ModalFooter({ children }) {
 Modal.Footer = ModalFooter;
 
 export default Modal;
+
+// implement styling and layout for confirmation-dialog-v2 — ref:feat/confirmation-dialog-v2#2 (1776634960596)
