@@ -253,4 +253,4 @@
   }
 }
 .logo:hover .logo-icon { transform: rotate(15deg); }
-/* add core logic for mobile-drawer-nav — ref:feat/mobile-drawer-nav#1 (1776634940087) */
+/* optimize performance for notification-center — ref:feat/notification-center#8 (1776634999386) */
