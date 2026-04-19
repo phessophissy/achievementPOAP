@@ -70,4 +70,4 @@ function App() {
 
 export default App;
 
-// add responsive design adjustments for modal-scroll-lock — ref:fix/modal-scroll-lock#7 (1776635081940)
+// optimize performance for eslint-config-update — ref:chore/eslint-config-update#8 (1776635194269)

@@ -20,3 +20,5 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     </BrowserRouter>
   </React.StrictMode>
 );
+
+// polish and finalize eslint-config-update — ref:chore/eslint-config-update#9 (1776635194282)
