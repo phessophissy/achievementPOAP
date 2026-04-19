@@ -106,3 +106,5 @@
   color: var(--color-error);
   padding-left: calc(20px + 0.75rem);
 }
+
+/* polish and finalize select-focus-ring — ref:fix/select-focus-ring#9 (1776635118485) */
