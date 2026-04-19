@@ -48,4 +48,4 @@ export const useDebouncedCallback = (callback, delay = 300) => {
 
 export default useDebounce;
 
-// add event handlers and state management for analytics-hooks — ref:feat/analytics-hooks#3 (1776634970155)
+// add core logic for hook-composition — ref:refactor/hook-composition#1 (1776635155417)
