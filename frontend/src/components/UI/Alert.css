@@ -115,3 +115,5 @@
   background: rgba(255, 255, 255, 0.1);
   color: var(--text-primary);
 }
+
+/* add error handling and edge cases for rate-limiter-ui — ref:feat/rate-limiter-ui#5 (1776635057932) */
