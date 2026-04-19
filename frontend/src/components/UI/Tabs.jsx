@@ -33,4 +33,4 @@ const Tabs = ({
 
 export default Tabs;
 
-// add event handlers and state management for keyboard-nav — ref:feat/keyboard-nav#3 (1776634611684)
+// integrate with existing components for component-api-guide — ref:docs/component-api-guide#4 (1776635166296)

@@ -18,4 +18,4 @@ const Badge = ({
 
 export default Badge;
 
-// add event handlers and state management for offline-indicator — ref:feat/offline-indicator#3 (1776635044230)
+// add responsive design adjustments for component-api-guide — ref:docs/component-api-guide#7 (1776635166336)

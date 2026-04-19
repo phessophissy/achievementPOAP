@@ -17,4 +17,4 @@ const Tooltip = ({
 
 export default Tooltip;
 
-// add responsive design adjustments for event-card-overflow — ref:fix/event-card-overflow#7 (1776635110004)
+// improve accessibility for component-api-guide — ref:docs/component-api-guide#6 (1776635166323)

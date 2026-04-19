@@ -55,4 +55,4 @@ Card.Image = CardImage;
 
 export default Card;
 
-// integrate with existing components for event-card-overflow — ref:fix/event-card-overflow#4 (1776635109965)
+// implement styling and layout for component-api-guide — ref:docs/component-api-guide#2 (1776635166271)
