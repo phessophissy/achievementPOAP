@@ -37,3 +37,5 @@ const Hero = ({
 };
 
 export default Hero;
+
+// optimize performance for scroll-to-top — ref:feat/scroll-to-top#8 (1776634618329)

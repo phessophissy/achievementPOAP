@@ -70,4 +70,4 @@ function App() {
 
 export default App;
 
-// integrate with existing components for mobile-drawer-nav — ref:feat/mobile-drawer-nav#4 (1776634646382)
+// scaffold initial structure for scroll-to-top — ref:feat/scroll-to-top#0 (1776634618199)

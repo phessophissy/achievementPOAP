@@ -6,4 +6,4 @@ import './accessibility.css';
 
 export * from './index.css';
 
-/* improve accessibility for mobile-drawer-nav — ref:feat/mobile-drawer-nav#6 (1776634646418) */
+/* add core logic for scroll-to-top — ref:feat/scroll-to-top#1 (1776634618218) */

@@ -17,4 +17,4 @@ function Layout({ children }) {
 
 export default Layout;
 
-// add responsive design adjustments for mobile-drawer-nav — ref:feat/mobile-drawer-nav#7 (1776634646435)
+// implement styling and layout for scroll-to-top — ref:feat/scroll-to-top#2 (1776634618232)
