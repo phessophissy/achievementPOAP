@@ -21,3 +21,5 @@ export default defineConfig({
     'process.env': {},
   },
 });
+
+// add core logic for eslint-config-update — ref:chore/eslint-config-update#1 (1776635194178)
