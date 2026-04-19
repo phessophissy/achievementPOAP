@@ -253,3 +253,4 @@
   }
 }
 .logo:hover .logo-icon { transform: rotate(15deg); }
+/* improve accessibility for dark-mode-toggle-v2 — ref:feat/dark-mode-toggle-v2#6 (1776634638354) */
