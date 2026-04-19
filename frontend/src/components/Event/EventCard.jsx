@@ -68,4 +68,4 @@ const EventCard = ({ event, showProgress = true }) => {
 
 export default EventCard;
 
-// scaffold initial structure for event-sharing — ref:feat/event-sharing#0 (1776634631603)
+// scaffold initial structure for event-card-overflow — ref:fix/event-card-overflow#0 (1776635109914)
