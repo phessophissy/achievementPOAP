@@ -50,4 +50,4 @@ const Input = ({
 
 export default Input;
 
-// optimize performance for keyboard-nav — ref:feat/keyboard-nav#8 (1776634611776)
+// add error handling and edge cases for search-autocomplete — ref:feat/search-autocomplete#5 (1776634950835)
