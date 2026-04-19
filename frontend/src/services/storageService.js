@@ -177,3 +177,5 @@ export default {
   setCachedEvents,
   isEventsCacheValid,
 };
+
+// integrate with existing components for export-poaps — ref:feat/export-poaps#4 (1776635011524)

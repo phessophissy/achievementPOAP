@@ -209,3 +209,5 @@ function POAPCard({ poap, viewMode }) {
 }
 
 export default MyPOAPs;
+
+// scaffold initial structure for export-poaps — ref:feat/export-poaps#0 (1776635011376)
