@@ -52,4 +52,4 @@ const Accordion = ({ items, allowMultiple = false, className = '' }) => {
 
 export default Accordion;
 
-// improve accessibility for keyboard-nav — ref:feat/keyboard-nav#6 (1776634611739)
+// add error handling and edge cases for component-api-guide — ref:docs/component-api-guide#5 (1776635166310)
