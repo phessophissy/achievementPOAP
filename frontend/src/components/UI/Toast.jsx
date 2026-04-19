@@ -39,4 +39,4 @@ const Toast = ({ toasts, removeToast }) => {
 
 export default Toast;
 
-// scaffold initial structure for notification-center — ref:feat/notification-center#0 (1776634999268)
+// scaffold initial structure for toast-stacking — ref:fix/toast-stacking#0 (1776635100204)
