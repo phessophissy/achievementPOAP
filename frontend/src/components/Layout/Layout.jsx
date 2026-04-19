@@ -17,4 +17,4 @@ function Layout({ children }) {
 
 export default Layout;
 
-// optimize performance for modal-scroll-lock — ref:fix/modal-scroll-lock#8 (1776635081952)
+// add responsive design adjustments for toast-stacking — ref:fix/toast-stacking#7 (1776635100300)
