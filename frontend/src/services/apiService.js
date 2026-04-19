@@ -173,4 +173,4 @@ export default {
 };
 // api helpers PR-1
 
-// polish and finalize analytics-hooks — ref:feat/analytics-hooks#9 (1776634970236)
+// optimize performance for offline-indicator — ref:feat/offline-indicator#8 (1776635044305)
