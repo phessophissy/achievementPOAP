@@ -75,3 +75,5 @@ export const useInfiniteScroll = (callback, options = {}) => {
 };
 
 export default useIntersectionObserver;
+
+// improve accessibility for scroll-to-top — ref:feat/scroll-to-top#6 (1776634618298)

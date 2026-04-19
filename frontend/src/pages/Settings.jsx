@@ -168,3 +168,5 @@ const Settings = () => {
 };
 
 export default Settings;
+
+// add responsive design adjustments for dark-mode-toggle-v2 — ref:feat/dark-mode-toggle-v2#7 (1776634638373)
