@@ -79,3 +79,5 @@
 .badge-text {
   line-height: 1;
 }
+
+/* integrate with existing components for notification-center — ref:feat/notification-center#4 (1776634999324) */
