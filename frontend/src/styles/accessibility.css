@@ -103,4 +103,4 @@ button {
   width: 1px;
 }
 
-/* polish and finalize modal-scroll-lock — ref:fix/modal-scroll-lock#9 (1776635081965) */
+/* improve accessibility for select-focus-ring — ref:fix/select-focus-ring#6 (1776635118448) */
