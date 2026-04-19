@@ -41,4 +41,4 @@ const Alert = ({
 
 export default Alert;
 
-// add error handling and edge cases for toast-stacking — ref:fix/toast-stacking#5 (1776635100271)
+// optimize performance for component-api-guide — ref:docs/component-api-guide#8 (1776635166348)
