@@ -129,4 +129,4 @@ async function deployEvent() {
 
 MIT License
 
-<!-- add error handling and edge cases for contract-reference — ref:docs/contract-reference#5 (1776635175038) -->
+<!-- optimize performance for deployment-runbook — ref:docs/deployment-runbook#8 (1776635184323) -->
