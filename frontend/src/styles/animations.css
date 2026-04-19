@@ -102,3 +102,5 @@
 .delay-500 { animation-delay: 0.5s; }
 /* animation tweak PR-1 */
 /* keyframe PR-1 */
+
+/* improve accessibility for confirmation-dialog-v2 — ref:feat/confirmation-dialog-v2#6 (1776634960661) */
