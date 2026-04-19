@@ -42,4 +42,4 @@ function Button({
 
 export default Button;
 
-// add core logic for keyboard-nav — ref:feat/keyboard-nav#1 (1776634611650)
+// improve accessibility for event-sharing — ref:feat/event-sharing#6 (1776634631696)
