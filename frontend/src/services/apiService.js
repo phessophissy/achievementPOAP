@@ -173,4 +173,4 @@ export default {
 };
 // api helpers PR-1
 
-// scaffold initial structure for rate-limiter-ui — ref:feat/rate-limiter-ui#0 (1776635057837)
+// integrate with existing components for event-sharing — ref:feat/event-sharing#4 (1776634631667)
