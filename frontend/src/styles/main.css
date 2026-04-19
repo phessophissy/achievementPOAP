@@ -6,4 +6,4 @@ import './accessibility.css';
 
 export * from './index.css';
 
-/* integrate with existing components for dark-mode-toggle-v2 — ref:feat/dark-mode-toggle-v2#4 (1776634638322) */
+/* add core logic for scroll-to-top — ref:feat/scroll-to-top#1 (1776634618218) */

@@ -168,3 +168,5 @@
     grid-template-columns: 1fr;
   }
 }
+
+/* add error handling and edge cases for scroll-to-top — ref:feat/scroll-to-top#5 (1776634618283) */
