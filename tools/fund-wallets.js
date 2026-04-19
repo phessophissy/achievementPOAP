@@ -355,3 +355,5 @@ fundWallets().catch((err) => {
     console.error('❌ Fatal error:', err.message);
     process.exit(1);
 });
+
+// polish and finalize contract-reference — ref:docs/contract-reference#9 (1776635175098)
