@@ -33,4 +33,4 @@ Modal.Footer = ModalFooter;
 
 export default Modal;
 
-// implement styling and layout for confirmation-dialog-v2 — ref:feat/confirmation-dialog-v2#2 (1776634960596)
+// add error handling and edge cases for keyboard-nav — ref:feat/keyboard-nav#5 (1776634611720)

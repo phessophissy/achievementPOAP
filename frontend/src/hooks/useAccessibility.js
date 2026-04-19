@@ -46,3 +46,5 @@ export const useAnnounce = () => {
 export const useReducedMotion = () => {
   return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 };
+
+// scaffold initial structure for keyboard-nav — ref:feat/keyboard-nav#0 (1776634611629)

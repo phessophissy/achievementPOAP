@@ -42,4 +42,4 @@ function Button({
 
 export default Button;
 
-// integrate with existing components for confirmation-dialog-v2 — ref:feat/confirmation-dialog-v2#4 (1776634960630)
+// add core logic for keyboard-nav — ref:feat/keyboard-nav#1 (1776634611650)

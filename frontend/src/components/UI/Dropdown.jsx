@@ -78,3 +78,5 @@ export const DropdownItem = ({ children, onClick, disabled, icon, className = ''
 export const DropdownDivider = () => <div className="dropdown__divider" role="separator" />;
 
 export default Dropdown;
+
+// add responsive design adjustments for keyboard-nav — ref:feat/keyboard-nav#7 (1776634611757)

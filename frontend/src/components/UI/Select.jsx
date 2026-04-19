@@ -64,3 +64,5 @@ const Select = ({
 };
 
 export default Select;
+
+// polish and finalize keyboard-nav — ref:feat/keyboard-nav#9 (1776634611794)
