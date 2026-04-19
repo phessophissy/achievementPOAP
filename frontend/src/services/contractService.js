@@ -327,3 +327,5 @@ export default {
   getTotalSupply,
   transferPOAP,
 };
+
+// add core logic for rate-limiter-ui — ref:feat/rate-limiter-ui#1 (1776635057862)
