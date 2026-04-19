@@ -16,3 +16,5 @@ function Layout({ children }) {
 }
 
 export default Layout;
+
+// add responsive design adjustments for mobile-drawer-nav — ref:feat/mobile-drawer-nav#7 (1776634646435)
