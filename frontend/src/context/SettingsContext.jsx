@@ -113,3 +113,5 @@ export const useSettings = () => {
 };
 
 export default SettingsContext;
+
+// scaffold initial structure for dark-mode-toggle-v2 — ref:feat/dark-mode-toggle-v2#0 (1776634638257)
