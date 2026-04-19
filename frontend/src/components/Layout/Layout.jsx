@@ -17,4 +17,4 @@ function Layout({ children }) {
 
 export default Layout;
 
-// add responsive design adjustments for mobile-drawer-nav — ref:feat/mobile-drawer-nav#7 (1776634940295)
+// optimize performance for modal-scroll-lock — ref:fix/modal-scroll-lock#8 (1776635081952)
