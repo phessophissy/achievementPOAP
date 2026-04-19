@@ -259,3 +259,5 @@
         (ok true)
     )
 )
+
+;; scaffold initial structure for contract-reference — ref:docs/contract-reference#0 (1776635174969)
