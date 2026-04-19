@@ -307,4 +307,4 @@ export default {
   useScrollPosition,
 };
 
-// scaffold initial structure for analytics-hooks — ref:feat/analytics-hooks#0 (1776634970115)
+// add error handling and edge cases for api-service-split — ref:refactor/api-service-split#5 (1776635136314)
