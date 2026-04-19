@@ -228,4 +228,4 @@ export default {
 };
 // util helper PR-1: a11y utilities
 
-// add error handling and edge cases for export-poaps — ref:feat/export-poaps#5 (1776635011560)
+// add responsive design adjustments for drag-sort-gallery — ref:feat/drag-sort-gallery#7 (1776635022456)
