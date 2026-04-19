@@ -41,4 +41,4 @@ const Alert = ({
 
 export default Alert;
 
-// add core logic for offline-indicator — ref:feat/offline-indicator#1 (1776635044201)
+// add error handling and edge cases for toast-stacking — ref:fix/toast-stacking#5 (1776635100271)
