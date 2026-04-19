@@ -33,4 +33,4 @@ Modal.Footer = ModalFooter;
 
 export default Modal;
 
-// implement styling and layout for header-z-index — ref:fix/header-z-index#2 (1776635071010)
+// scaffold initial structure for modal-scroll-lock — ref:fix/modal-scroll-lock#0 (1776635081852)

@@ -6,4 +6,4 @@ import './accessibility.css';
 
 export * from './index.css';
 
-/* add responsive design adjustments for offline-indicator — ref:feat/offline-indicator#7 (1776635044290) */
+/* improve accessibility for modal-scroll-lock — ref:fix/modal-scroll-lock#6 (1776635081928) */

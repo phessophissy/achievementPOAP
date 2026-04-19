@@ -37,4 +37,4 @@ const ConfirmDialog = ({
 
 export default ConfirmDialog;
 
-// scaffold initial structure for confirmation-dialog-v2 — ref:feat/confirmation-dialog-v2#0 (1776634960562)
+// integrate with existing components for modal-scroll-lock — ref:fix/modal-scroll-lock#4 (1776635081903)

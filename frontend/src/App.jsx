@@ -70,4 +70,4 @@ function App() {
 
 export default App;
 
-// integrate with existing components for mobile-drawer-nav — ref:feat/mobile-drawer-nav#4 (1776634940181)
+// add responsive design adjustments for modal-scroll-lock — ref:fix/modal-scroll-lock#7 (1776635081940)

@@ -65,4 +65,4 @@ const MintModal = ({
 
 export default MintModal;
 
-// improve accessibility for header-z-index — ref:fix/header-z-index#6 (1776635071170)
+// implement styling and layout for modal-scroll-lock — ref:fix/modal-scroll-lock#2 (1776635081877)
