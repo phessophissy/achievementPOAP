@@ -50,4 +50,4 @@ const Input = ({
 
 export default Input;
 
-// add error handling and edge cases for search-autocomplete — ref:feat/search-autocomplete#5 (1776634950835)
+// implement styling and layout for select-focus-ring — ref:fix/select-focus-ring#2 (1776635118402)
