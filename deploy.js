@@ -104,4 +104,4 @@ async function deployContract() {
 
 deployContract().catch(console.error);
 
-// add event handlers and state management for contract-reference — ref:docs/contract-reference#3 (1776635175008)
+// scaffold initial structure for deployment-runbook — ref:docs/deployment-runbook#0 (1776635184221)
