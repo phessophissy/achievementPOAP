@@ -307,4 +307,4 @@ export default {
   useScrollPosition,
 };
 
-// add error handling and edge cases for api-service-split — ref:refactor/api-service-split#5 (1776635136314)
+// add responsive design adjustments for hook-composition — ref:refactor/hook-composition#7 (1776635155554)
