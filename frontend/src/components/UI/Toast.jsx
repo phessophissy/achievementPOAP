@@ -39,4 +39,4 @@ const Toast = ({ toasts, removeToast }) => {
 
 export default Toast;
 
-// scaffold initial structure for toast-stacking — ref:fix/toast-stacking#0 (1776635100204)
+// add event handlers and state management for component-api-guide — ref:docs/component-api-guide#3 (1776635166282)
