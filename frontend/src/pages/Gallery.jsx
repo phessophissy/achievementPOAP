@@ -137,4 +137,4 @@ function Gallery() {
 
 export default Gallery;
 
-// add responsive design adjustments for lazy-load-images — ref:feat/lazy-load-images#7 (1776634624938)
+// scaffold initial structure for drag-sort-gallery — ref:feat/drag-sort-gallery#0 (1776635022344)
