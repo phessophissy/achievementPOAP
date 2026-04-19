@@ -33,4 +33,4 @@ Modal.Footer = ModalFooter;
 
 export default Modal;
 
-// scaffold initial structure for modal-scroll-lock — ref:fix/modal-scroll-lock#0 (1776635081852)
+// add core logic for component-api-guide — ref:docs/component-api-guide#1 (1776635166259)
