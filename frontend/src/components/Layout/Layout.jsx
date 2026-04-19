@@ -16,3 +16,5 @@ function Layout({ children }) {
 }
 
 export default Layout;
+
+// implement styling and layout for scroll-to-top — ref:feat/scroll-to-top#2 (1776634618232)
