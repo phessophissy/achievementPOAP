@@ -228,4 +228,4 @@ export default {
 };
 // util helper PR-1: a11y utilities
 
-// add responsive design adjustments for drag-sort-gallery — ref:feat/drag-sort-gallery#7 (1776635022456)
+// optimize performance for pagination-edge-case — ref:fix/pagination-edge-case#8 (1776635091276)
