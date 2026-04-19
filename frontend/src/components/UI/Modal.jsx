@@ -33,4 +33,4 @@ Modal.Footer = ModalFooter;
 
 export default Modal;
 
-// add responsive design adjustments for event-sharing — ref:feat/event-sharing#7 (1776634631711)
+// add responsive design adjustments for export-poaps — ref:feat/export-poaps#7 (1776635011652)
