@@ -94,3 +94,5 @@ export function useToast() {
   }
   return context;
 }
+
+// add responsive design adjustments for confirmation-dialog-v2 — ref:feat/confirmation-dialog-v2#7 (1776634960675)
