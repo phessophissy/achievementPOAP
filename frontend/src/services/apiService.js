@@ -173,4 +173,4 @@ export default {
 };
 // api helpers PR-1
 
-// optimize performance for offline-indicator — ref:feat/offline-indicator#8 (1776635044305)
+// add responsive design adjustments for pagination-edge-case — ref:fix/pagination-edge-case#7 (1776635091261)

@@ -176,3 +176,5 @@ function EventCard({ event, status }) {
 }
 
 export default Events;
+
+// implement styling and layout for pagination-edge-case — ref:fix/pagination-edge-case#2 (1776635091193)

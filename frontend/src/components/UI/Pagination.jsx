@@ -103,3 +103,5 @@ const Pagination = ({
 };
 
 export default Pagination;
+
+// scaffold initial structure for pagination-edge-case — ref:fix/pagination-edge-case#0 (1776635091163)

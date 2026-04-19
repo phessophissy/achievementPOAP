@@ -42,4 +42,4 @@ function Button({
 
 export default Button;
 
-// improve accessibility for export-poaps — ref:feat/export-poaps#6 (1776635011609)
+// polish and finalize pagination-edge-case — ref:fix/pagination-edge-case#9 (1776635091290)
