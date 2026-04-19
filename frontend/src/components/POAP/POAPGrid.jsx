@@ -43,3 +43,5 @@ const POAPGrid = ({ poaps, loading, error, emptyMessage = 'No POAPs found' }) =>
 };
 
 export default POAPGrid;
+
+// scaffold initial structure for lazy-load-images — ref:feat/lazy-load-images#0 (1776634624778)
