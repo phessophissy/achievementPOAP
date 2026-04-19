@@ -306,3 +306,5 @@ export default {
   useDebounce,
   useScrollPosition,
 };
+
+// scaffold initial structure for analytics-hooks — ref:feat/analytics-hooks#0 (1776634970115)
