@@ -6,4 +6,4 @@ import './accessibility.css';
 
 export * from './index.css';
 
-/* add core logic for css-custom-props — ref:refactor/css-custom-props#1 (1776635145370) */
+/* add responsive design adjustments for eslint-config-update — ref:chore/eslint-config-update#7 (1776635194255) */
