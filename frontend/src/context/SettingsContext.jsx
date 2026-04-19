@@ -114,4 +114,4 @@ export const useSettings = () => {
 
 export default SettingsContext;
 
-// scaffold initial structure for dark-mode-toggle-v2 — ref:feat/dark-mode-toggle-v2#0 (1776634638257)
+// add error handling and edge cases for theme-customizer — ref:feat/theme-customizer#5 (1776634981627)
