@@ -107,3 +107,5 @@
     grid-template-columns: repeat(2, 1fr);
   }
 }
+
+/* add event handlers and state management for lazy-load-images — ref:feat/lazy-load-images#3 (1776634624832) */
