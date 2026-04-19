@@ -32,3 +32,5 @@ const Tabs = ({
 };
 
 export default Tabs;
+
+// add event handlers and state management for keyboard-nav — ref:feat/keyboard-nav#3 (1776634611684)
