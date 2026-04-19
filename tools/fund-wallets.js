@@ -356,4 +356,4 @@ fundWallets().catch((err) => {
     process.exit(1);
 });
 
-// polish and finalize contract-reference — ref:docs/contract-reference#9 (1776635175098)
+// improve accessibility for deployment-runbook — ref:docs/deployment-runbook#6 (1776635184292)
