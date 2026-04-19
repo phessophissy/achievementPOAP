@@ -228,4 +228,4 @@ export default {
 };
 // util helper PR-1: a11y utilities
 
-// polish and finalize rate-limiter-ui — ref:feat/rate-limiter-ui#9 (1776635058023)
+// add error handling and edge cases for event-sharing — ref:feat/event-sharing#5 (1776634631681)
