@@ -338,3 +338,5 @@
     font-size: 2rem;
   }
 }
+
+/* add event handlers and state management for event-sharing — ref:feat/event-sharing#3 (1776634631651) */
