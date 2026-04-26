@@ -1,3 +1,4 @@
+/** @file frontend/src/components/Leaderboard-sort/tests/leaderboard-sort.test.js - Test coverage file that validates behavior and regression safety. */
 import { describe, it, expect, vi } from 'vitest';
 import { validateLeaderboard-sortParams, formatLeaderboard-sortResult } from '../../../utils/helpers';
 
