@@ -1,3 +1,4 @@
+/** @file frontend/src/pages/EventDetail.jsx - Frontend module documenting responsibilities and expected usage. */
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useWallet } from '../context/WalletContext';
