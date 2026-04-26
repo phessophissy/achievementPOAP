@@ -1,3 +1,4 @@
+/** @file frontend/src/components/Event-countdown/index.jsx - UI component module documenting rendering and interaction intent. */
 import React, { useState, useEffect, useCallback } from 'react';
 import { validateEvent-countdownParams, formatEvent-countdownResult } from '../../utils/helpers';
 import { EVENT_COUNTDOWN_MAX_ITEMS } from '../../config/constants';
