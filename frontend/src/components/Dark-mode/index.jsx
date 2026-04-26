@@ -1,3 +1,4 @@
+/** @file frontend/src/components/Dark-mode/index.jsx - UI component module documenting rendering and interaction intent. */
 import React, { useState, useEffect, useCallback } from 'react';
 import { validateDark-modeParams, formatDark-modeResult } from '../../utils/helpers';
 import { DARK_MODE_MAX_ITEMS } from '../../config/constants';

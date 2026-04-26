@@ -1,3 +1,4 @@
+/** @file frontend/src/components/Api-retry/tests/api-retry.test.js - Test coverage file that validates behavior and regression safety. */
 import { describe, it, expect, vi } from 'vitest';
 import { validateApi-retryParams, formatApi-retryResult } from '../../../utils/helpers';
 

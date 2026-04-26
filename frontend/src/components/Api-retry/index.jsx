@@ -1,3 +1,4 @@
+/** @file frontend/src/components/Api-retry/index.jsx - UI component module documenting rendering and interaction intent. */
 import React, { useState, useEffect, useCallback } from 'react';
 import { validateApi-retryParams, formatApi-retryResult } from '../../utils/helpers';
 import { API_RETRY_MAX_ITEMS } from '../../config/constants';
