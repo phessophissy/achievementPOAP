@@ -1,3 +1,4 @@
+/** @file frontend/src/pages/Settings.jsx - Frontend module documenting responsibilities and expected usage. */
 import React, { useState } from 'react';
 import { useWallet } from '../context/WalletContext';
 import { useToast } from '../context/ToastContext';
