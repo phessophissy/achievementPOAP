@@ -1,3 +1,4 @@
+/** @file frontend/src/context/WalletContext.jsx - Frontend module documenting responsibilities and expected usage. */
 ﻿import React, { createContext, useContext, useState, useCallback, useEffect } from 'react';
 import { AppConfig, UserSession, connect } from '@stacks/connect';
 import { APP_NAME, APP_ICON, STACKS_API_URL } from '../config/constants';

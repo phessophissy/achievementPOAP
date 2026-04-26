@@ -1,3 +1,4 @@
+/** @file frontend/src/hooks/useA11y-improvements.js - Custom hook module documenting state and side-effect responsibilities. */
 import { useState, useCallback, useRef } from 'react';
 
 /**

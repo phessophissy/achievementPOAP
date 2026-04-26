@@ -1,3 +1,4 @@
+/** @file frontend/src/context/ToastContext.jsx - Frontend module documenting responsibilities and expected usage. */
 import React, { createContext, useContext, useState, useCallback } from 'react';
 
 const ToastContext = createContext(null);
