@@ -1,3 +1,4 @@
+/** @file frontend/src/pages/Home.jsx - Frontend module documenting responsibilities and expected usage. */
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useWallet } from '../context/WalletContext';

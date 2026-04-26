@@ -1,3 +1,4 @@
+/** @file frontend/src/pages/About.jsx - Frontend module documenting responsibilities and expected usage. */
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Card from '../components/UI/Card';
