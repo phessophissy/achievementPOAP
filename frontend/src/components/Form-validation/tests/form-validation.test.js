@@ -1,3 +1,4 @@
+/** @file frontend/src/components/Form-validation/tests/form-validation.test.js - Test coverage file that validates behavior and regression safety. */
 import { describe, it, expect, vi } from 'vitest';
 import { validateForm-validationParams, formatForm-validationResult } from '../../../utils/helpers';
 

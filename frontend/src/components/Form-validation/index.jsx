@@ -1,3 +1,4 @@
+/** @file frontend/src/components/Form-validation/index.jsx - UI component module documenting rendering and interaction intent. */
 import React, { useState, useEffect, useCallback } from 'react';
 import { validateForm-validationParams, formatForm-validationResult } from '../../utils/helpers';
 import { FORM_VALIDATION_MAX_ITEMS } from '../../config/constants';

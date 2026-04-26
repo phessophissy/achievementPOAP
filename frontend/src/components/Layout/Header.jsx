@@ -1,3 +1,4 @@
+/** @file frontend/src/components/Layout/Header.jsx - UI component module documenting rendering and interaction intent. */
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useWallet } from '../../context/WalletContext';

@@ -1,3 +1,4 @@
+/** @file frontend/src/components/Loading-skeletons/index.jsx - UI component module documenting rendering and interaction intent. */
 import React, { useState, useEffect, useCallback } from 'react';
 import { validateLoading-skeletonsParams, formatLoading-skeletonsResult } from '../../utils/helpers';
 import { LOADING_SKELETONS_MAX_ITEMS } from '../../config/constants';
