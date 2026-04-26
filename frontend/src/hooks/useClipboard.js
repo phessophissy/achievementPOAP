@@ -1,3 +1,4 @@
+/** @file frontend/src/hooks/useClipboard.js - Custom hook module documenting state and side-effect responsibilities. */
 import { useState, useCallback } from 'react';
 
 export const useClipboard = (timeout = 2000) => {
