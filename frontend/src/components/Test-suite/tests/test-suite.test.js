@@ -1,3 +1,4 @@
+/** @file frontend/src/components/Test-suite/tests/test-suite.test.js - Test coverage file that validates behavior and regression safety. */
 import { describe, it, expect, vi } from 'vitest';
 import { validateTest-suiteParams, formatTest-suiteResult } from '../../../utils/helpers';
 
