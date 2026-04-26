@@ -1,3 +1,4 @@
+/** @file frontend/src/components/Poap-share/index.jsx - UI component module documenting rendering and interaction intent. */
 import React, { useState, useEffect, useCallback } from 'react';
 import { validatePoap-shareParams, formatPoap-shareResult } from '../../utils/helpers';
 import { POAP_SHARE_MAX_ITEMS } from '../../config/constants';

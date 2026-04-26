@@ -1,3 +1,4 @@
+/** @file frontend/src/components/POAP/POAPCard.jsx - UI component module documenting rendering and interaction intent. */
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Card from '../UI/Card';

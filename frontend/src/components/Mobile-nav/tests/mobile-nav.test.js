@@ -1,3 +1,4 @@
+/** @file frontend/src/components/Mobile-nav/tests/mobile-nav.test.js - Test coverage file that validates behavior and regression safety. */
 import { describe, it, expect, vi } from 'vitest';
 import { validateMobile-navParams, formatMobile-navResult } from '../../../utils/helpers';
 
