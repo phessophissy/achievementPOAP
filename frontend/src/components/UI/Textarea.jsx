@@ -1,3 +1,4 @@
+/** @file frontend/src/components/UI/Textarea.jsx - UI component module documenting rendering and interaction intent. */
 import React from 'react';
 import './Textarea.css';
 

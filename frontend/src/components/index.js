@@ -1,3 +1,4 @@
+/** @file frontend/src/components/index.js - UI component module documenting rendering and interaction intent. */
 // Components index - export all components
 export * from './UI';
 export * from './Layout';

@@ -1,3 +1,4 @@
+/** @file frontend/src/components/Wallet-disconnect/index.jsx - UI component module documenting rendering and interaction intent. */
 import React, { useState, useEffect, useCallback } from 'react';
 import { validateWallet-disconnectParams, formatWallet-disconnectResult } from '../../utils/helpers';
 import { WALLET_DISCONNECT_MAX_ITEMS } from '../../config/constants';
