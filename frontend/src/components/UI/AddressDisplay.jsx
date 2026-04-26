@@ -1,3 +1,4 @@
+/** @file frontend/src/components/UI/AddressDisplay.jsx - UI component module documenting rendering and interaction intent. */
 import React from 'react';
 import CopyButton from './CopyButton';
 import { formatAddress } from '../../utils/helpers';

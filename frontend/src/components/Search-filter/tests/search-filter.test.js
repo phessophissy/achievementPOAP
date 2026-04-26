@@ -1,3 +1,4 @@
+/** @file frontend/src/components/Search-filter/tests/search-filter.test.js - Test coverage file that validates behavior and regression safety. */
 import { describe, it, expect, vi } from 'vitest';
 import { validateSearch-filterParams, formatSearch-filterResult } from '../../../utils/helpers';
 

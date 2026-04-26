@@ -1,3 +1,4 @@
+/** @file frontend/src/components/Stats/StatCard.jsx - UI component module documenting rendering and interaction intent. */
 import React from 'react';
 import './StatCard.css';
 

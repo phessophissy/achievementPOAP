@@ -1,3 +1,4 @@
+/** @file frontend/src/components/Seo-meta/tests/seo-meta.test.js - Test coverage file that validates behavior and regression safety. */
 import { describe, it, expect, vi } from 'vitest';
 import { validateSeo-metaParams, formatSeo-metaResult } from '../../../utils/helpers';
 
