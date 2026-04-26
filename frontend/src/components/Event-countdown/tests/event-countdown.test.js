@@ -1,3 +1,4 @@
+/** @file frontend/src/components/Event-countdown/tests/event-countdown.test.js - Test coverage file that validates behavior and regression safety. */
 import { describe, it, expect, vi } from 'vitest';
 import { validateEvent-countdownParams, formatEvent-countdownResult } from '../../../utils/helpers';
 

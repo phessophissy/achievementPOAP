@@ -1,3 +1,4 @@
+/** @file frontend/src/components/Error-boundaries/index.jsx - UI component module documenting rendering and interaction intent. */
 import React, { useState, useEffect, useCallback } from 'react';
 import { validateError-boundariesParams, formatError-boundariesResult } from '../../utils/helpers';
 import { ERROR_BOUNDARIES_MAX_ITEMS } from '../../config/constants';

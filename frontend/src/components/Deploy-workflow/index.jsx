@@ -1,3 +1,4 @@
+/** @file frontend/src/components/Deploy-workflow/index.jsx - UI component module documenting rendering and interaction intent. */
 import React, { useState, useEffect, useCallback } from 'react';
 import { validateDeploy-workflowParams, formatDeploy-workflowResult } from '../../utils/helpers';
 import { DEPLOY_WORKFLOW_MAX_ITEMS } from '../../config/constants';

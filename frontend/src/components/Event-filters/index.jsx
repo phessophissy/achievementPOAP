@@ -1,3 +1,4 @@
+/** @file frontend/src/components/Event-filters/index.jsx - UI component module documenting rendering and interaction intent. */
 import React, { useState, useEffect, useCallback } from 'react';
 import { validateEvent-filtersParams, formatEvent-filtersResult } from '../../utils/helpers';
 import { EVENT_FILTERS_MAX_ITEMS } from '../../config/constants';
