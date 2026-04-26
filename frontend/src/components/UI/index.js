@@ -1,3 +1,4 @@
+/** @file frontend/src/components/UI/index.js - UI component module documenting rendering and interaction intent. */
 // UI Components exports
 export { default as Button } from './Button';
 export { default as Card } from './Card';
