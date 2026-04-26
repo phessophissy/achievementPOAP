@@ -1,3 +1,4 @@
+/** @file frontend/src/components/Loading-skeletons/tests/loading-skeletons.test.js - Test coverage file that validates behavior and regression safety. */
 import { describe, it, expect, vi } from 'vitest';
 import { validateLoading-skeletonsParams, formatLoading-skeletonsResult } from '../../../utils/helpers';
 
