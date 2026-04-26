@@ -1,3 +1,4 @@
+/** @file frontend/src/components/Sdk-improvements/index.jsx - UI component module documenting rendering and interaction intent. */
 import React, { useState, useEffect, useCallback } from 'react';
 import { validateSdk-improvementsParams, formatSdk-improvementsResult } from '../../utils/helpers';
 import { SDK_IMPROVEMENTS_MAX_ITEMS } from '../../config/constants';
