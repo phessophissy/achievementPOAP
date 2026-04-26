@@ -1,3 +1,4 @@
+/** @file frontend/src/components/Mint/MintModal.jsx - UI component module documenting rendering and interaction intent. */
 import React from 'react';
 import Modal from '../UI/Modal';
 import Button from '../UI/Button';
