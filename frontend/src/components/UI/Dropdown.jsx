@@ -1,3 +1,4 @@
+/** @file frontend/src/components/UI/Dropdown.jsx - UI component module documenting rendering and interaction intent. */
 import React, { useState, useRef, useEffect } from 'react';
 import './Dropdown.css';
 
