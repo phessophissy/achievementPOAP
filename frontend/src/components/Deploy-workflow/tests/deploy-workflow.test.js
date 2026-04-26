@@ -1,3 +1,4 @@
+/** @file frontend/src/components/Deploy-workflow/tests/deploy-workflow.test.js - Test coverage file that validates behavior and regression safety. */
 import { describe, it, expect, vi } from 'vitest';
 import { validateDeploy-workflowParams, formatDeploy-workflowResult } from '../../../utils/helpers';
 
