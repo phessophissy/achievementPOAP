@@ -1,3 +1,4 @@
+/** @file frontend/src/components/Contract-helpers/index.jsx - UI component module documenting rendering and interaction intent. */
 import React, { useState, useEffect, useCallback } from 'react';
 import { validateContract-helpersParams, formatContract-helpersResult } from '../../utils/helpers';
 import { CONTRACT_HELPERS_MAX_ITEMS } from '../../config/constants';
