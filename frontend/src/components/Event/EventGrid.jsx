@@ -1,3 +1,4 @@
+/** @file frontend/src/components/Event/EventGrid.jsx - UI component module documenting rendering and interaction intent. */
 import React from 'react';
 import EventCard from './EventCard';
 import LoadingSpinner from '../UI/LoadingSpinner';
