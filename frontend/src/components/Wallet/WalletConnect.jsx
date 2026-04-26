@@ -1,3 +1,4 @@
+/** @file frontend/src/components/Wallet/WalletConnect.jsx - UI component module documenting rendering and interaction intent. */
 import React from 'react';
 import { useWallet } from '../../context/WalletContext';
 import Button from '../UI/Button';
