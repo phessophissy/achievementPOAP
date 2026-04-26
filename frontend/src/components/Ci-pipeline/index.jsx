@@ -1,3 +1,4 @@
+/** @file frontend/src/components/Ci-pipeline/index.jsx - UI component module documenting rendering and interaction intent. */
 import React, { useState, useEffect, useCallback } from 'react';
 import { validateCi-pipelineParams, formatCi-pipelineResult } from '../../utils/helpers';
 import { CI_PIPELINE_MAX_ITEMS } from '../../config/constants';
