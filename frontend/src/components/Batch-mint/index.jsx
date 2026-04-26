@@ -1,3 +1,4 @@
+/** @file frontend/src/components/Batch-mint/index.jsx - UI component module documenting rendering and interaction intent. */
 import React, { useState, useEffect, useCallback } from 'react';
 import { validateBatch-mintParams, formatBatch-mintResult } from '../../utils/helpers';
 import { BATCH_MINT_MAX_ITEMS } from '../../config/constants';
