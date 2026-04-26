@@ -1,3 +1,4 @@
+/** @file frontend/src/components/Test-suite/index.jsx - UI component module documenting rendering and interaction intent. */
 import React, { useState, useEffect, useCallback } from 'react';
 import { validateTest-suiteParams, formatTest-suiteResult } from '../../utils/helpers';
 import { TEST_SUITE_MAX_ITEMS } from '../../config/constants';
