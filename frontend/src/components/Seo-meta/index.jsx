@@ -1,3 +1,4 @@
+/** @file frontend/src/components/Seo-meta/index.jsx - UI component module documenting rendering and interaction intent. */
 import React, { useState, useEffect, useCallback } from 'react';
 import { validateSeo-metaParams, formatSeo-metaResult } from '../../utils/helpers';
 import { SEO_META_MAX_ITEMS } from '../../config/constants';
