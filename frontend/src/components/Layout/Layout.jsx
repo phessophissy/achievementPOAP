@@ -1,3 +1,4 @@
+/** @file frontend/src/components/Layout/Layout.jsx - UI component module documenting rendering and interaction intent. */
 import React from 'react';
 import Header from './Header';
 import Footer from './Footer';
