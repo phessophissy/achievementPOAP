@@ -1,3 +1,4 @@
+/** @file frontend/src/components/Search-filter/index.jsx - UI component module documenting rendering and interaction intent. */
 import React, { useState, useEffect, useCallback } from 'react';
 import { validateSearch-filterParams, formatSearch-filterResult } from '../../utils/helpers';
 import { SEARCH_FILTER_MAX_ITEMS } from '../../config/constants';
