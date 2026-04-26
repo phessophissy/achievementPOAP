@@ -1,3 +1,4 @@
+/** @file frontend/src/main.jsx - Frontend module documenting responsibilities and expected usage. */
 ﻿import { Buffer } from 'buffer';
 window.Buffer = Buffer;
 
