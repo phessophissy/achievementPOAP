@@ -1,3 +1,4 @@
+/** @file frontend/src/components/Error-boundaries/tests/error-boundaries.test.js - Test coverage file that validates behavior and regression safety. */
 import { describe, it, expect, vi } from 'vitest';
 import { validateError-boundariesParams, formatError-boundariesResult } from '../../../utils/helpers';
 
