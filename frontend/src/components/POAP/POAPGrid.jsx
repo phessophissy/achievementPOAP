@@ -1,3 +1,4 @@
+/** @file frontend/src/components/POAP/POAPGrid.jsx - UI component module documenting rendering and interaction intent. */
 import React from 'react';
 import './POAPGrid.css';
 import POAPCard from './POAPCard';
