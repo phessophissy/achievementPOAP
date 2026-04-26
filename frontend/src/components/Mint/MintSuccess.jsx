@@ -1,3 +1,4 @@
+/** @file frontend/src/components/Mint/MintSuccess.jsx - UI component module documenting rendering and interaction intent. */
 import React from 'react';
 import Card from '../UI/Card';
 import Badge from '../UI/Badge';
