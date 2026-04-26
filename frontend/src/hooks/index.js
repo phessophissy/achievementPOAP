@@ -1,3 +1,4 @@
+/** @file frontend/src/hooks/index.js - Custom hook module documenting state and side-effect responsibilities. */
 // Hooks exports
 export * from './useContract';
 export { useFocusTrap, useAnnounce, useReducedMotion } from './useAccessibility';
