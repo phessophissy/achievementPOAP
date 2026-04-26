@@ -1,3 +1,4 @@
+/** @file frontend/src/hooks/useDebounce.js - Custom hook module documenting state and side-effect responsibilities. */
 import { useState, useEffect, useRef, useCallback } from 'react';
 
 export const useDebounce = (value, delay = 300) => {
