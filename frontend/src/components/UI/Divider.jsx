@@ -1,3 +1,4 @@
+/** @file frontend/src/components/UI/Divider.jsx - UI component module documenting rendering and interaction intent. */
 import React from 'react';
 import './Divider.css';
 
