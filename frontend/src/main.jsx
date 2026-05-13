@@ -1,6 +1,8 @@
-/** @file frontend/src/main.jsx - Frontend module documenting responsibilities and expected usage. */
-﻿import { Buffer } from 'buffer';
+import { Buffer } from 'buffer';
 window.Buffer = Buffer;
+
+// Init REOWN AppKit (Bitcoin adapter — Leather, Xverse, OKX, Phantom)
+import './config/reown.js';
 
 import React from 'react';
 import ReactDOM from 'react-dom/client';
