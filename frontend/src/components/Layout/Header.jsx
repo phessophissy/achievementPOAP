@@ -35,11 +35,7 @@ export default function Header() {
       <div className="header-inner">
         <Link to="/" className="logo">
           <span className="logo-icon">
-            <svg viewBox="0 0 32 32" fill="none" width="28" height="28">
-              <rect width="32" height="32" rx="8" fill="#FF5500"/>
-              <path d="M8 20l8-12 8 12" stroke="#fff" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
-              <circle cx="16" cy="22" r="2" fill="#fff"/>
-            </svg>
+            <img src="/favicon.svg" alt="Achievement POAP" width="32" height="32" style={{display:'block'}} />
           </span>
           <span className="logo-text">Achievement<span className="logo-accent">POAP</span></span>
         </Link>

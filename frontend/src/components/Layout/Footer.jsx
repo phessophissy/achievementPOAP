@@ -9,11 +9,7 @@ export default function Footer() {
       <div className="footer-inner">
         <div className="footer-brand">
           <div className="footer-logo">
-            <svg viewBox="0 0 32 32" fill="none" width="24" height="24">
-              <rect width="32" height="32" rx="8" fill="#FF5500"/>
-              <path d="M8 20l8-12 8 12" stroke="#fff" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
-              <circle cx="16" cy="22" r="2" fill="#fff"/>
-            </svg>
+            <img src="/favicon.svg" alt="Achievement POAP" width="28" height="28" style={{display:'block'}} />
             <span>Achievement<b>POAP</b></span>
           </div>
           <p>Proof-of-Achievement protocol on Stacks — Bitcoin's smart contract layer. Collect verifiable on-chain badges.</p>
