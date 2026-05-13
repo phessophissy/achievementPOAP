@@ -1,0 +1,77 @@
+.wm-overlay {
+  position:fixed;inset:0;z-index:1000;
+  display:flex;align-items:center;justify-content:center;
+  background:rgba(0,0,0,.75);backdrop-filter:blur(8px);
+  animation:fadeIn .2s var(--ease);padding:1rem;
+}
+.wm-modal {
+  width:100%;max-width:440px;
+  background:var(--bg-elevated);
+  border:1px solid var(--glass-border);
+  border-radius:var(--radius-xl);
+  box-shadow:var(--shadow-stx-strong);
+  animation:scaleIn .2s var(--ease);
+  overflow:hidden;
+}
+.wm-header {
+  display:flex;align-items:flex-start;justify-content:space-between;
+  padding:1.5rem 1.5rem 1.25rem;
+  border-bottom:1px solid var(--glass-border);
+}
+.wm-title{font-size:1.25rem;font-weight:700;color:var(--text-primary);margin-bottom:.25rem}
+.wm-subtitle{font-size:.875rem;color:var(--text-secondary)}
+.wm-close {
+  background:var(--glass-bg-hover);border:1px solid var(--glass-border);
+  color:var(--text-secondary);border-radius:var(--radius-sm);
+  width:32px;height:32px;display:flex;align-items:center;justify-content:center;
+  cursor:pointer;transition:all var(--trans-fast) var(--ease);flex-shrink:0;
+}
+.wm-close:hover{background:var(--bg-hover);color:var(--text-primary);border-color:var(--stx-border)}
+.wm-wallets{padding:1rem}
+.wm-wallet-btn {
+  display:flex;align-items:center;gap:1rem;width:100%;
+  padding:.875rem 1rem;background:var(--bg-card);
+  border:1px solid var(--glass-border);border-radius:var(--radius-md);
+  cursor:pointer;font-family:var(--font-sans);
+  transition:all var(--trans-base) var(--ease);
+  margin-bottom:.5rem;text-align:left;
+}
+.wm-wallet-btn:last-child{margin-bottom:0}
+.wm-wallet-btn.installed:hover {
+  border-color:var(--stx-border);background:rgba(255,85,0,.06);
+  transform:translateX(4px);
+}
+.wm-wallet-btn.not-installed:hover {
+  border-color:var(--glass-border);background:var(--glass-bg-hover);
+  opacity:.8;
+}
+.wm-wallet-btn:disabled{opacity:.5;cursor:not-allowed}
+.wm-wallet-icon{font-size:1.75rem;width:44px;height:44px;display:flex;align-items:center;justify-content:center;background:var(--bg-elevated);border-radius:var(--radius-sm);flex-shrink:0}
+.wm-wallet-info{flex:1;min-width:0}
+.wm-wallet-name{display:block;font-size:.9375rem;font-weight:600;color:var(--text-primary)}
+.wm-wallet-desc{display:block;font-size:.8rem;color:var(--text-muted);margin-top:.1rem}
+.status-badge{font-size:.7rem;font-weight:600;letter-spacing:.04em;padding:.2rem .55rem;border-radius:var(--radius-full)}
+.status-badge.installed{background:var(--success-bg);color:var(--success);border:1px solid rgba(34,197,94,.3)}
+.status-badge.install{background:var(--info-bg);color:var(--info);border:1px solid rgba(76,130,251,.3)}
+.wm-divider{display:flex;align-items:center;gap:.75rem;padding:0 1rem;margin:.25rem 0}
+.wm-divider-line{flex:1;height:1px;background:var(--glass-border)}
+.wm-divider-text{font-size:.75rem;color:var(--text-muted);white-space:nowrap}
+.wm-wc-btn {
+  display:flex;align-items:center;gap:.875rem;width:100%;
+  padding:.875rem 1rem;background:var(--bg-card);
+  border:1px solid var(--glass-border);border-radius:var(--radius-md);
+  cursor:pointer;font-family:var(--font-sans);
+  transition:all var(--trans-base) var(--ease);
+  margin:0 0 .5rem;
+}
+.wm-wc-btn:hover{border-color:rgba(76,130,251,.4);background:rgba(76,130,251,.05)}
+.wm-wc-logo{width:44px;height:44px;display:flex;align-items:center;justify-content:center;background:var(--bg-elevated);border-radius:var(--radius-sm);flex-shrink:0}
+.wm-wc-logo svg{width:24px;height:24px}
+.wm-footer {
+  display:flex;align-items:center;gap:.5rem;
+  padding:.875rem 1.5rem;background:var(--bg-card);
+  border-top:1px solid var(--glass-border);
+  font-size:.8rem;color:var(--text-muted);
+}
+.wm-footer a{color:var(--stx);text-decoration:none}
+.wm-footer a:hover{text-decoration:underline}
