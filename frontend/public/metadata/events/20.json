@@ -1,0 +1,12 @@
+{
+  "name": "Colathon",
+  "description": "Build event for builders in Columbia and the rest of the world",
+  "image": "https://achievement-poap.vercel.app/favicon.svg",
+  "attributes": [
+    { "trait_type": "Event Type", "value": "Hackathon" },
+    { "trait_type": "Location", "value": "Columbia & Global" },
+    { "trait_type": "Start Date", "value": "2026-05-15" },
+    { "trait_type": "End Date", "value": "2026-05-31" }
+  ],
+  "external_url": "https://achievement-poap.vercel.app/events/20"
+}

@@ -45,6 +45,7 @@ export default function CreateEvent() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!form.name.trim()) { toastError('Event name is required'); return; }
+    if (!form.metadataUri.trim()) { toastError('Metadata URI is required by the contract'); return; }
     setSubmitting(true);
     try {
       info('Confirm the transaction in your wallet…');
@@ -132,12 +133,14 @@ export default function CreateEvent() {
           </div>
 
           <div className="form-group">
-            <label className="form-label" htmlFor="metadataUri">Metadata URI <span className="form-label-note">(optional)</span></label>
+            <label className="form-label" htmlFor="metadataUri">Metadata URI <span className="required">*</span></label>
             <input
               id="metadataUri" type="url" className="input"
-              placeholder="https://example.com/metadata.json"
+              placeholder="https://achievement-poap.vercel.app/metadata/events/20.json"
               value={form.metadataUri} onChange={set('metadataUri')} maxLength={256}
+              required
             />
+            <span className="form-hint">Host a JSON file with name, description, image fields. Use <code>https://achievement-poap.vercel.app/metadata/events/[id].json</code> for events created here.</span>
           </div>
 
           <button type="submit" className="btn btn-primary" style={{width:'100%',padding:'.875rem'}} disabled={submitting}>
