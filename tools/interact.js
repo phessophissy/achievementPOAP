@@ -16,7 +16,7 @@
  *   node tools/interact.js deactivate-event   — Deactivate an event (admin)
  * 
  * Options:
- *   --event <id>       Event ID to interact with (default: 1)
+ *   --event <id>       Event ID to interact with (default: 14)
  *   --batch <size>     Batch size for bulk operations (default: 25)
  *   --dry-run          Preview actions without sending transactions
  *   --fee <amount>     Custom tx fee in microSTX (default: 2500)
@@ -27,6 +27,7 @@ import {
     AnchorMode,
     PostConditionMode,
     TransactionVersion,
+    getAddressFromPrivateKey,
     uintCV,
     stringAsciiCV,
     principalCV,
@@ -70,7 +71,7 @@ function parseArgs() {
     const command = args[0];
     const opts = {
         command,
-        eventId: 1,
+        eventId: 14,
         batchSize: DEFAULT_BATCH_SIZE,
         walletIndex: null,
         start: 1,
@@ -210,23 +211,35 @@ async function callReadOnly(functionName, functionArgs = [], senderAddress = DEP
 
 async function getDeployerAccount() {
     const mnemonic = process.env.DEPLOYER_MNEMONIC;
-    if (!mnemonic) {
-        throw new Error('DEPLOYER_MNEMONIC not set in .env');
+    if (mnemonic) {
+        const wallet = await generateWallet({ secretKey: mnemonic, password: '' });
+        const account = wallet.accounts[0];
+        const address = getStxAddress({
+            account,
+            transactionVersion: TransactionVersion.Mainnet,
+        });
+        return { account, address };
     }
-    const wallet = await generateWallet({ secretKey: mnemonic, password: '' });
-    const account = wallet.accounts[0];
-    const address = getStxAddress({
-        account,
-        transactionVersion: TransactionVersion.Mainnet,
-    });
-    return { account, address };
+
+    const privateKey = process.env.DEPLOYER_PK;
+    if (privateKey) {
+        const address = getAddressFromPrivateKey(privateKey, TransactionVersion.Mainnet);
+        return {
+            account: { stxPrivateKey: privateKey },
+            address,
+        };
+    }
+
+    throw new Error('Set DEPLOYER_MNEMONIC or DEPLOYER_PK in .env');
 }
 
 async function getCurrentBlockHeight() {
     try {
         const res = await fetch('https://api.mainnet.hiro.so/v2/info');
         const data = await res.json();
-        return data.stacks_tip_height;
+        // In Nakamoto Stacks, Clarity's block-height keyword returns burn_block_height
+        // (not stacks_tip_height which counts fast blocks).
+        return data.burn_block_height;
     } catch {
         return 0;
     }
@@ -358,7 +371,8 @@ async function cmdMint(opts) {
         if (opts.walletIndex !== null) return w.index === opts.walletIndex;
         if (w.index < opts.start) return false;
         if (opts.end && w.index > opts.end) return false;
-        if (w.minted) return false; // Skip already minted
+        // Only skip if wallet is already marked minted for this specific event.
+        if (w.minted && w.mint_event_id === opts.eventId) return false;
         return true;
     });
 
@@ -699,7 +713,7 @@ async function main() {
         console.log('    unpause            Unpause contract (admin)');
         console.log('    deactivate-event   Deactivate an event (admin)');
         console.log('\n  Options:');
-        console.log('    --event <id>       Event ID (default: 1)');
+        console.log('    --event <id>       Event ID (default: 14)');
         console.log('    --wallet <idx>     Specific wallet index');
         console.log('    --start <idx>      Start from wallet index');
         console.log('    --end <idx>        End at wallet index');

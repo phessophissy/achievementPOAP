@@ -1,76 +1,96 @@
-/** @file frontend/src/components/Wallet/WalletConnect.jsx - UI component module documenting rendering and interaction intent. */
-import React from 'react';
+import React, { useState } from 'react';
 import { useWallet } from '../../context/WalletContext';
-import Button from '../UI/Button';
+import WalletModal from './WalletModal';
 import './WalletConnect.css';
 
-const WalletConnect = ({ showBalance = false }) => {
-  const { 
-    isConnected, 
-    walletAddress, 
-    balance, 
-    isConnecting, 
-    connect, 
-    disconnect,
-    shortenAddress 
+export default function WalletConnect({ showBalance = true }) {
+  const {
+    isConnected, walletAddress, balance, isConnecting,
+    connect, disconnect, shortenAddress, showWalletModal, closeWalletModal,
   } = useWallet();
+
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [copied, setCopied] = useState(false);
+
+  const copyAddress = async () => {
+    try {
+      await navigator.clipboard.writeText(walletAddress);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 1500);
+    } catch {}
+  };
 
   if (isConnecting) {
     return (
-      <Button variant="primary" size="medium" disabled>
-        <span className="loading-spinner"></span>
-        Connecting...
-      </Button>
+      <button className="wallet-btn connecting" disabled>
+        <span className="wallet-btn-spinner" />
+        Connecting…
+      </button>
     );
   }
 
   if (isConnected && walletAddress) {
     return (
-      <div className="wallet-connected">
-        {showBalance && balance !== null && (
-          <span className="wallet-balance">{balance.toFixed(2)} STX</span>
-        )}
-        <div className="wallet-dropdown">
-          <button className="wallet-address-btn">
-            <span className="wallet-indicator" />
-            <span className="wallet-address">{shortenAddress(walletAddress)}</span>
-            <span className="dropdown-arrow">▼</span>
-          </button>
-          <div className="wallet-dropdown-menu">
-            <div className="dropdown-address">
-              <span className="dropdown-label">Connected</span>
-              <span className="dropdown-value">{shortenAddress(walletAddress)}</span>
+      <>
+        <div className="wallet-connected" onMouseLeave={() => setDropdownOpen(false)}>
+          {showBalance && balance !== null && (
+            <div className="balance-pill">
+              <span className="balance-dot" />
+              <span>{balance.toFixed(2)}</span>
+              <span className="balance-unit">STX</span>
             </div>
-            <hr className="dropdown-divider" />
-            <button 
-              className="dropdown-item" 
-              onClick={() => navigator.clipboard.writeText(walletAddress)}
-            >
-              📋 Copy Address
+          )}
+          <div className="wallet-dropdown-wrap">
+            <button className="wallet-addr-btn" onClick={() => setDropdownOpen(!dropdownOpen)}>
+              <span className="wallet-indicator" />
+              <span>{shortenAddress(walletAddress)}</span>
+              <svg className={`caret ${dropdownOpen ? 'open' : ''}`} viewBox="0 0 10 6" fill="none" width="10" height="6">
+                <path d="M1 1l4 4 4-4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+              </svg>
             </button>
-            <a
-              href={'https://explorer.stacks.co/address/' + walletAddress + '?chain=mainnet'}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="dropdown-item"
-            >
-              🔗 View in Explorer
-            </a>
-            <hr className="dropdown-divider" />
-            <button className="dropdown-item disconnect" onClick={disconnect}>
-              🚪 Disconnect
-            </button>
+            {dropdownOpen && (
+              <div className="wallet-dropdown-menu">
+                <div className="dropdown-header">
+                  <span className="dropdown-label">Connected</span>
+                  <span className="dropdown-addr">{shortenAddress(walletAddress)}</span>
+                </div>
+                <div className="dropdown-divider" />
+                <button className="dropdown-item" onClick={copyAddress}>
+                  <span>{copied ? '✅' : '📋'}</span>
+                  {copied ? 'Copied!' : 'Copy Address'}
+                </button>
+                <a
+                  href={`https://explorer.stacks.co/address/${walletAddress}?chain=mainnet`}
+                  target="_blank" rel="noopener noreferrer"
+                  className="dropdown-item"
+                  onClick={() => setDropdownOpen(false)}
+                >
+                  <span>🔗</span>View in Explorer
+                </a>
+                <div className="dropdown-divider" />
+                <button className="dropdown-item danger" onClick={() => { disconnect(); setDropdownOpen(false); }}>
+                  <span>⏏</span>Disconnect
+                </button>
+              </div>
+            )}
           </div>
         </div>
-      </div>
+        <WalletModal open={showWalletModal} onClose={closeWalletModal} />
+      </>
     );
   }
 
   return (
-    <Button variant="primary" size="medium" onClick={connect}>
-      Connect Wallet
-    </Button>
+    <>
+      <button className="wallet-btn primary" onClick={connect}>
+        <svg viewBox="0 0 24 24" fill="none" width="15" height="15">
+          <rect x="2" y="6" width="20" height="14" rx="2" stroke="currentColor" strokeWidth="2"/>
+          <path d="M16 13.5a1.5 1.5 0 110-3 1.5 1.5 0 010 3z" fill="currentColor"/>
+          <path d="M2 10h20" stroke="currentColor" strokeWidth="2"/>
+        </svg>
+        Connect Wallet
+      </button>
+      <WalletModal open={showWalletModal} onClose={closeWalletModal} />
+    </>
   );
-};
-
-export default WalletConnect;
+}

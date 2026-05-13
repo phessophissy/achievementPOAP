@@ -16,6 +16,8 @@
   "license": "ISC",
   "type": "module",
   "dependencies": {
+    "@reown/appkit": "^1.8.19",
+    "@reown/appkit-adapter-bitcoin": "^1.8.19",
     "@stacks/connect": "^8.2.4",
     "@stacks/network": "^7.3.1",
     "@stacks/transactions": "^7.3.1",

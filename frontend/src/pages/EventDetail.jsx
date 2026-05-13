@@ -1,291 +1,140 @@
-/** @file frontend/src/pages/EventDetail.jsx - Frontend module documenting responsibilities and expected usage. */
 import React, { useState, useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
+import { openContractCall } from '@stacks/connect';
+import { fetchEvent, checkHasMinted, mintPOAP } from '../services/contractService';
 import { useWallet } from '../context/WalletContext';
 import { useToast } from '../context/ToastContext';
-import { fetchEvent, mintPOAP, checkHasMinted } from '../services/contractService';
-import Card from '../components/UI/Card';
-import Button from '../components/UI/Button';
-import Modal from '../components/UI/Modal';
-import LoadingSpinner from '../components/UI/LoadingSpinner';
-import { EXPLORER_URL, MINT_FEE_STX } from '../config/constants';
 import './EventDetail.css';
 
-function EventDetail() {
-  const { eventId } = useParams();
-  const navigate = useNavigate();
+export default function EventDetail() {
+  const { eventId: id } = useParams();
   const { isConnected, walletAddress, connect } = useWallet();
-  const { success, error: showError, info } = useToast();
-  
+  const { success, error: toastError, info } = useToast();
   const [event, setEvent] = useState(null);
   const [loading, setLoading] = useState(true);
   const [minting, setMinting] = useState(false);
   const [hasMinted, setHasMinted] = useState(false);
-  const [showConfirmModal, setShowConfirmModal] = useState(false);
-  const [txId, setTxId] = useState(null);
 
   useEffect(() => {
-    loadEvent();
-  }, [eventId]);
-
-  useEffect(() => {
-    if (walletAddress && event) {
-      checkMintStatus();
-    }
-  }, [walletAddress, event]);
-
-  const loadEvent = async () => {
-    try {
-      setLoading(true);
-      const eventData = await fetchEvent(eventId);
-      setEvent(eventData);
-    } catch (err) {
-      showError('Failed to load event');
-      navigate('/events');
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const checkMintStatus = async () => {
-    try {
-      const minted = await checkHasMinted(eventId, walletAddress);
-      setHasMinted(minted);
-    } catch (err) {
-      console.error('Failed to check mint status:', err);
-    }
-  };
+    if (!id) return;
+    fetchEvent(parseInt(id))
+      .then(ev => {
+        setEvent(ev);
+        if (walletAddress) {
+          checkHasMinted(parseInt(id), walletAddress).then(setHasMinted);
+        }
+      })
+      .catch(() => toastError('Failed to load event'))
+      .finally(() => setLoading(false));
+  }, [id, walletAddress]);
 
   const handleMint = async () => {
-    if (!isConnected) {
-      connect();
-      return;
-    }
-
-    setShowConfirmModal(false);
+    if (!isConnected) { connect(); return; }
     setMinting(true);
-    info('Initiating minting transaction...');
-
     try {
-      const result = await mintPOAP(eventId);
-      setTxId(result.txId);
-      success('POAP minted successfully! 🎉');
+      info('Confirm the transaction in your wallet…');
+      await mintPOAP(parseInt(id), walletAddress, openContractCall);
+      success('POAP minted successfully!');
       setHasMinted(true);
     } catch (err) {
-      showError(err.message || 'Minting failed. Please try again.');
+      toastError(err?.message || 'Minting failed');
     } finally {
       setMinting(false);
     }
   };
 
-  const getEventStatus = () => {
-    if (!event) return 'unknown';
-    const currentBlock = 150000;
-    if (currentBlock < event.startBlock) return 'upcoming';
-    if (currentBlock > event.endBlock) return 'ended';
-    if (event.currentSupply >= event.maxSupply) return 'sold-out';
-    return 'active';
-  };
+  if (loading) return (
+    <div className="page"><div className="empty-state"><div className="spinner" /><p>Loading event…</p></div></div>
+  );
+  if (!event) return (
+    <div className="page"><div className="empty-state"><span className="empty-icon">&#128269;</span><p>Event not found.</p><Link to="/events" className="btn btn-secondary btn-sm">Back to Events</Link></div></div>
+  );
 
-  const canMint = () => {
-    return isConnected && !hasMinted && getEventStatus() === 'active';
-  };
-
-  if (loading) {
-    return <LoadingSpinner fullScreen text="Loading event..." />;
-  }
-
-  if (!event) {
-    return (
-      <div className="event-not-found">
-        <h2>Event Not Found</h2>
-        <p>The event you're looking for doesn't exist.</p>
-        <Button onClick={() => navigate('/events')}>Back to Events</Button>
-      </div>
-    );
-  }
-
-  const status = getEventStatus();
+  const isActive = event.active && !event.isEnded;
 
   return (
-    <div className="event-detail">
-      <button className="back-button" onClick={() => navigate('/events')}>
-        ← Back to Events
-      </button>
-
-      <div className="event-content">
-        <div className="event-main">
-          <Card variant="featured">
-            <Card.Body>
-              <div className="event-header">
-                <span className="event-label">Event #{eventId}</span>
-                <span className={`status-badge ${status}`}>
-                  {status === 'active' && '🟢 Active'}
-                  {status === 'upcoming' && '🟡 Upcoming'}
-                  {status === 'ended' && '🔴 Ended'}
-                  {status === 'sold-out' && '⚫ Sold Out'}
-                </span>
-              </div>
-
-              <h1 className="event-title">{event.name}</h1>
-              <p className="event-desc">{event.description}</p>
-
-              <div className="event-meta">
-                <div className="meta-item">
-                  <span className="meta-icon">👤</span>
-                  <div className="meta-content">
-                    <span className="meta-label">Created by</span>
-                    <span className="meta-value address">{event.creator}</span>
-                  </div>
-                </div>
-
-                <div className="meta-item">
-                  <span className="meta-icon">📅</span>
-                  <div className="meta-content">
-                    <span className="meta-label">Block Range</span>
-                    <span className="meta-value">
-                      {event.startBlock} - {event.endBlock}
-                    </span>
-                  </div>
-                </div>
-
-                {event.metadataUri && (
-                  <div className="meta-item">
-                    <span className="meta-icon">🔗</span>
-                    <div className="meta-content">
-                      <span className="meta-label">Metadata</span>
-                      <a 
-                        href={event.metadataUri} 
-                        target="_blank" 
-                        rel="noopener noreferrer"
-                        className="meta-value link"
-                      >
-                        View Metadata ↗
-                      </a>
-                    </div>
-                  </div>
-                )}
-              </div>
-            </Card.Body>
-          </Card>
-
-          {txId && (
-            <Card className="tx-card">
-              <Card.Body>
-                <div className="tx-success">
-                  <span className="tx-icon">✓</span>
-                  <div className="tx-info">
-                    <h4>Transaction Submitted!</h4>
-                    <p>Your POAP is being minted.</p>
-                    <a 
-                      href={`${EXPLORER_URL}/txid/${txId}?chain=mainnet`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="tx-link"
-                    >
-                      View on Explorer →
-                    </a>
-                  </div>
-                </div>
-              </Card.Body>
-            </Card>
-          )}
-        </div>
-
-        <div className="event-sidebar">
-          <Card className="mint-card">
-            <Card.Body>
-              <h3 className="mint-title">Mint This POAP</h3>
-              
-              <div className="mint-stats">
-                <div className="mint-stat">
-                  <span className="stat-label">Supply</span>
-                  <span className="stat-value">
-                    {event.currentSupply} / {event.maxSupply}
-                  </span>
-                </div>
-                <div className="mint-stat">
-                  <span className="stat-label">Price</span>
-                  <span className="stat-value">{MINT_FEE_STX} STX</span>
-                </div>
-              </div>
-
-              <div className="progress-container">
-                <div className="progress-bar">
-                  <div 
-                    className="progress-fill"
-                    style={{ width: `${(event.currentSupply / event.maxSupply) * 100}%` }}
-                  ></div>
-                </div>
-                <span className="progress-text">
-                  {Math.round((event.currentSupply / event.maxSupply) * 100)}% minted
-                </span>
-              </div>
-
-              {hasMinted ? (
-                <div className="already-minted">
-                  <span className="minted-icon">✓</span>
-                  <span>You already own this POAP</span>
-                </div>
-              ) : (
-                <Button
-                  fullWidth
-                  size="large"
-                  onClick={() => setShowConfirmModal(true)}
-                  disabled={!canMint() || minting}
-                  loading={minting}
-                >
-                  {!isConnected 
-                    ? 'Connect Wallet to Mint'
-                    : status !== 'active'
-                    ? status === 'upcoming' ? 'Coming Soon' : 'Event Ended'
-                    : minting 
-                    ? 'Minting...' 
-                    : `Mint for ${MINT_FEE_STX} STX`
-                  }
-                </Button>
-              )}
-            </Card.Body>
-          </Card>
-        </div>
+    <div className="page event-detail-page">
+      <div className="detail-breadcrumb">
+        <Link to="/events">Events</Link>
+        <svg viewBox="0 0 6 10" fill="none" width="5" height="9"><path d="M1 1l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/></svg>
+        <span>{event.name || `Event #${id}`}</span>
       </div>
 
-      <Modal
-        isOpen={showConfirmModal}
-        onClose={() => setShowConfirmModal(false)}
-        title="Confirm Mint"
-      >
-        <div className="confirm-content">
-          <p>You are about to mint:</p>
-          <h3 className="confirm-event-name">{event.name}</h3>
-          <div className="confirm-details">
-            <div className="confirm-row">
-              <span>Mint Fee</span>
-              <span>{MINT_FEE_STX} STX</span>
-            </div>
-            <div className="confirm-row">
-              <span>Network Fee</span>
-              <span>~0.001 STX</span>
-            </div>
-            <div className="confirm-row total">
-              <span>Total</span>
-              <span>~{(MINT_FEE_STX + 0.001).toFixed(3)} STX</span>
+      <div className="detail-grid">
+        <div className="detail-main">
+          <div className="detail-header">
+            <div className="detail-icon">&#127942;</div>
+            <div>
+              <div className="detail-meta-row">
+                <span className={`badge ${isActive ? 'badge-active' : event.isEnded ? 'badge-ended' : 'badge-upcoming'}`}>
+                  {isActive ? 'Active' : event.isEnded ? 'Ended' : 'Upcoming'}
+                </span>
+                <span className="detail-id">ID #{id}</span>
+              </div>
+              <h1 className="detail-title">{event.name || `Event #${id}`}</h1>
             </div>
           </div>
+
+          <p className="detail-desc">{event.description || 'No description provided.'}</p>
+
+          <div className="detail-stats-row">
+            <div className="detail-stat">
+              <span className="ds-value">{event.currentSupply || 0}</span>
+              <span className="ds-label">Minted</span>
+            </div>
+            <div className="detail-stat">
+              <span className="ds-value">{event.maxSupply || '∞'}</span>
+              <span className="ds-label">Max Supply</span>
+            </div>
+            <div className="detail-stat">
+              <span className="ds-value">0.025</span>
+              <span className="ds-label">STX per Mint</span>
+            </div>
+          </div>
+
+          <div className="detail-contract">
+            <span className="detail-contract-label">Contract</span>
+            <a href="https://explorer.stacks.co/txid/SP2KYZRNME33Y39GP3RKC90DQJ45EF1N0NZNVRE09.achievement-poap?chain=mainnet"
+              target="_blank" rel="noopener noreferrer" className="detail-contract-addr">
+              SP2KYZ…NVRE09.achievement-poap
+              <svg viewBox="0 0 12 12" fill="none" width="10" height="10"><path d="M5 2H2v8h8V7M7 1h4v4M7 5l4-4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/></svg>
+            </a>
+          </div>
         </div>
-        <Modal.Footer>
-          <Button variant="ghost" onClick={() => setShowConfirmModal(false)}>
-            Cancel
-          </Button>
-          <Button onClick={handleMint} loading={minting}>
-            Confirm Mint
-          </Button>
-        </Modal.Footer>
-      </Modal>
+
+        <div className="detail-sidebar">
+          <div className="mint-card">
+            <h2 className="mint-card-title">Collect this POAP</h2>
+            <div className="mint-badge">
+              <div className="mint-badge-icon">&#127942;</div>
+              <div className="mint-badge-name">{event.name || `Event #${id}`}</div>
+              <div className="mint-badge-fee">0.025 STX</div>
+            </div>
+            {hasMinted ? (
+              <div className="mint-success-state">
+                <span>&#9989;</span>
+                <p>You own this POAP!</p>
+                <Link to="/my-poaps" className="btn btn-secondary btn-sm" style={{marginTop:'1rem'}}>View Collection</Link>
+              </div>
+            ) : (
+              <>
+                {!isConnected ? (
+                  <button className="btn btn-primary" style={{width:'100%'}} onClick={connect}>Connect Wallet to Mint</button>
+                ) : !isActive ? (
+                  <button className="btn btn-secondary" style={{width:'100%'}} disabled>
+                    {event.isEnded ? 'Event Ended' : 'Not Yet Active'}
+                  </button>
+                ) : (
+                  <button className="btn btn-primary" style={{width:'100%'}} onClick={handleMint} disabled={minting}>
+                    {minting ? <><span className="spinner" style={{width:'14px',height:'14px',borderWidth:'2px'}} /> Minting…</> : 'Mint POAP · 0.025 STX'}
+                  </button>
+                )}
+                <p className="mint-note">One POAP per wallet per event. Transaction on Stacks mainnet.</p>
+              </>
+            )}
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
-
-export default EventDetail;
-
-// implement styling and layout for event-sharing — ref:feat/event-sharing#2 (1776634631634)

@@ -1,181 +1,115 @@
-/** @file frontend/src/pages/Events.jsx - Frontend module documenting responsibilities and expected usage. */
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { useWallet } from '../context/WalletContext';
-import { useToast } from '../context/ToastContext';
 import { fetchEvents } from '../services/contractService';
-import Card from '../components/UI/Card';
-import Button from '../components/UI/Button';
-import LoadingSpinner from '../components/UI/LoadingSpinner';
 import './Events.css';
 
-function Events() {
-  const { isConnected } = useWallet();
-  const { error: showError } = useToast();
+const FILTERS = ['All', 'Active', 'Upcoming', 'Ended'];
+
+export default function Events() {
   const [events, setEvents] = useState([]);
+  const [filter, setFilter] = useState('All');
+  const [search, setSearch] = useState('');
   const [loading, setLoading] = useState(true);
-  const [filter, setFilter] = useState('all');
-  const [searchQuery, setSearchQuery] = useState('');
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-    loadEvents();
+    fetchEvents()
+      .then(setEvents)
+      .catch(() => setError('Failed to load events.'))
+      .finally(() => setLoading(false));
   }, []);
 
-  const loadEvents = async () => {
-    try {
-      setLoading(true);
-      const eventsData = await fetchEvents();
-      setEvents(eventsData);
-    } catch (err) {
-      showError('Failed to load events');
-      console.error(err);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const getEventStatus = (event) => {
-    const currentBlock = 150000; // This would come from API in production
-    if (currentBlock < event.startBlock) return 'upcoming';
-    if (currentBlock > event.endBlock) return 'ended';
-    if (event.currentSupply >= event.maxSupply) return 'sold-out';
-    return 'active';
-  };
-
-  const filteredEvents = events.filter((event) => {
-    const status = getEventStatus(event);
-    const matchesFilter = filter === 'all' || status === filter;
-    const matchesSearch = event.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                         event.description.toLowerCase().includes(searchQuery.toLowerCase());
-    return matchesFilter && matchesSearch;
+  const filtered = events.filter(ev => {
+    const matchSearch = ev.name?.toLowerCase().includes(search.toLowerCase()) ||
+      ev.description?.toLowerCase().includes(search.toLowerCase());
+    if (!matchSearch) return false;
+    if (filter === 'All') return true;
+    if (filter === 'Active') return ev.isActive && !ev.isEnded;
+    if (filter === 'Upcoming') return !ev.isActive && !ev.isEnded;
+    if (filter === 'Ended') return ev.isEnded;
+    return true;
   });
 
-  if (loading) {
-    return <LoadingSpinner fullScreen text="Loading events..." />;
-  }
+  const getStatus = (ev) => {
+    if (ev.isEnded) return { label: 'Ended', cls: 'ended' };
+    if (ev.isActive) return { label: 'Active', cls: 'active' };
+    return { label: 'Upcoming', cls: 'upcoming' };
+  };
 
   return (
-    <div className="events-page">
+    <div className="page events-page">
       <div className="events-header">
-        <div className="header-content">
-          <h1 className="page-title">Explore Events</h1>
-          <p className="page-subtitle">
-            Discover and mint POAPs from active events
-          </p>
+        <div>
+          <h1 className="page-title">Events</h1>
+          <p className="page-subtitle">Discover achievements to collect on Stacks</p>
         </div>
-        {isConnected && (
-          <Link to="/create-event">
-            <Button icon="➕">Create Event</Button>
-          </Link>
-        )}
       </div>
 
-      <div className="events-controls">
-        <div className="search-container">
+      <div className="events-toolbar">
+        <div className="search-wrap">
+          <svg viewBox="0 0 20 20" fill="none" width="16" height="16" className="search-icon">
+            <circle cx="9" cy="9" r="6" stroke="currentColor" strokeWidth="1.5"/>
+            <path d="M15 15l-3-3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+          </svg>
           <input
-            type="text"
-            className="search-input"
-            placeholder="Search events..."
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
+            type="text" className="search-input" placeholder="Search events…"
+            value={search} onChange={e => setSearch(e.target.value)}
           />
-          <span className="search-icon">🔍</span>
         </div>
-
         <div className="filter-tabs">
-          {['all', 'active', 'upcoming', 'ended'].map((tab) => (
-            <button
-              key={tab}
-              className={`filter-tab ${filter === tab ? 'active' : ''}`}
-              onClick={() => setFilter(tab)}
-            >
-              {tab.charAt(0).toUpperCase() + tab.slice(1)}
-            </button>
+          {FILTERS.map(f => (
+            <button key={f} className={`filter-tab ${filter === f ? 'active' : ''}`}
+              onClick={() => setFilter(f)}>{f}</button>
           ))}
         </div>
       </div>
 
-      {filteredEvents.length === 0 ? (
+      {loading && (
         <div className="empty-state">
-          <div className="empty-icon">🎭</div>
-          <h3>No Events Found</h3>
-          <p>
-            {filter !== 'all'
-              ? `No ${filter} events at the moment.`
-              : searchQuery
-              ? 'Try a different search term.'
-              : 'Be the first to create an event!'}
-          </p>
-          {isConnected && (
-            <Link to="/create-event">
-              <Button>Create First Event</Button>
-            </Link>
-          )}
-        </div>
-      ) : (
-        <div className="events-grid">
-          {filteredEvents.map((event) => (
-            <EventCard key={event.id} event={event} status={getEventStatus(event)} />
-          ))}
+          <div className="spinner" />
+          <p>Loading events…</p>
         </div>
       )}
+      {error && (
+        <div className="empty-state">
+          <span className="empty-icon">⚠️</span>
+          <p>{error}</p>
+        </div>
+      )}
+      {!loading && !error && filtered.length === 0 && (
+        <div className="empty-state">
+          <span className="empty-icon">🔍</span>
+          <p>No events found. Try adjusting your search or filter.</p>
+        </div>
+      )}
+
+      <div className="events-grid">
+        {filtered.map(ev => {
+          const { label, cls } = getStatus(ev);
+          return (
+            <Link to={`/events/${ev.id}`} key={ev.id} className="event-card">
+              <div className="event-card-header">
+                <div className="event-icon">🏆</div>
+                <span className={`badge badge-${cls}`}>{label}</span>
+              </div>
+              <div className="event-card-body">
+                <h3 className="event-name">{ev.name || `Event #${ev.id}`}</h3>
+                <p className="event-desc">{ev.description || 'No description.'}</p>
+              </div>
+              <div className="event-card-footer">
+                <span className="event-meta">
+                  <svg viewBox="0 0 16 16" fill="none" width="13" height="13">
+                    <circle cx="8" cy="8" r="6" stroke="currentColor" strokeWidth="1.5"/>
+                    <path d="M8 5v3l2 2" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+                  </svg>
+                  {ev.mintedCount || 0} minted
+                </span>
+                <span className="event-meta event-mint-fee">0.025 STX</span>
+              </div>
+            </Link>
+          );
+        })}
+      </div>
     </div>
   );
 }
-
-function EventCard({ event, status }) {
-  const statusConfig = {
-    active: { label: 'Active', className: 'active' },
-    upcoming: { label: 'Upcoming', className: 'upcoming' },
-    ended: { label: 'Ended', className: 'ended' },
-    'sold-out': { label: 'Sold Out', className: 'ended' },
-  };
-
-  const { label, className } = statusConfig[status] || statusConfig.active;
-
-  return (
-    <Link to={`/events/${event.id}`} className="event-card-link">
-      <Card hoverable className="event-card">
-        <Card.Header>
-          <div className="event-header-content">
-            <span className="event-id">Event #{event.id}</span>
-            <span className={`event-status ${className}`}>{label}</span>
-          </div>
-        </Card.Header>
-        <Card.Body>
-          <h3 className="event-name">{event.name}</h3>
-          <p className="event-description">{event.description}</p>
-          
-          <div className="event-stats">
-            <div className="event-stat">
-              <span className="stat-icon">🎫</span>
-              <span className="stat-text">
-                {event.currentSupply} / {event.maxSupply} minted
-              </span>
-            </div>
-            <div className="event-stat">
-              <span className="stat-icon">💰</span>
-              <span className="stat-text">0.025 STX</span>
-            </div>
-          </div>
-
-          <div className="progress-bar">
-            <div 
-              className="progress-fill"
-              style={{ width: `${(event.currentSupply / event.maxSupply) * 100}%` }}
-            ></div>
-          </div>
-        </Card.Body>
-        <Card.Footer>
-          <Button fullWidth disabled={status !== 'active'}>
-            {status === 'active' ? 'Mint POAP' : status === 'upcoming' ? 'Coming Soon' : 'Event Ended'}
-          </Button>
-        </Card.Footer>
-      </Card>
-    </Link>
-  );
-}
-
-export default Events;
-
-// implement styling and layout for pagination-edge-case — ref:fix/pagination-edge-case#2 (1776635091193)

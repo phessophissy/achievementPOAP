@@ -1,124 +1,22 @@
-.leaderboard-page {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 4rem 2rem;
-}
-
-.leaderboard-grid {
-  display: flex;
-  flex-direction: column;
-  gap: 3rem;
-  margin-top: 3rem;
-}
-
-.top-three {
-  display: flex;
-  gap: 2rem;
-  align-items: flex-end;
-  justify-content: center;
-}
-
-.top-card {
-  position: relative;
-  width: 300px;
-  text-align: center;
-  padding: 2.5rem;
-  border: 1px solid var(--glass-border);
-  transition: all 0.4s ease;
-}
-
-.rank-1 { order: 2; height: 320px; background: rgba(212, 175, 55, 0.05); }
-.rank-2 { order: 1; height: 280px; }
-.rank-3 { order: 3; height: 260px; }
-
-.rank-badge {
-  position: absolute;
-  top: -1.5rem;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 3.5rem;
-  height: 3.5rem;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: 800;
-  color: #000;
-  font-family: var(--font-heading);
-  box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
-}
-
-.leader-address {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 1.25rem;
-  margin-bottom: 0.5rem;
-  color: var(--neon-cyan);
-}
-
-.leader-level {
-  font-size: 0.8rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.15em;
-  color: var(--text-secondary);
-  margin-bottom: 1rem;
-}
-
-.leader-count {
-  font-size: 3rem;
-  font-weight: 800;
-  font-family: var(--font-heading);
-  line-height:1;
-}
-
-.leader-count span {
-  font-size: 1rem;
-  font-weight: 500;
-  color: var(--text-secondary);
-}
-
-.leaderboard-table-container {
-  width: 100%;
-  border-radius: 16px;
-  overflow: hidden;
-}
-
-.leaderboard-table {
-  width: 100%;
-  border-collapse: collapse;
-}
-
-.leaderboard-table th {
-  text-align: left;
-  padding: 1.5rem;
-  background: rgba(255, 255, 255, 0.05);
-  font-family: var(--font-heading);
-  font-size: 0.8rem;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: var(--text-secondary);
-}
-
-.leaderboard-table td {
-  padding: 1.5rem;
-  border-bottom: 1px solid var(--glass-border);
-}
-
-.leaderboard-table tr:hover {
-  background: rgba(255, 255, 255, 0.02);
-}
-
-.rank-cell { font-family: var(--font-heading); font-weight: 800; color: var(--neon-cyan); }
-.address-cell { font-family: 'JetBrains Mono', monospace; }
-.level-badge {
-  padding: 0.25rem 0.75rem;
-  border-radius: 4px;
-  background: rgba(255, 255, 255, 0.05);
-  font-size: 0.75rem;
-  font-weight: 700;
-}
-
-@media (max-width: 900px) {
-  .top-three { flex-direction: column; align-items: center; }
-  .top-card { width: 100%; order: unset; height: auto; }
-}
+.leaderboard-page{padding:2.5rem 0}
+.lb-header{margin-bottom:2.5rem}
+.lb-table-wrap{background:var(--bg-card);border:1px solid var(--glass-border);border-radius:var(--radius-md);overflow:hidden}
+.lb-table{width:100%;border-collapse:collapse}
+.lb-table thead tr{background:var(--bg-elevated);border-bottom:1px solid var(--glass-border)}
+.lb-table th{padding:.875rem 1.25rem;text-align:left;font-size:.75rem;text-transform:uppercase;letter-spacing:.08em;color:var(--text-muted);font-weight:600}
+.lb-row{border-bottom:1px solid var(--glass-border);transition:background var(--trans-fast) var(--ease)}
+.lb-row:last-child{border-bottom:none}
+.lb-row:hover{background:var(--glass-bg-hover)}
+.lb-row-me{background:rgba(255,85,0,.06)!important;border-left:3px solid var(--stx)}
+.lb-row-top .lb-count-value{color:var(--stx)}
+.lb-table td{padding:1rem 1.25rem;font-size:.9rem}
+.lb-rank{width:80px}
+.lb-medal{font-size:1.375rem}
+.lb-num{font-size:.9375rem;font-weight:700;color:var(--text-muted)}
+.lb-addr{display:flex;align-items:center;gap:.625rem}
+.lb-addr-text{font-family:var(--font-mono);font-size:.85rem;color:var(--text-primary)}
+.lb-you-badge{font-size:.7rem;padding:.15rem .5rem;background:rgba(255,85,0,.15);color:var(--stx);border:1px solid rgba(255,85,0,.25);border-radius:var(--radius-full);font-weight:600}
+.lb-count-value{font-size:1rem;font-weight:700;color:var(--text-primary)}
+.lb-count-label{font-size:.8rem;color:var(--text-muted)}
+.lb-explorer-link{display:inline-flex;align-items:center;gap:.375rem;font-size:.8rem;color:var(--text-muted);text-decoration:none;transition:color var(--trans-fast) var(--ease)}
+.lb-explorer-link:hover{color:var(--stx)}

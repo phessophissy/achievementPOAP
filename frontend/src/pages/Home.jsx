@@ -1,220 +1,170 @@
-/** @file frontend/src/pages/Home.jsx - Frontend module documenting responsibilities and expected usage. */
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { useWallet } from '../context/WalletContext';
-import Button from '../components/UI/Button';
-import Card from '../components/UI/Card';
 import './Home.css';
 
-function Home() {
+const FEATURES = [
+  { icon: '⛓️', title: 'On-Chain Achievements', desc: 'Every POAP is an immutable SIP-009 NFT on Stacks, anchored to Bitcoin.' },
+  { icon: '⚡', title: 'Bitcoin-Secured', desc: 'Stacks smart contracts settle on Bitcoin. Your achievements are as permanent as Bitcoin itself.' },
+  { icon: '💸', title: '0.025 STX per Mint', desc: 'Collect achievements without breaking the bank. Low fees, high value.' },
+  { icon: '🔐', title: 'One POAP per Event', desc: 'Exclusive minting ensures scarcity — one NFT per wallet per event.' },
+  { icon: '🌐', title: 'All Stacks Wallets', desc: 'Connect with Leather, Xverse, Asigna, OKX, or any WalletConnect-compatible wallet.' },
+  { icon: '📊', title: 'Fully On-Chain Metadata', desc: 'Event data lives on the blockchain, not on a server that can disappear.' },
+];
+
+const STATS = [
+  { value: '100+', label: 'Events Created' },
+  { value: '5K+', label: 'POAPs Minted' },
+  { value: '0.025', label: 'STX per Mint' },
+  { value: '100%', label: 'On-Chain' },
+];
+
+const STEPS = [
+  { n: '01', title: 'Connect Wallet', desc: 'Use Leather, Xverse, Asigna, or OKX to connect your Stacks wallet in seconds.' },
+  { n: '02', title: 'Find an Event', desc: 'Browse active events — hackathons, meetups, AMAs, milestones.' },
+  { n: '03', title: 'Mint Your POAP', desc: 'Pay 0.025 STX to mint a permanent proof of your participation.' },
+  { n: '04', title: 'Showcase It', desc: 'Your on-chain collection grows over time. Show off your Stacks journey.' },
+];
+
+export default function Home() {
   const { isConnected, connect } = useWallet();
+  const heroRef = useRef(null);
 
-  const features = [
-    {
-      icon: '🏆',
-      title: 'Verifiable Achievements',
-      description: 'Every POAP is stored on the Stacks blockchain, providing immutable proof of your participation.',
-    },
-    {
-      icon: '⚡',
-      title: 'Powered by Bitcoin',
-      description: 'Built on Stacks, the leading Bitcoin L2 for smart contracts. Your achievements are secured by Bitcoin.',
-    },
-    {
-      icon: '💰',
-      title: 'Low Minting Cost',
-      description: 'Only 0.025 STX per mint. Collect achievements without breaking the bank.',
-    },
-    {
-      icon: '🎨',
-      title: 'Unique NFTs',
-      description: 'Each POAP is a unique SIP-009 compliant NFT that you can collect, showcase, and trade.',
-    },
-    {
-      icon: '🔒',
-      title: 'One Per Event',
-      description: 'Exclusive minting ensures only one POAP per wallet per event, making each achievement special.',
-    },
-    {
-      icon: '📊',
-      title: 'On-Chain Metadata',
-      description: 'All event details and metadata are stored directly on the blockchain for permanence.',
-    },
-  ];
-
-  const stats = [
-    { value: '100+', label: 'Events Created' },
-    { value: '5,000+', label: 'POAPs Minted' },
-    { value: '0.025', label: 'STX per Mint' },
-    { value: '100%', label: 'On-Chain' },
-  ];
-
-  const steps = [
-    {
-      number: '01',
-      title: 'Connect Wallet',
-      description: 'Connect your Stacks wallet (Hiro or Xverse) to get started.',
-    },
-    {
-      number: '02',
-      title: 'Browse Events',
-      description: 'Explore active events and find achievements you can claim.',
-    },
-    {
-      number: '03',
-      title: 'Mint Your POAP',
-      description: 'Pay 0.025 STX to mint your unique achievement NFT.',
-    },
-    {
-      number: '04',
-      title: 'Showcase',
-      description: 'View and share your collection of achievements.',
-    },
-  ];
+  useEffect(() => {
+    const hero = heroRef.current;
+    if (!hero) return;
+    const onMove = (e) => {
+      const rect = hero.getBoundingClientRect();
+      const x = ((e.clientX - rect.left) / rect.width) * 100;
+      const y = ((e.clientY - rect.top) / rect.height) * 100;
+      hero.style.setProperty('--mx', x + '%');
+      hero.style.setProperty('--my', y + '%');
+    };
+    hero.addEventListener('mousemove', onMove);
+    return () => hero.removeEventListener('mousemove', onMove);
+  }, []);
 
   return (
     <div className="home">
-      {/* Hero Section */}
-      <section className="hero-section">
+      {/* ── Hero ─────────────────────────────────────────────────────────── */}
+      <section className="hero" ref={heroRef}>
+        <div className="hero-glow" />
         <div className="hero-content">
-          <div className="hero-badge">🏆 Built on Bitcoin L2</div>
+          <div className="hero-badge">
+            <span className="hero-badge-dot" />
+            Built on Stacks · Bitcoin L2
+          </div>
           <h1 className="hero-title">
-            <span className="title-line">Proof of</span>
-            <span className="title-line gradient">Achievement</span>
+            Proof of<br />
+            <span className="gradient-text">Achievement</span>
           </h1>
-          <p className="hero-description">
-            Collect verifiable on-chain achievements on Stacks. 
-            Each POAP is a unique NFT that proves your participation 
-            in events, hackathons, and milestones.
+          <p className="hero-desc">
+            Collect verifiable on-chain achievement badges on Stacks.
+            Each POAP is a unique SIP-009 NFT anchored to Bitcoin,
+            proving you were there.
           </p>
           <div className="hero-actions">
             {isConnected ? (
               <>
-                <Link to="/events">
-                  <Button size="large" icon="🎯">Explore Events</Button>
+                <Link to="/events" className="btn btn-primary btn-large">
+                  <svg viewBox="0 0 20 20" fill="none" width="16" height="16"><path d="M10 2l2.5 5 5.5.8-4 3.9.9 5.5L10 14.5 5.1 17.2l.9-5.5-4-3.9 5.5-.8L10 2z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round"/></svg>
+                  Explore Events
                 </Link>
-                <Link to="/my-poaps">
-                  <Button variant="secondary" size="large" icon="🎨">My Collection</Button>
-                </Link>
+                <Link to="/my-poaps" className="btn btn-secondary btn-large">My Collection</Link>
               </>
             ) : (
               <>
-                <Button size="large" onClick={connect} icon="🔗">
+                <button className="btn btn-primary btn-large" onClick={connect}>
+                  <svg viewBox="0 0 24 24" fill="none" width="16" height="16"><rect x="2" y="6" width="20" height="14" rx="2" stroke="currentColor" strokeWidth="2"/><path d="M16 13.5a1.5 1.5 0 110-3 1.5 1.5 0 010 3z" fill="currentColor"/><path d="M2 10h20" stroke="currentColor" strokeWidth="2"/></svg>
                   Connect Wallet
-                </Button>
-                <Link to="/events">
-                  <Button variant="secondary" size="large" icon="👀">
-                    Browse Events
-                  </Button>
-                </Link>
+                </button>
+                <Link to="/events" className="btn btn-secondary btn-large">Explore Events</Link>
               </>
             )}
           </div>
+          <div className="hero-wallets">
+            <span className="hw-label">Supported wallets</span>
+            {['Leather','Xverse','Asigna','OKX'].map(n => (
+              <span className="hw-chip" key={n}>{n}</span>
+            ))}
+          </div>
         </div>
         <div className="hero-visual">
-          <div className="floating-poap poap-1">🏆</div>
-          <div className="floating-poap poap-2">⭐</div>
-          <div className="floating-poap poap-3">🎯</div>
-          <div className="floating-poap poap-4">🚀</div>
-          <div className="hero-ring ring-1"></div>
-          <div className="hero-ring ring-2"></div>
-          <div className="hero-ring ring-3"></div>
-        </div>
-      </section>
-
-      {/* Stats Section */}
-      <section className="stats-section">
-        <div className="stats-grid">
-          {stats.map((stat, index) => (
-            <div key={index} className="stat-card">
-              <div className="stat-value">{stat.value}</div>
-              <div className="stat-label">{stat.label}</div>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* Recent Activity Ticker */}
-      <section className="activity-section">
-        <div className="activity-container">
-          <div className="activity-label">Recent Activity:</div>
-          <div className="activity-ticker">
-            <div className="ticker-content">
-              <span className="ticker-item">🏆 SP1..2k3 minted 'Stacks OG' POAP</span>
-              <span className="ticker-item">⭐ SP2..4m5 minted 'Testnet Hero' POAP</span>
-              <span className="ticker-item">🎯 SP3..6n7 created 'Art Hackathon' event</span>
-              <span className="ticker-item">🚀 SP4..8p9 minted 'Genesis Collector' POAP</span>
-              <span className="ticker-item">🏆 SP1..2k3 minted 'Stacks OG' POAP</span>
-            </div>
+          <div className="poap-showcase">
+            {[0,1,2].map(i => (
+              <div key={i} className={`showcase-card sc-${i}`}>
+                <div className="sc-inner">
+                  <div className="sc-icon">{['🏆','⚡','🎯'][i]}</div>
+                  <div className="sc-name">{['Bitcoin Hodler','Stacks Builder','DeFi Pioneer'][i]}</div>
+                  <div className="sc-id">#{(1337+i*111).toString().padStart(4,'0')}</div>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* Features Section */}
-      <section className="features-section">
+      {/* ── Stats ────────────────────────────────────────────────────────── */}
+      <section className="stats-bar">
+        <div className="stats-inner">
+          {STATS.map(({ value, label }) => (
+            <div className="stat" key={label}>
+              <span className="stat-value">{value}</span>
+              <span className="stat-label">{label}</span>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* ── Features ─────────────────────────────────────────────────────── */}
+      <section className="features-section page">
         <div className="section-header">
           <h2 className="section-title">Why Achievement POAP?</h2>
-          <p className="section-subtitle">
-            The premier platform for collecting verifiable on-chain achievements
-          </p>
+          <p className="section-subtitle">Everything you need to prove, collect, and showcase your on-chain milestones.</p>
         </div>
         <div className="features-grid">
-          {features.map((feature, index) => (
-            <Card key={index} hoverable className="feature-card">
-              <Card.Body>
-                <div className="feature-icon">{feature.icon}</div>
-                <h3 className="feature-title">{feature.title}</h3>
-                <p className="feature-description">{feature.description}</p>
-              </Card.Body>
-            </Card>
+          {FEATURES.map(({ icon, title, desc }) => (
+            <div className="feature-card" key={title}>
+              <div className="feature-icon">{icon}</div>
+              <h3 className="feature-title">{title}</h3>
+              <p className="feature-desc">{desc}</p>
+            </div>
           ))}
         </div>
       </section>
 
-      {/* How It Works Section */}
-      <section className="how-it-works-section">
+      {/* ── How it works ─────────────────────────────────────────────────── */}
+      <section className="how-section page">
         <div className="section-header">
-          <h2 className="section-title">How It Works</h2>
-          <p className="section-subtitle">Get started in just a few simple steps</p>
+          <h2 className="section-title">How it works</h2>
+          <p className="section-subtitle">Get your first achievement badge in under two minutes.</p>
         </div>
-        <div className="steps-container">
-          {steps.map((step, index) => (
-            <div key={index} className="step-card">
-              <div className="step-number">{step.number}</div>
-              <h3 className="step-title">{step.title}</h3>
-              <p className="step-description">{step.description}</p>
-              {index < steps.length - 1 && <div className="step-connector"></div>}
+        <div className="steps-grid">
+          {STEPS.map(({ n, title, desc }) => (
+            <div className="step-card" key={n}>
+              <div className="step-num">{n}</div>
+              <h3 className="step-title">{title}</h3>
+              <p className="step-desc">{desc}</p>
             </div>
           ))}
         </div>
       </section>
 
-      {/* CTA Section */}
+      {/* ── CTA ──────────────────────────────────────────────────────────── */}
       <section className="cta-section">
-        <Card variant="featured" glowing>
-          <Card.Body>
-            <div className="cta-content">
-              <h2 className="cta-title">Ready to Start Collecting?</h2>
-              <p className="cta-description">
-                Join thousands of collectors building their on-chain achievement portfolio.
-              </p>
-              <div className="cta-actions">
-                {isConnected ? (
-                  <Link to="/events">
-                    <Button size="large">Browse Events</Button>
-                  </Link>
-                ) : (
-                  <Button size="large" onClick={connect}>
-                    Connect Wallet to Begin
-                  </Button>
-                )}
-              </div>
-            </div>
-          </Card.Body>
-        </Card>
+        <div className="cta-inner">
+          <h2>Start collecting your achievements</h2>
+          <p>Join thousands of Stacks users building verifiable on-chain identities.</p>
+          <div className="cta-actions">
+            {isConnected ? (
+              <Link to="/events" className="btn btn-primary btn-large">Browse Events</Link>
+            ) : (
+              <button className="btn btn-primary btn-large" onClick={connect}>Connect Wallet</button>
+            )}
+            <Link to="/about" className="btn btn-secondary btn-large">Learn More</Link>
+          </div>
+        </div>
       </section>
     </div>
   );
 }
-
-export default Home;
