@@ -1,96 +1,92 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useWallet } from '../../context/WalletContext';
+import WalletConnect from '../Wallet/WalletConnect';
 import './Header.css';
 
-function Header() {
-  const { isConnected, walletAddress, balance, connect, disconnect, isConnecting, shortenAddress } = useWallet();
+const NAV = [
+  { path: '/', label: 'Home' },
+  { path: '/events', label: 'Events' },
+  { path: '/my-poaps', label: 'My POAPs' },
+  { path: '/gallery', label: 'Gallery' },
+  { path: '/leaderboard', label: 'Leaderboard' },
+  { path: '/about', label: 'About' },
+];
+
+export default function Header() {
+  const { isConnected } = useWallet();
   const location = useLocation();
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
 
-  const navLinks = [
-    { path: '/', label: 'Home' },
-    { path: '/events', label: 'Events' },
-    { path: '/my-poaps', label: 'My POAPs' },
-    { path: '/gallery', label: 'Gallery' },
-    { path: '/leaderboard', label: 'Leaderboard' },
-    { path: '/about', label: 'About' },
-  ];
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 12);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
 
-  const isActive = (path) => {
-    if (path === '/') return location.pathname === '/';
-    return location.pathname.startsWith(path);
-  };
+  useEffect(() => { setMenuOpen(false); }, [location.pathname]);
+
+  const isActive = (path) =>
+    path === '/' ? location.pathname === '/' : location.pathname.startsWith(path);
 
   return (
-    <header className="header">
-      <div className="header-container">
+    <header className={`header ${scrolled ? 'header-scrolled' : ''}`}>
+      <div className="header-inner">
         <Link to="/" className="logo">
-          <span className="logo-icon">🏆</span>
-          <span className="logo-text">Achievement POAP</span>
+          <span className="logo-icon">
+            <svg viewBox="0 0 32 32" fill="none" width="28" height="28">
+              <rect width="32" height="32" rx="8" fill="#FF5500"/>
+              <path d="M8 20l8-12 8 12" stroke="#fff" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
+              <circle cx="16" cy="22" r="2" fill="#fff"/>
+            </svg>
+          </span>
+          <span className="logo-text">Achievement<span className="logo-accent">POAP</span></span>
         </Link>
 
-        <nav className="nav">
-          {navLinks.map((link) => (
-            <Link
-              key={link.path}
-              to={link.path}
-              className={`nav-link ${isActive(link.path) ? 'active' : ''}`}
-            >
+        <nav className="nav" aria-label="Main navigation">
+          {NAV.map((link) => (
+            <Link key={link.path} to={link.path}
+              className={`nav-link ${isActive(link.path) ? 'active' : ''}`}>
               {link.label}
             </Link>
           ))}
+          {isConnected && (
+            <Link to="/create-event" className="nav-link nav-create">
+              <svg viewBox="0 0 16 16" fill="none" width="12" height="12">
+                <path d="M8 2v12M2 8h12" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+              </svg>
+              Create
+            </Link>
+          )}
         </nav>
 
-        <div className="header-actions">
-          {isConnected ? (
-            <div className="wallet-info">
-              <div className="balance-display">
-                <span className="balance-amount">{balance?.toFixed(4) || '0.00'}</span>
-                <span className="balance-currency">STX</span>
-              </div>
-              <div className="wallet-dropdown">
-                <button className="wallet-address-btn">
-                  {shortenAddress(walletAddress)}
-                </button>
-                <div className="dropdown-content">
-                  <Link to="/my-poaps" className="dropdown-item">
-                    <span className="dropdown-icon">🎨</span>
-                    My POAPs
-                  </Link>
-                  <Link to="/create-event" className="dropdown-item">
-                    <span className="dropdown-icon">➕</span>
-                    Create Event
-                  </Link>
-                  <hr className="dropdown-divider" />
-                  <button onClick={disconnect} className="dropdown-item disconnect">
-                    <span className="dropdown-icon">🚪</span>
-                    Disconnect
-                  </button>
-                </div>
-              </div>
-            </div>
-          ) : (
-            <button
-              className="connect-btn"
-              onClick={connect}
-              disabled={isConnecting}
-            >
-              {isConnecting ? (
-                <>
-                  <span className="btn-spinner"></span>
-                  Connecting...
-                </>
-              ) : (
-                'Connect Wallet'
-              )}
-            </button>
-          )}
+        <div className="header-right">
+          <WalletConnect showBalance={true} />
+          <button className="mobile-menu-btn" onClick={() => setMenuOpen(!menuOpen)} aria-label="Menu">
+            <span className={`hamburger ${menuOpen ? 'open' : ''}`}>
+              <span/><span/><span/>
+            </span>
+          </button>
         </div>
       </div>
+
+      {menuOpen && (
+        <div className="mobile-nav">
+          {NAV.map((link) => (
+            <Link key={link.path} to={link.path}
+              className={`mobile-nav-link ${isActive(link.path) ? 'active' : ''}`}>
+              {link.label}
+            </Link>
+          ))}
+          {isConnected && (
+            <Link to="/create-event" className="mobile-nav-link mobile-create">+ Create Event</Link>
+          )}
+          <div className="mobile-wallet">
+            <WalletConnect showBalance={true} />
+          </div>
+        </div>
+      )}
     </header>
   );
 }
-
-export default Header;
-
-// scaffold initial structure for header-z-index — ref:fix/header-z-index#0 (1776635070924)
