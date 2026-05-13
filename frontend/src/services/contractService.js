@@ -104,7 +104,7 @@ export const fetchEvent = async (eventId, currentBlock) => {
     const block = currentBlock !== undefined ? currentBlock : await getCurrentBlock();
     const result = await callReadOnly('get-event', [uintCV(eventId)]);
     if (result && result.value) {
-      const e = result.value;
+      const e = result.value.value ?? result.value;
       const maxSupply = toNumber(e['max-supply']?.value);
       const currentSupply = toNumber(e['current-supply']?.value);
       const startBlock = toNumber(e['start-block']?.value);
