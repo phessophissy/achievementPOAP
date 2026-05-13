@@ -34,6 +34,25 @@ const ensureContractCall = (openContractCall) => {
   }
 };
 
+const getCurrentBlock = async () => {
+  try {
+    const res = await fetch(`${STACKS_API_URL}/v2/info`);
+    if (!res.ok) return 0;
+    const data = await res.json();
+    return toNumber(data.stacks_tip_height, 0);
+  } catch {
+    return 0;
+  }
+};
+
+const computeStatus = (active, startBlock, endBlock, currentSupply, maxSupply, currentBlock) => {
+  const soldOut = maxSupply > 0 && currentSupply >= maxSupply;
+  const isEnded = !active || soldOut || (endBlock > 0 && currentBlock > endBlock);
+  const isUpcoming = !isEnded && startBlock > 0 && currentBlock < startBlock;
+  const isActive = !isEnded && !isUpcoming;
+  return { isActive, isEnded, isUpcoming };
+};
+
 /**
  * Call a read-only contract function
  * @param {string} functionName - The function name to call
@@ -64,10 +83,11 @@ const callReadOnly = async (functionName, args = []) => {
 
 export const fetchEvents = async () => {
   try {
+    const currentBlock = await getCurrentBlock();
     const events = [];
     for (let i = 1; i <= 100; i++) {
       try {
-        const event = await fetchEvent(i);
+        const event = await fetchEvent(i, currentBlock);
         if (event) events.push(event);
         else break;
       } catch (e) { break; }
@@ -79,8 +99,9 @@ export const fetchEvents = async () => {
   }
 };
 
-export const fetchEvent = async (eventId) => {
+export const fetchEvent = async (eventId, currentBlock) => {
   try {
+    const block = currentBlock !== undefined ? currentBlock : await getCurrentBlock();
     const result = await callReadOnly('get-event', [uintCV(eventId)]);
     if (result && result.value) {
       const e = result.value;
@@ -88,6 +109,8 @@ export const fetchEvent = async (eventId) => {
       const currentSupply = toNumber(e['current-supply']?.value);
       const startBlock = toNumber(e['start-block']?.value);
       const endBlock = toNumber(e['end-block']?.value);
+      const active = toBoolean(e.active?.value);
+      const { isActive, isEnded, isUpcoming } = computeStatus(active, startBlock, endBlock, currentSupply, maxSupply, block);
 
       return {
         id: eventId,
@@ -104,7 +127,10 @@ export const fetchEvent = async (eventId) => {
         endTime: endBlock,
         metadataUri: hexToString(e['metadata-uri']?.value) || e['metadata-uri']?.value || '',
         imageUri: '',
-        active: toBoolean(e.active?.value),
+        active,
+        isActive,
+        isEnded,
+        isUpcoming,
       };
     }
     return null;

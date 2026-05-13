@@ -50,7 +50,8 @@ export default function EventDetail() {
     <div className="page"><div className="empty-state"><span className="empty-icon">&#128269;</span><p>Event not found.</p><Link to="/events" className="btn btn-secondary btn-sm">Back to Events</Link></div></div>
   );
 
-  const isActive = event.active && !event.isEnded;
+  const isActive = event.isActive;
+  const isEnded = event.isEnded;
 
   return (
     <div className="page event-detail-page">
@@ -66,8 +67,8 @@ export default function EventDetail() {
             <div className="detail-icon">&#127942;</div>
             <div>
               <div className="detail-meta-row">
-                <span className={`badge ${isActive ? 'badge-active' : event.isEnded ? 'badge-ended' : 'badge-upcoming'}`}>
-                  {isActive ? 'Active' : event.isEnded ? 'Ended' : 'Upcoming'}
+                <span className={`badge ${isActive ? 'badge-active' : isEnded ? 'badge-ended' : 'badge-upcoming'}`}>
+                  {isActive ? 'Active' : isEnded ? 'Ended' : 'Upcoming'}
                 </span>
                 <span className="detail-id">ID #{id}</span>
               </div>
@@ -122,7 +123,7 @@ export default function EventDetail() {
                   <button className="btn btn-primary" style={{width:'100%'}} onClick={connect}>Connect Wallet to Mint</button>
                 ) : !isActive ? (
                   <button className="btn btn-secondary" style={{width:'100%'}} disabled>
-                    {event.isEnded ? 'Event Ended' : 'Not Yet Active'}
+                    {isEnded ? 'Event Ended' : 'Not Yet Active'}
                   </button>
                 ) : (
                   <button className="btn btn-primary" style={{width:'100%'}} onClick={handleMint} disabled={minting}>
