@@ -1,68 +1,108 @@
-/** @file frontend/src/pages/Leaderboard.jsx - Frontend module documenting responsibilities and expected usage. */
-import React from 'react';
-import Card from '../components/UI/Card';
+import React, { useState, useEffect } from 'react';
+import { fetchPOAP, getTotalSupply } from '../services/contractService';
+import { useWallet } from '../context/WalletContext';
 import './Leaderboard.css';
 
-function Leaderboard() {
-  const leaders = [
-    { rank: 1, address: 'SP1..2k3', count: 45, level: 'Legend', color: 'var(--gold)' },
-    { rank: 2, address: 'SP2..4m5', count: 38, level: 'Elite', color: 'var(--vibrant-pink)' },
-    { rank: 3, address: 'SP3..6n7', count: 31, level: 'Expert', color: 'var(--neon-cyan)' },
-    { rank: 4, address: 'SP1..8p9', count: 28, level: 'Collector', color: 'var(--text-secondary)' },
-    { rank: 5, address: 'SP2..1q2', count: 24, level: 'Collector', color: 'var(--text-secondary)' },
-    { rank: 6, address: 'SP3..3r4', count: 19, level: 'Explorer', color: 'var(--text-secondary)' },
-    { rank: 7, address: 'SP4..5s6', count: 17, level: 'Explorer', color: 'var(--text-secondary)' },
-    { rank: 8, address: 'SP1..7t8', count: 14, level: 'Novice', color: 'var(--text-secondary)' },
-    { rank: 9, address: 'SP2..9u0', count: 12, level: 'Novice', color: 'var(--text-secondary)' },
-    { rank: 10, address: 'SP3..1v2', count: 10, level: 'Novice', color: 'var(--text-secondary)' },
-  ];
+export default function Leaderboard() {
+  const { walletAddress, shortenAddress } = useWallet();
+  const [entries, setEntries] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    (async () => {
+      try {
+        const supply = await getTotalSupply();
+        const ids = Array.from({ length: Math.min(supply, 200) }, (_, i) => i + 1);
+        const results = await Promise.allSettled(ids.map(id => fetchPOAP(id)));
+        const valid = results.filter(r => r.status === 'fulfilled' && r.value).map(r => r.value);
+
+        // Tally by owner
+        const tally = {};
+        for (const p of valid) {
+          if (!p.owner) continue;
+          tally[p.owner] = (tally[p.owner] || 0) + 1;
+        }
+        const sorted = Object.entries(tally)
+          .map(([address, count]) => ({ address, count }))
+          .sort((a, b) => b.count - a.count);
+        setEntries(sorted);
+      } catch (e) {
+        setEntries([]);
+      } finally {
+        setLoading(false);
+      }
+    })();
+  }, []);
+
+  const getMedal = (rank) => {
+    if (rank === 1) return '&#129351;';
+    if (rank === 2) return '&#129352;';
+    if (rank === 3) return '&#129353;';
+    return null;
+  };
 
   return (
-    <div className="leaderboard-page">
-      <div className="section-header">
-        <h1 className="section-title">POAP Leaderboard</h1>
-        <p className="section-subtitle">Top achievement collectors in the Stacks ecosystem</p>
+    <div className="page leaderboard-page">
+      <div className="lb-header">
+        <h1 className="page-title">Leaderboard</h1>
+        <p className="page-subtitle">Top collectors on the Stacks network by POAPs minted</p>
       </div>
 
-      <div className="leaderboard-grid">
-        <div className="top-three">
-          {leaders.slice(0, 3).map((leader) => (
-            <Card key={leader.rank} className={`top-card rank-${leader.rank}`} hoverable>
-              <div className="rank-badge" style={{ backgroundColor: leader.color }}>#{leader.rank}</div>
-              <div className="leader-info">
-                <div className="leader-address">{leader.address}</div>
-                <div className="leader-level">{leader.level}</div>
-                <div className="leader-count">{leader.count} <span>POAPs</span></div>
-              </div>
-            </Card>
-          ))}
-        </div>
+      {loading && (
+        <div className="empty-state"><div className="spinner" /><p>Loading leaderboard…</p></div>
+      )}
 
-        <div className="leaderboard-table-container glass">
-          <table className="leaderboard-table">
+      {!loading && entries.length === 0 && (
+        <div className="empty-state">
+          <span className="empty-icon">&#127885;</span>
+          <p>No entries yet. Start minting to appear here!</p>
+        </div>
+      )}
+
+      {!loading && entries.length > 0 && (
+        <div className="lb-table-wrap">
+          <table className="lb-table">
             <thead>
               <tr>
                 <th>Rank</th>
-                <th>Collector</th>
-                <th>Level</th>
-                <th>Total POAPs</th>
+                <th>Wallet</th>
+                <th>POAPs</th>
+                <th>Explorer</th>
               </tr>
             </thead>
             <tbody>
-              {leaders.slice(3).map((leader) => (
-                <tr key={leader.rank}>
-                  <td className="rank-cell">#{leader.rank}</td>
-                  <td className="address-cell">{leader.address}</td>
-                  <td className="level-cell"><span className="level-badge">{leader.level}</span></td>
-                  <td className="count-cell">{leader.count}</td>
-                </tr>
-              ))}
+              {entries.map((entry, i) => {
+                const rank = i + 1;
+                const isMe = walletAddress && entry.address === walletAddress;
+                return (
+                  <tr key={entry.address} className={`lb-row ${isMe ? 'lb-row-me' : ''} ${rank <= 3 ? 'lb-row-top' : ''}`}>
+                    <td className="lb-rank">
+                      {rank <= 3
+                        ? <span className="lb-medal">{['&#129351;','&#129352;','&#129353;'][rank-1]}</span>
+                        : <span className="lb-num">#{rank}</span>}
+                    </td>
+                    <td className="lb-addr">
+                      <span className="lb-addr-text">{shortenAddress(entry.address)}</span>
+                      {isMe && <span className="lb-you-badge">You</span>}
+                    </td>
+                    <td className="lb-count">
+                      <span className="lb-count-value">{entry.count}</span>
+                      <span className="lb-count-label"> POAPs</span>
+                    </td>
+                    <td className="lb-explorer">
+                      <a href={`https://explorer.stacks.co/address/${entry.address}?chain=mainnet`}
+                        target="_blank" rel="noopener noreferrer" className="lb-explorer-link">
+                        View
+                        <svg viewBox="0 0 12 12" fill="none" width="9" height="9"><path d="M5 2H2v8h8V7M7 1h4v4M7 5l4-4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/></svg>
+                      </a>
+                    </td>
+                  </tr>
+                );
+              })}
             </tbody>
           </table>
         </div>
-      </div>
+      )}
     </div>
   );
 }
-
-export default Leaderboard;
