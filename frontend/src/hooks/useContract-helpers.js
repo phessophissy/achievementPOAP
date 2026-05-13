@@ -1,3 +1,4 @@
+/** @file frontend/src/hooks/useContract-helpers.js - Custom hook module documenting state and side-effect responsibilities. */
 import { useState, useCallback, useRef } from 'react';
 
 /**

@@ -1,3 +1,4 @@
+/** @file frontend/src/components/Event-filters/tests/event-filters.test.js - Test coverage file that validates behavior and regression safety. */
 import { describe, it, expect, vi } from 'vitest';
 import { validateEvent-filtersParams, formatEvent-filtersResult } from '../../../utils/helpers';
 

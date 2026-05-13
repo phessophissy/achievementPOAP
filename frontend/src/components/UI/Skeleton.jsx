@@ -1,3 +1,4 @@
+/** @file frontend/src/components/UI/Skeleton.jsx - UI component module documenting rendering and interaction intent. */
 import React from 'react';
 import './Skeleton.css';
 

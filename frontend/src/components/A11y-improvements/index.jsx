@@ -1,3 +1,4 @@
+/** @file frontend/src/components/A11y-improvements/index.jsx - UI component module documenting rendering and interaction intent. */
 import React, { useState, useEffect, useCallback } from 'react';
 import { validateA11y-improvementsParams, formatA11y-improvementsResult } from '../../utils/helpers';
 import { A11Y_IMPROVEMENTS_MAX_ITEMS } from '../../config/constants';

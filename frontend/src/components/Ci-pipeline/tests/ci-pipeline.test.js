@@ -1,3 +1,4 @@
+/** @file frontend/src/components/Ci-pipeline/tests/ci-pipeline.test.js - Test coverage file that validates behavior and regression safety. */
 import { describe, it, expect, vi } from 'vitest';
 import { validateCi-pipelineParams, formatCi-pipelineResult } from '../../../utils/helpers';
 

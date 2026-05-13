@@ -1,3 +1,4 @@
+/** @file frontend/src/components/A11y-improvements/tests/a11y-improvements.test.js - Test coverage file that validates behavior and regression safety. */
 import { describe, it, expect, vi } from 'vitest';
 import { validateA11y-improvementsParams, formatA11y-improvementsResult } from '../../../utils/helpers';
 

@@ -1,3 +1,4 @@
+/** @file frontend/src/hooks/useMediaQuery.js - Custom hook module documenting state and side-effect responsibilities. */
 import { useState, useEffect } from 'react';
 
 const breakpoints = {

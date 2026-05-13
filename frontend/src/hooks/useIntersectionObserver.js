@@ -1,3 +1,4 @@
+/** @file frontend/src/hooks/useIntersectionObserver.js - Custom hook module documenting state and side-effect responsibilities. */
 import { useState, useEffect, useRef, useCallback } from 'react';
 
 export const useIntersectionObserver = (options = {}) => {

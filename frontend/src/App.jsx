@@ -1,3 +1,4 @@
+/** @file frontend/src/App.jsx - Frontend module documenting responsibilities and expected usage. */
 /**
  * App component - updated at Fri Mar 27 09:38:46 2026
  */

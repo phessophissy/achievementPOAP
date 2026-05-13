@@ -1,3 +1,4 @@
+/** @file frontend/src/components/Wallet-disconnect/tests/wallet-disconnect.test.js - Test coverage file that validates behavior and regression safety. */
 import { describe, it, expect, vi } from 'vitest';
 import { validateWallet-disconnectParams, formatWallet-disconnectResult } from '../../../utils/helpers';
 

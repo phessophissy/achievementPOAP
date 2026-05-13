@@ -1,3 +1,4 @@
+/** @file frontend/src/components/Leaderboard-sort/index.jsx - UI component module documenting rendering and interaction intent. */
 import React, { useState, useEffect, useCallback } from 'react';
 import { validateLeaderboard-sortParams, formatLeaderboard-sortResult } from '../../utils/helpers';
 import { LEADERBOARD_SORT_MAX_ITEMS } from '../../config/constants';

@@ -1,3 +1,4 @@
+/** @file frontend/src/hooks/useContract.js - Custom hook module documenting state and side-effect responsibilities. */
 import { useState, useEffect, useCallback } from 'react';
 import { fetchEvents, fetchEvent, fetchUserPOAPs, checkHasMinted, getTotalSupply } from '../services/contractService';
 

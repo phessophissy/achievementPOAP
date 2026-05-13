@@ -1,3 +1,4 @@
+/** @file frontend/src/config/constants.js - Frontend module documenting responsibilities and expected usage. */
 // Contract Configuration
 export const CONTRACT_ADDRESS = 'SP2KYZRNME33Y39GP3RKC90DQJ45EF1N0NZNVRE09';
 export const CONTRACT_NAME = 'achievement-poap';

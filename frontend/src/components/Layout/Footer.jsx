@@ -1,3 +1,4 @@
+/** @file frontend/src/components/Layout/Footer.jsx - UI component module documenting rendering and interaction intent. */
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './Footer.css';

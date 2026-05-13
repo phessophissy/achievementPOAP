@@ -1,3 +1,4 @@
+/** @file frontend/src/context/SettingsContext.jsx - Frontend module documenting responsibilities and expected usage. */
 import React, { createContext, useContext, useReducer, useCallback } from 'react';
 
 const initialState = {

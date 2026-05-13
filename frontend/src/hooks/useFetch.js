@@ -1,3 +1,4 @@
+/** @file frontend/src/hooks/useFetch.js - Custom hook module documenting state and side-effect responsibilities. */
 import { useState, useCallback, useEffect, useRef } from 'react';
 
 const cache = new Map();

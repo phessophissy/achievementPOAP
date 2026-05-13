@@ -1,3 +1,4 @@
+/** @file frontend/src/components/Batch-mint/tests/batch-mint.test.js - Test coverage file that validates behavior and regression safety. */
 import { describe, it, expect, vi } from 'vitest';
 import { validateBatch-mintParams, formatBatch-mintResult } from '../../../utils/helpers';
 

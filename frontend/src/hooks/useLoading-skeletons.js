@@ -1,3 +1,4 @@
+/** @file frontend/src/hooks/useLoading-skeletons.js - Custom hook module documenting state and side-effect responsibilities. */
 import { useState, useCallback, useRef } from 'react';
 
 /**

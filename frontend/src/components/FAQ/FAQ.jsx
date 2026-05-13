@@ -1,3 +1,4 @@
+/** @file frontend/src/components/FAQ/FAQ.jsx - UI component module documenting rendering and interaction intent. */
 import React, { useState } from 'react';
 import './FAQ.css';
 

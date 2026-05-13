@@ -1,3 +1,4 @@
+/** @file frontend/src/components/Mobile-nav/index.jsx - UI component module documenting rendering and interaction intent. */
 import React, { useState, useEffect, useCallback } from 'react';
 import { validateMobile-navParams, formatMobile-navResult } from '../../utils/helpers';
 import { MOBILE_NAV_MAX_ITEMS } from '../../config/constants';

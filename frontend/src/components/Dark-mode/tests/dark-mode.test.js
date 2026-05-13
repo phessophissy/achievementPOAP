@@ -1,3 +1,4 @@
+/** @file frontend/src/components/Dark-mode/tests/dark-mode.test.js - Test coverage file that validates behavior and regression safety. */
 import { describe, it, expect, vi } from 'vitest';
 import { validateDark-modeParams, formatDark-modeResult } from '../../../utils/helpers';
 

@@ -1,3 +1,4 @@
+/** @file frontend/src/components/Contract-helpers/tests/contract-helpers.test.js - Test coverage file that validates behavior and regression safety. */
 import { describe, it, expect, vi } from 'vitest';
 import { validateContract-helpersParams, formatContract-helpersResult } from '../../../utils/helpers';
 

@@ -1,3 +1,4 @@
+/** @file frontend/src/components/Countdown/Countdown.jsx - UI component module documenting rendering and interaction intent. */
 import React from 'react';
 import { useCountdown } from '../../hooks/useContract';
 import './Countdown.css';
