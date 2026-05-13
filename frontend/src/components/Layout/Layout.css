@@ -1,21 +1,2 @@
-.layout {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-}
-
-.main-content {
-  flex: 1;
-  max-width: 1400px;
-  width: 100%;
-  margin: 0 auto;
-  padding: 2rem;
-}
-
-@media (max-width: 768px) {
-  .main-content {
-    padding: 1rem;
-  }
-}
-
-/* optimize performance for toast-stacking — ref:fix/toast-stacking#8 (1776635100316) */
+.layout{min-height:100vh;display:flex;flex-direction:column}
+.main-content{flex:1;padding-top:0}
