@@ -1,214 +1,84 @@
-/** @file frontend/src/pages/MyPOAPs.jsx - Frontend module documenting responsibilities and expected usage. */
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { useWallet } from '../context/WalletContext';
-import { useToast } from '../context/ToastContext';
 import { fetchUserPOAPs } from '../services/contractService';
-import Card from '../components/UI/Card';
-import Button from '../components/UI/Button';
-import LoadingSpinner from '../components/UI/LoadingSpinner';
+import { useWallet } from '../context/WalletContext';
 import './MyPOAPs.css';
 
-function MyPOAPs() {
-  const { isConnected, walletAddress, connect } = useWallet();
-  const { error: showError } = useToast();
-  
+export default function MyPOAPs() {
+  const { isConnected, walletAddress, connect, shortenAddress } = useWallet();
   const [poaps, setPoaps] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [viewMode, setViewMode] = useState('grid');
-  const [sortBy, setSortBy] = useState('newest');
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    if (walletAddress) {
-      loadUserPOAPs();
-    } else {
-      setLoading(false);
-    }
+    if (!walletAddress) return;
+    setLoading(true);
+    fetchUserPOAPs(walletAddress)
+      .then(setPoaps)
+      .catch(() => setPoaps([]))
+      .finally(() => setLoading(false));
   }, [walletAddress]);
 
-  const loadUserPOAPs = async () => {
-    try {
-      setLoading(true);
-      const userPoaps = await fetchUserPOAPs(walletAddress);
-      setPoaps(userPoaps);
-    } catch (err) {
-      showError('Failed to load your POAPs');
-      console.error(err);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const sortedPoaps = [...poaps].sort((a, b) => {
-    switch (sortBy) {
-      case 'newest':
-        return b.mintedAt - a.mintedAt;
-      case 'oldest':
-        return a.mintedAt - b.mintedAt;
-      case 'name':
-        return a.eventName.localeCompare(b.eventName);
-      default:
-        return 0;
-    }
-  });
-
-  if (!isConnected) {
-    return (
-      <div className="my-poaps not-connected">
-        <div className="connect-prompt">
-          <div className="prompt-icon">🔗</div>
-          <h2>Connect Your Wallet</h2>
-          <p>Connect your Stacks wallet to view your POAP collection.</p>
-          <Button size="large" onClick={connect}>
-            Connect Wallet
-          </Button>
-        </div>
+  if (!isConnected) return (
+    <div className="page">
+      <div className="empty-state" style={{minHeight:'50vh'}}>
+        <span className="empty-icon">&#128274;</span>
+        <h2>Connect to see your POAPs</h2>
+        <p>Your achievement collection lives on-chain. Connect your Stacks wallet to view it.</p>
+        <button className="btn btn-primary" onClick={connect}>Connect Wallet</button>
       </div>
-    );
-  }
-
-  if (loading) {
-    return <LoadingSpinner fullScreen text="Loading your collection..." />;
-  }
+    </div>
+  );
 
   return (
-    <div className="my-poaps">
-      <div className="page-header">
-        <div className="header-content">
-          <h1 className="page-title">My Collection</h1>
+    <div className="page my-poaps-page">
+      <div className="my-poaps-header">
+        <div>
+          <h1 className="page-title">My POAPs</h1>
           <p className="page-subtitle">
-            {poaps.length} {poaps.length === 1 ? 'POAP' : 'POAPs'} collected
+            {walletAddress && <span className="wallet-chip">{shortenAddress(walletAddress)}</span>}
+            {' '}· {poaps.length} achievements collected
           </p>
         </div>
-        <div className="header-actions">
-          <div className="view-toggle">
-            <button
-              className={`toggle-btn ${viewMode === 'grid' ? 'active' : ''}`}
-              onClick={() => setViewMode('grid')}
-            >
-              ⊞
-            </button>
-            <button
-              className={`toggle-btn ${viewMode === 'list' ? 'active' : ''}`}
-              onClick={() => setViewMode('list')}
-            >
-              ☰
-            </button>
-          </div>
-          <select
-            className="sort-select"
-            value={sortBy}
-            onChange={(e) => setSortBy(e.target.value)}
-          >
-            <option value="newest">Newest First</option>
-            <option value="oldest">Oldest First</option>
-            <option value="name">By Name</option>
-          </select>
-        </div>
+        <Link to="/events" className="btn btn-primary btn-sm">+ Collect More</Link>
       </div>
 
-      {poaps.length === 0 ? (
-        <div className="empty-collection">
-          <div className="empty-icon">🎭</div>
-          <h3>No POAPs Yet</h3>
-          <p>Start collecting by minting from active events!</p>
-          <Link to="/events">
-            <Button>Browse Events</Button>
-          </Link>
-        </div>
-      ) : (
-        <div className={`poaps-container ${viewMode}`}>
-          {sortedPoaps.map((poap) => (
-            <POAPCard key={poap.tokenId} poap={poap} viewMode={viewMode} />
-          ))}
+      {loading && (
+        <div className="empty-state"><div className="spinner" /><p>Loading your collection…</p></div>
+      )}
+
+      {!loading && poaps.length === 0 && (
+        <div className="empty-state" style={{minHeight:'40vh'}}>
+          <span className="empty-icon">&#127885;</span>
+          <h3>No POAPs yet</h3>
+          <p>Start collecting achievement badges by participating in Stacks events.</p>
+          <Link to="/events" className="btn btn-primary">Browse Events</Link>
         </div>
       )}
 
-      {poaps.length > 0 && (
-        <div className="collection-stats">
-          <Card>
-            <Card.Body>
-              <div className="stats-grid">
-                <div className="collection-stat">
-                  <span className="stat-value">{poaps.length}</span>
-                  <span className="stat-label">Total POAPs</span>
-                </div>
-                <div className="collection-stat">
-                  <span className="stat-value">
-                    {new Set(poaps.map(p => p.eventId)).size}
-                  </span>
-                  <span className="stat-label">Unique Events</span>
-                </div>
-                <div className="collection-stat">
-                  <span className="stat-value">
-                    {poaps.length > 0 
-                      ? new Date(Math.max(...poaps.map(p => p.mintedAt)) * 1000).toLocaleDateString()
-                      : '-'
-                    }
-                  </span>
-                  <span className="stat-label">Latest Mint</span>
-                </div>
-              </div>
-            </Card.Body>
-          </Card>
-        </div>
-      )}
+      <div className="poaps-grid">
+        {poaps.map((poap) => (
+          <div key={poap.tokenId} className="poap-card">
+            <div className="poap-card-visual">
+              <div className="poap-icon">&#127942;</div>
+              <div className="poap-token-id">#{String(poap.tokenId).padStart(4,'0')}</div>
+            </div>
+            <div className="poap-card-info">
+              <h3 className="poap-name">{poap.eventName || `POAP #${poap.tokenId}`}</h3>
+              <p className="poap-event">Event #{poap.eventId}</p>
+            </div>
+            <div className="poap-card-footer">
+              <a
+                href={`https://explorer.stacks.co/address/${poap.owner}?chain=mainnet`}
+                target="_blank" rel="noopener noreferrer"
+                className="poap-explorer-link"
+              >
+                View on Explorer
+                <svg viewBox="0 0 12 12" fill="none" width="10" height="10"><path d="M5 2H2v8h8V7M7 1h4v4M7 5l4-4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/></svg>
+              </a>
+            </div>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
-
-function POAPCard({ poap, viewMode }) {
-  if (viewMode === 'list') {
-    return (
-      <Card className="poap-list-item" hoverable>
-        <Card.Body>
-          <div className="list-content">
-            <div className="poap-badge">🏆</div>
-            <div className="poap-info">
-              <h4 className="poap-name">{poap.eventName}</h4>
-              <p className="poap-meta">
-                Token #{poap.tokenId} • Event #{poap.eventId}
-              </p>
-            </div>
-            <div className="poap-date">
-              {new Date(poap.mintedAt * 1000).toLocaleDateString()}
-            </div>
-            <Link to={`/events/${poap.eventId}`}>
-              <Button variant="ghost" size="small">View Event</Button>
-            </Link>
-          </div>
-        </Card.Body>
-      </Card>
-    );
-  }
-
-  return (
-    <Card className="poap-grid-item" hoverable>
-      <Card.Body>
-        <div className="poap-visual">
-          <div className="poap-circle">
-            <span className="poap-emoji">🏆</span>
-          </div>
-          <div className="poap-glow"></div>
-        </div>
-        <h4 className="poap-name">{poap.eventName}</h4>
-        <div className="poap-details">
-          <span className="detail-item">Token #{poap.tokenId}</span>
-          <span className="detail-item">Event #{poap.eventId}</span>
-        </div>
-        <p className="poap-date">
-          Minted {new Date(poap.mintedAt * 1000).toLocaleDateString()}
-        </p>
-        <Link to={`/events/${poap.eventId}`}>
-          <Button variant="secondary" size="small" fullWidth>
-            View Event
-          </Button>
-        </Link>
-      </Card.Body>
-    </Card>
-  );
-}
-
-export default MyPOAPs;
-
-// scaffold initial structure for export-poaps — ref:feat/export-poaps#0 (1776635011376)
