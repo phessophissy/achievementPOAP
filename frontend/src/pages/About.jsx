@@ -1,162 +1,82 @@
-/** @file frontend/src/pages/About.jsx - Frontend module documenting responsibilities and expected usage. */
 import React from 'react';
 import { Link } from 'react-router-dom';
-import Card from '../components/UI/Card';
-import Button from '../components/UI/Button';
-import { CONTRACT_ADDRESS, CONTRACT_NAME, MINT_FEE_STX, EXPLORER_URL } from '../config/constants';
 import './About.css';
 
-function About() {
-  const techStack = [
-    { name: 'Stacks', description: 'Bitcoin Layer 2 for smart contracts', icon: '⚡' },
-    { name: 'Clarity', description: 'Decidable smart contract language', icon: '💎' },
-    { name: 'SIP-009', description: 'NFT token standard on Stacks', icon: '🎨' },
-    { name: 'React', description: 'Modern frontend framework', icon: '⚛️' },
-  ];
+const TEAM = [
+  { name: 'Alex Rivera', role: 'Protocol Architect', avatar: '🧑‍💻' },
+  { name: 'Maria Santos', role: 'Smart Contracts', avatar: '👩‍🔬' },
+  { name: 'Dev Chen', role: 'Frontend & UX', avatar: '🎨' },
+];
 
-  const faqs = [
-    {
-      question: 'What is a POAP?',
-      answer: 'POAP (Proof of Attendance Protocol) is a type of NFT that serves as proof that you attended or participated in an event. Each POAP is unique and recorded on the blockchain.',
-    },
-    {
-      question: 'How much does it cost to mint?',
-      answer: `Each POAP mint costs ${MINT_FEE_STX} STX plus a small network fee. This helps maintain the platform and ensures only genuine participants claim POAPs.`,
-    },
-    {
-      question: 'Can I create my own event?',
-      answer: 'Yes! Anyone can create a POAP event. Simply connect your wallet and fill out the event creation form with details like name, description, supply limit, and block range.',
-    },
-    {
-      question: 'How are POAPs secured?',
-      answer: 'POAPs are secured by the Stacks blockchain, which is anchored to Bitcoin through Proof of Transfer. This provides Bitcoin-level security for your achievements.',
-    },
-    {
-      question: 'Can I transfer or sell my POAPs?',
-      answer: 'Yes, POAPs follow the SIP-009 NFT standard and can be transferred to other wallets or sold on compatible NFT marketplaces.',
-    },
-  ];
-
+export default function About() {
   return (
-    <div className="about-page">
-      <section className="hero-section">
-        <h1 className="hero-title">About Achievement POAP</h1>
-        <p className="hero-subtitle">
-          The premier platform for collecting verifiable on-chain achievements on Bitcoin's Layer 2
-        </p>
+    <div className="page about-page">
+      <section className="about-hero">
+        <div className="about-hero-badge">The Protocol</div>
+        <h1>About Achievement POAP</h1>
+        <p>We believe every on-chain action deserves a permanent record. Achievement POAP turns your Stacks milestones into verifiable, soulbound-style NFT badges anchored to Bitcoin.</p>
       </section>
 
-      <section className="mission-section">
-        <Card variant="featured">
-          <Card.Body>
-            <div className="mission-content">
-              <div className="mission-icon">🎯</div>
-              <div>
-                <h2>Our Mission</h2>
-                <p>
-                  To provide a trustless, decentralized way for communities to recognize 
-                  participation and achievements. We believe every milestone deserves 
-                  verifiable, permanent recognition on the blockchain.
-                </p>
-              </div>
-            </div>
-          </Card.Body>
-        </Card>
+      <section className="about-mission">
+        <div className="about-card">
+          <h2>Our Mission</h2>
+          <p>Build a trustless, permissionless protocol that lets anyone create and distribute proof-of-participation badges on Stacks — with zero reliance on centralized servers or metadata APIs.</p>
+          <p>Every piece of event data, every mint, every ownership record lives entirely on-chain and is secured by Bitcoin's proof-of-work consensus via the Stacks PoX mechanism.</p>
+        </div>
       </section>
 
-      <section className="tech-section">
-        <h2 className="section-title">Technology Stack</h2>
+      <section className="about-tech">
+        <h2 className="section-title">Tech Stack</h2>
         <div className="tech-grid">
-          {techStack.map((tech, index) => (
-            <Card key={index} hoverable>
-              <Card.Body>
-                <div className="tech-card-content">
-                  <span className="tech-icon">{tech.icon}</span>
-                  <h3>{tech.name}</h3>
-                  <p>{tech.description}</p>
-                </div>
-              </Card.Body>
-            </Card>
+          {[
+            { icon: '🟠', name: 'Stacks Blockchain', desc: 'Smart contract layer settling on Bitcoin. Uses Clarity — a decidable language with no surprises.' },
+            { icon: '₿', name: 'Bitcoin-Anchored', desc: 'Every Stacks block is anchored to Bitcoin, giving your POAPs the same security as Bitcoin itself.' },
+            { icon: '🎖️', name: 'SIP-009 NFT Standard', desc: 'Achievement POAPs are fully compliant SIP-009 non-fungible tokens. Trade, display, verify.' },
+            { icon: '🔌', name: 'Multi-Wallet Support', desc: 'Leather, Xverse, Asigna, OKX — all Stacks-compatible wallets work out of the box.' },
+            { icon: '⚡', name: 'REOWN AppKit', desc: 'WalletConnect integration for 600+ wallets via QR code and mobile deep links.' },
+            { icon: '🔍', name: 'Hiro Explorer', desc: 'Every transaction is publicly verifiable on the Hiro/Stacks explorer. No trust required.' },
+          ].map(({ icon, name, desc }) => (
+            <div className="tech-card" key={name}>
+              <span className="tech-icon">{icon}</span>
+              <h3>{name}</h3>
+              <p>{desc}</p>
+            </div>
           ))}
         </div>
       </section>
 
-      <section className="contract-section">
-        <h2 className="section-title">Smart Contract</h2>
-        <Card>
-          <Card.Body>
-            <div className="contract-info">
-              <div className="contract-row">
-                <span className="label">Contract Address</span>
-                <span className="value address">{CONTRACT_ADDRESS}</span>
-              </div>
-              <div className="contract-row">
-                <span className="label">Contract Name</span>
-                <span className="value">{CONTRACT_NAME}</span>
-              </div>
-              <div className="contract-row">
-                <span className="label">Minting Fee</span>
-                <span className="value">{MINT_FEE_STX} STX</span>
-              </div>
-              <div className="contract-row">
-                <span className="label">NFT Standard</span>
-                <span className="value">SIP-009</span>
-              </div>
-            </div>
-            <div className="contract-actions">
-              <a
-                href={`${EXPLORER_URL}/address/${CONTRACT_ADDRESS}.${CONTRACT_NAME}?chain=mainnet`}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <Button variant="secondary">View on Explorer ↗</Button>
-              </a>
-              <a
-                href="https://github.com/phessophissy/achievementPOAP"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <Button variant="ghost">GitHub Source ↗</Button>
-              </a>
-            </div>
-          </Card.Body>
-        </Card>
-      </section>
-
-      <section className="faq-section">
-        <h2 className="section-title">Frequently Asked Questions</h2>
-        <div className="faq-list">
-          {faqs.map((faq, index) => (
-            <Card key={index} className="faq-card">
-              <Card.Body>
-                <h3 className="faq-question">{faq.question}</h3>
-                <p className="faq-answer">{faq.answer}</p>
-              </Card.Body>
-            </Card>
-          ))}
+      <section className="about-contract">
+        <h2>Smart Contract</h2>
+        <div className="contract-info">
+          <div className="contract-row">
+            <span className="cr-label">Contract</span>
+            <a href="https://explorer.stacks.co/txid/SP2KYZRNME33Y39GP3RKC90DQJ45EF1N0NZNVRE09.achievement-poap?chain=mainnet"
+              target="_blank" rel="noopener noreferrer" className="cr-value monospace">
+              SP2KYZRNME33Y39GP3RKC90DQJ45EF1N0NZNVRE09.achievement-poap
+            </a>
+          </div>
+          <div className="contract-row">
+            <span className="cr-label">Network</span>
+            <span className="cr-value">Stacks Mainnet</span>
+          </div>
+          <div className="contract-row">
+            <span className="cr-label">Mint Fee</span>
+            <span className="cr-value">0.025 STX</span>
+          </div>
+          <div className="contract-row">
+            <span className="cr-label">Token Standard</span>
+            <span className="cr-value">SIP-009</span>
+          </div>
         </div>
       </section>
 
-      <section className="cta-section">
-        <Card variant="featured" glowing>
-          <Card.Body>
-            <div className="cta-content">
-              <h2>Ready to Get Started?</h2>
-              <p>Connect your wallet and start collecting achievement POAPs today.</p>
-              <div className="cta-buttons">
-                <Link to="/events">
-                  <Button size="large">Browse Events</Button>
-                </Link>
-                <Link to="/create-event">
-                  <Button variant="secondary" size="large">Create Event</Button>
-                </Link>
-              </div>
-            </div>
-          </Card.Body>
-        </Card>
+      <section className="about-cta">
+        <h2>Ready to collect your first achievement?</h2>
+        <div className="cta-actions">
+          <Link to="/events" className="btn btn-primary btn-large">Explore Events</Link>
+          <a href="https://docs.stacks.co" target="_blank" rel="noopener noreferrer" className="btn btn-secondary btn-large">Stacks Docs</a>
+        </div>
       </section>
     </div>
   );
 }
-
-export default About;
