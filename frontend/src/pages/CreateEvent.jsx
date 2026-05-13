@@ -1,17 +1,34 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import { openContractCall } from '@stacks/connect';
 import { createEvent } from '../services/contractService';
 import { useWallet } from '../context/WalletContext';
 import { useToast } from '../context/ToastContext';
 import './CreateEvent.css';
 
+// Rough estimate: show approximate date from block number (10 min/block from a known anchor)
+const ANCHOR_BLOCK = 7948528;
+const ANCHOR_MS = new Date('2026-05-13T21:40:52Z').getTime();
+const blockToDate = (block) => {
+  if (!block || isNaN(Number(block)) || Number(block) === 0) return null;
+  const ms = ANCHOR_MS + (Number(block) - ANCHOR_BLOCK) * 10 * 60 * 1000;
+  return new Date(ms).toUTCString().replace(':00 GMT', ' UTC');
+};
+
 export default function CreateEvent() {
   const { isConnected, connect } = useWallet();
   const { success, error: toastError, info } = useToast();
   const navigate = useNavigate();
+  const [params] = useSearchParams();
 
-  const [form, setForm] = useState({ name: '', description: '', maxSupply: '', metadataUri: '' });
+  const [form, setForm] = useState({
+    name:        params.get('name')        || '',
+    description: params.get('description') || '',
+    maxSupply:   params.get('maxSupply')   || '',
+    startBlock:  params.get('startBlock')  || '',
+    endBlock:    params.get('endBlock')    || '',
+    metadataUri: params.get('metadataUri') || '',
+  });
   const [submitting, setSubmitting] = useState(false);
 
   if (!isConnected) return (
@@ -35,8 +52,8 @@ export default function CreateEvent() {
         name: form.name,
         description: form.description,
         maxSupply: parseInt(form.maxSupply) || 0,
-        startBlock: 0,
-        endBlock: 0,
+        startBlock: parseInt(form.startBlock) || 0,
+        endBlock: parseInt(form.endBlock) || 0,
         metadataUri: form.metadataUri || '',
       }, openContractCall);
       success('Event created successfully!');
@@ -87,6 +104,31 @@ export default function CreateEvent() {
               placeholder="0"
               value={form.maxSupply} onChange={set('maxSupply')}
             />
+          </div>
+
+          <div className="form-row-2">
+            <div className="form-group">
+              <label className="form-label" htmlFor="startBlock">Start Block <span className="form-label-note">(0 = immediate)</span></label>
+              <input
+                id="startBlock" type="number" className="input" min="0"
+                placeholder="0"
+                value={form.startBlock} onChange={set('startBlock')}
+              />
+              {blockToDate(form.startBlock) && (
+                <span className="form-hint">≈ {blockToDate(form.startBlock)}</span>
+              )}
+            </div>
+            <div className="form-group">
+              <label className="form-label" htmlFor="endBlock">End Block <span className="form-label-note">(0 = no end)</span></label>
+              <input
+                id="endBlock" type="number" className="input" min="0"
+                placeholder="0"
+                value={form.endBlock} onChange={set('endBlock')}
+              />
+              {blockToDate(form.endBlock) && (
+                <span className="form-hint">≈ {blockToDate(form.endBlock)}</span>
+              )}
+            </div>
           </div>
 
           <div className="form-group">

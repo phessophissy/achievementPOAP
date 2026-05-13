@@ -3,6 +3,8 @@
 .create-grid{display:grid;grid-template-columns:1fr 340px;gap:2.5rem;align-items:start}
 .create-form{background:var(--bg-card);border:1px solid var(--glass-border);border-radius:var(--radius-md);padding:2rem;display:flex;flex-direction:column;gap:1.5rem}
 .form-group{display:flex;flex-direction:column;gap:.5rem}
+.form-row-2{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+@media(max-width:480px){.form-row-2{grid-template-columns:1fr}}
 .form-label{font-size:.875rem;font-weight:600;color:var(--text-primary)}
 .form-label-note{font-size:.8rem;color:var(--text-muted);font-weight:400}
 .required{color:var(--stx)}
