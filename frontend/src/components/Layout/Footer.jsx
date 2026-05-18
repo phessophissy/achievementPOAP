@@ -32,6 +32,7 @@ export default function Footer() {
             <a href="https://docs.stacks.co" target="_blank" rel="noopener noreferrer">Stacks Docs</a>
             <a href="https://explorer.stacks.co" target="_blank" rel="noopener noreferrer">Explorer</a>
             <Link to="/about">About</Link>
+            <Link to="/settings">Settings</Link>
           </div>
           <div>
             <h5>Wallets</h5>
