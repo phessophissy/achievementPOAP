@@ -58,6 +58,22 @@ button{cursor:pointer;font-family:inherit}
   -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
 }
 @keyframes spin{to{transform:rotate(360deg)}}
+
+[data-theme="light"] {
+  --bg-base: #F4F4F7; --bg-surface: #FFFFFF; --bg-elevated: #EEEEF3;
+  --bg-overlay: #E4E4EA; --bg-card: #FFFFFF;
+  --text-primary: #12121A; --text-secondary: #4A4A5E; --text-muted: #7A7A8E;
+  --glass-bg: rgba(0,0,0,.04); --glass-bg-hover: rgba(0,0,0,.07);
+  --glass-border: rgba(0,0,0,.1);
+  --shadow-sm: 0 1px 3px rgba(0,0,0,.08); --shadow-md: 0 4px 16px rgba(0,0,0,.1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.5}}
 @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
 @keyframes fadeIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
