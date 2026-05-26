@@ -61,6 +61,7 @@ achievementPOAP enables event organizers to create achievement-based NFTs that c
 
 ```bash
 npm install
+npm run audit:sensitive
 ```
 
 ### Testing
@@ -156,6 +157,13 @@ MIT License
 ## Contributing
 
 Contributions are welcome! Please open an issue or submit a pull request.
+
+## Security Notes
+
+- Use `.env.example` as a placeholder template only.
+- Keep wallet exports and local snapshots out of git.
+- Run `npm run audit:sensitive` before opening a PR.
+- See [SECURITY.md](SECURITY.md) and [docs/security/sensitive-files.md](docs/security/sensitive-files.md) for the full policy.
 
 <!-- Maintenance update 536 -->
 
