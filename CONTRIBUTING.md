@@ -218,6 +218,13 @@ See [frontend/CONTRIBUTING.md](frontend/CONTRIBUTING.md) for detailed frontend g
 - `refactor/description` - Code refactoring
 - `test/description` - Adding tests
 
+### Sensitive Files
+
+- Keep wallet exports, `.env` files, and ad hoc local snapshots out of git.
+- Use `.env.example` for placeholders only.
+- Run `npm run audit:sensitive` before opening a PR.
+- Rotate any leaked secret before requesting review.
+
 ### Before Submitting
 
 1. **Sync with upstream**:
@@ -233,6 +240,10 @@ See [frontend/CONTRIBUTING.md](frontend/CONTRIBUTING.md) for detailed frontend g
    
    # Frontend (if applicable)
    cd frontend && npm run build
+
+   # Repo hygiene
+   cd ..
+   npm run audit:sensitive
    ```
 
 3. **Check your changes**:
