@@ -4,11 +4,20 @@ node_modules/
 # Environment files
 .env
 .env.local
+.env.*
+!.env.example
+
+# Secrets and wallet exports
+*.seed
+*.secrets.json
+*mnemonic*.txt
+*private-key*.txt
 
 # Wallet files - NEVER COMMIT
 wallets.json
 wallets-set-2.json
 wallets-*.json
+tools/wallet-principals.json
 
 # Scripts and Tools (optional, but requested by user)
 tools/migrate-balances.js
@@ -22,6 +31,7 @@ tools/debug-id.js
 # Cache
 .cache/
 .clarinet/
+tools/__pycache__/
 
 # IDE
 .vscode/
@@ -41,5 +51,4 @@ build/
 
 # Test coverage
 coverage/
-
 

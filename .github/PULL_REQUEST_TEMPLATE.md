@@ -60,6 +60,8 @@ Relates to #(issue number)
 - [ ] No sensitive data exposed in client code
 - [ ] Post-conditions used for STX transfers
 - [ ] User inputs sanitized before contract calls
+- [ ] `npm run audit:sensitive` passes
+- [ ] No wallet exports, local snapshots, or `.env` files are staged
 
 ## Screenshots
 
