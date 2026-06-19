@@ -34,7 +34,7 @@ export default function WalletConnect({ showBalance = true }) {
       <>
         <div className="wallet-connected" onMouseLeave={() => setDropdownOpen(false)}>
           {showBalance && balance !== null && (
-            <div className="balance-pill">
+            <div className="balance-pill" aria-label="STX balance">
               <span className="balance-dot" />
               <span>{balance.toFixed(2)}</span>
               <span className="balance-unit">STX</span>
