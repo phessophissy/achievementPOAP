@@ -37,7 +37,7 @@ const POAPCard = ({ poap, showDetails = true }) => {
               </p>
             )}
             
-            <Link to={`/events/${event.id || poap.eventId}`} className="poap-card-link">
+            <Link to={`/events/${event.id || poap.eventId}`} className="poap-card-link" aria-label={`View event ${event.name}`}>
               View Event →
             </Link>
           </>
