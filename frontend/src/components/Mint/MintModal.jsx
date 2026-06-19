@@ -16,7 +16,7 @@ const MintModal = ({
   if (!event) return null;
 
   return (
-    <Modal isOpen={isOpen} onClose={onClose} title="Confirm Minting">
+    <Modal isOpen={isOpen} onClose={onClose} title="Confirm Minting" aria-busy={loading}>
       <div className="mint-modal">
         <div className="mint-modal-preview">
           {event.imageUri ? (
@@ -46,7 +46,7 @@ const MintModal = ({
           </div>
         </div>
 
-        <p className="mint-modal-note">
+        <p className="mint-modal-note" role="note">
           By minting this POAP, you confirm your attendance at this event.
           This action is irreversible.
         </p>
@@ -56,7 +56,7 @@ const MintModal = ({
             Cancel
           </Button>
           <Button variant="primary" onClick={onConfirm} loading={loading}>
-            {loading ? 'Minting...' : 'Confirm Mint'}
+            {loading ? 'Confirm in wallet…' : 'Confirm Mint'}
           </Button>
         </div>
       </div>

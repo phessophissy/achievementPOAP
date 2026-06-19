@@ -17,10 +17,11 @@ const MintSuccess = ({ event, txId }) => {
 
       <h2 className="success-title">Congratulations! 🎉</h2>
       <p className="success-message">You've successfully minted your POAP!</p>
+      <p className="success-hint">Share your achievement from the event page.</p>
 
       <div className="success-poap">
         {event.imageUri ? (
-          <img src={event.imageUri} alt={event.name} className="success-image" />
+          <img src={event.imageUri} alt={event.name} className="success-image" loading="lazy" decoding="async" />
         ) : (
           <div className="success-placeholder">🏆</div>
         )}
