@@ -5,6 +5,8 @@
  * @param {number} endChars - Characters to show at end
  * @returns {string} Formatted address
  */
+export const shortenAddress = (address, start = 6, end = 4) => formatAddress(address, start, end);
+
 export const formatAddress = (address, startChars = 6, endChars = 4) => {
   if (!address) return '';
   if (address.length <= startChars + endChars) return address;
@@ -78,7 +80,7 @@ export const formatRelativeTime = (timestamp) => {
  * @returns {string} Formatted number
  */
 export const formatNumber = (num) => {
-  if (num === null || num === undefined) return '0';
+  if (num === null || num === undefined || Number.isNaN(num)) return '0';
   return num.toLocaleString('en-US');
 };
 
@@ -88,6 +90,8 @@ export const formatNumber = (num) => {
  * @param {number} maxLength - Maximum length
  * @returns {string} Truncated text
  */
+export const truncate = (text, maxLength = 100) => truncateText(text, maxLength);
+
 export const truncateText = (text, maxLength = 100) => {
   if (!text || text.length <= maxLength) return text;
   return `${text.slice(0, maxLength)}...`;
@@ -186,8 +190,19 @@ export const copyToClipboard = async (text) => {
     await navigator.clipboard.writeText(text);
     return true;
   } catch (error) {
-    console.error('Failed to copy:', error);
-    return false;
+    try {
+      const area = document.createElement('textarea');
+      area.value = text;
+      area.setAttribute('readonly', '');
+      document.body.appendChild(area);
+      area.select();
+      document.execCommand('copy');
+      document.body.removeChild(area);
+      return true;
+    } catch (fallbackError) {
+      console.error('Failed to copy:', error, fallbackError);
+      return false;
+    }
   }
 };
 
