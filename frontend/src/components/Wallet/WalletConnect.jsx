@@ -82,7 +82,7 @@ export default function WalletConnect({ showBalance = true }) {
 
   return (
     <>
-      <button className="wallet-btn primary" onClick={connect}>
+      <button className="wallet-btn primary" onClick={connect} aria-label="Connect Stacks wallet">
         <svg viewBox="0 0 24 24" fill="none" width="15" height="15">
           <rect x="2" y="6" width="20" height="14" rx="2" stroke="currentColor" strokeWidth="2"/>
           <path d="M16 13.5a1.5 1.5 0 110-3 1.5 1.5 0 010 3z" fill="currentColor"/>
