@@ -14,11 +14,12 @@ const Hero = ({
   return (
     <section
       className={`hero ${className}`}
+      aria-labelledby="hero-title"
       style={backgroundImage ? { backgroundImage: `url(${backgroundImage})` } : {}}
     >
       <div className="hero-overlay" />
       <div className="hero-content">
-        <h1 className="hero-title">{title}</h1>
+        <h1 id="hero-title" className="hero-title">{title}</h1>
         {subtitle && <p className="hero-subtitle">{subtitle}</p>}
         {action && <div className="hero-action">{action}</div>}
         {stats && (
