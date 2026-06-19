@@ -136,7 +136,7 @@ export default function Home() {
       </section>
 
       {/* ── How it works ─────────────────────────────────────────────────── */}
-      <section className="how-section page">
+      <section className="how-section page" aria-label="How it works">
         <div className="section-header">
           <h2 className="section-title">How it works</h2>
           <p className="section-subtitle">Get your first achievement badge in under two minutes.</p>
