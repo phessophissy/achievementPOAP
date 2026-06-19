@@ -190,8 +190,19 @@ export const copyToClipboard = async (text) => {
     await navigator.clipboard.writeText(text);
     return true;
   } catch (error) {
-    console.error('Failed to copy:', error);
-    return false;
+    try {
+      const area = document.createElement('textarea');
+      area.value = text;
+      area.setAttribute('readonly', '');
+      document.body.appendChild(area);
+      area.select();
+      document.execCommand('copy');
+      document.body.removeChild(area);
+      return true;
+    } catch (fallbackError) {
+      console.error('Failed to copy:', error, fallbackError);
+      return false;
+    }
   }
 };
 
