@@ -68,6 +68,7 @@ export function WalletProvider({ children }) {
   const [userData, setUserData]           = useState(null);
   const [balance, setBalance]             = useState(null);
   const [isConnecting, setIsConnecting]   = useState(false);
+  const [connectError, setConnectError]   = useState(null);
   const [activeWallet, setActiveWallet]   = useState(null);
   const [showWalletModal, setShowWalletModal] = useState(false);
 
@@ -208,6 +209,7 @@ export function WalletProvider({ children }) {
       }
 
       /* Persist and update state */
+      setConnectError(null);
       if (stxAddress) {
         setWalletAddress(stxAddress);
         setActiveWallet(walletId);
@@ -219,6 +221,7 @@ export function WalletProvider({ children }) {
       }
     } catch (err) {
       if (err?.message !== 'cancelled') {
+        setConnectError(err?.message || 'Wallet connection failed');
         console.error(`[WalletContext] ${walletId} connect error:`, err);
       }
     } finally {
@@ -258,7 +261,7 @@ export function WalletProvider({ children }) {
     openWalletModal:  () => setShowWalletModal(true),
     closeWalletModal: () => setShowWalletModal(false),
     connect:           () => setShowWalletModal(true),
-    connectWithWallet, connectViaWalletConnect, disconnect, shortenAddress,
+    connectWithWallet, connectViaWalletConnect, disconnect, shortenAddress, connectError,
     refreshBalance: () => walletAddress && _fetchBalance(walletAddress),
   };
 
