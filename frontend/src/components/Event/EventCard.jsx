@@ -15,7 +15,7 @@ const EventCard = ({ event, showProgress = true }) => {
   const isActive = status.label === 'Active';
 
   return (
-    <Link to={`/events/${event.id}`} className="event-card-link">
+    <Link to={`/events/${event.id}`} className="event-card-link" aria-label={`Open event ${event.name}`}>
       <Card className={`event-card ${isActive ? 'active' : ''}`} hoverable>
         <div className="event-card-image">
           {event.imageUri ? (
