@@ -23,9 +23,9 @@ const Hero = ({
         {subtitle && <p className="hero-subtitle">{subtitle}</p>}
         {action && <div className="hero-action">{action}</div>}
         {stats && (
-          <div className="hero-stats">
+          <div className="hero-stats" role="list">
             {stats.map((stat, index) => (
-              <div key={index} className="hero-stat">
+              <div key={index} className="hero-stat" role="listitem">
                 <span className="hero-stat-value">{stat.value}</span>
                 <span className="hero-stat-label">{stat.label}</span>
               </div>
