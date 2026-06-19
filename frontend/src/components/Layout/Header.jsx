@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useWallet } from '../../context/WalletContext';
 import WalletConnect from '../Wallet/WalletConnect';
+import ThemeToggle from '../Theme/ThemeToggle';
 import './Header.css';
 
 const NAV = [
@@ -10,6 +11,7 @@ const NAV = [
   { path: '/my-poaps', label: 'My POAPs' },
   { path: '/gallery', label: 'Gallery' },
   { path: '/leaderboard', label: 'Leaderboard' },
+  { path: '/settings', label: 'Settings' },
   { path: '/about', label: 'About' },
 ];
 
@@ -26,6 +28,11 @@ export default function Header() {
   }, []);
 
   useEffect(() => { setMenuOpen(false); }, [location.pathname]);
+
+  useEffect(() => {
+    document.body.style.overflow = menuOpen ? 'hidden' : '';
+    return () => { document.body.style.overflow = ''; };
+  }, [menuOpen]);
 
   const isActive = (path) =>
     path === '/' ? location.pathname === '/' : location.pathname.startsWith(path);
@@ -58,6 +65,7 @@ export default function Header() {
         </nav>
 
         <div className="header-right">
+          <ThemeToggle />
           <WalletConnect showBalance={true} />
           <button className="mobile-menu-btn" onClick={() => setMenuOpen(!menuOpen)} aria-label="Menu">
             <span className={`hamburger ${menuOpen ? 'open' : ''}`}>
