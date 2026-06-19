@@ -90,6 +90,8 @@ export const formatNumber = (num) => {
  * @param {number} maxLength - Maximum length
  * @returns {string} Truncated text
  */
+export const truncate = (text, maxLength = 100) => truncateText(text, maxLength);
+
 export const truncateText = (text, maxLength = 100) => {
   if (!text || text.length <= maxLength) return text;
   return `${text.slice(0, maxLength)}...`;
