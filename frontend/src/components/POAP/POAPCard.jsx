@@ -10,7 +10,7 @@ const POAPCard = ({ poap, showDetails = true }) => {
   const event = poap.event || poap;
 
   return (
-    <Card className="poap-card" hoverable>
+    <Card className="poap-card poap-card--interactive" hoverable>
       <div className="poap-card-image">
         {event.imageUri ? (
           <img src={event.imageUri} alt={event.name} loading="lazy" decoding="async" />
