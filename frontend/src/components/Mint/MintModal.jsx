@@ -46,7 +46,7 @@ const MintModal = ({
           </div>
         </div>
 
-        <p className="mint-modal-note">
+        <p className="mint-modal-note" role="note">
           By minting this POAP, you confirm your attendance at this event.
           This action is irreversible.
         </p>
