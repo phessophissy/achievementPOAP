@@ -50,6 +50,7 @@ export function ToastProvider({ children }) {
     error,
     warning,
     info,
+    showToast: addToast,
   };
 
   return (
