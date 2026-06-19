@@ -16,7 +16,7 @@ const MintModal = ({
   if (!event) return null;
 
   return (
-    <Modal isOpen={isOpen} onClose={onClose} title="Confirm Minting">
+    <Modal isOpen={isOpen} onClose={onClose} title="Confirm Minting" aria-busy={loading}>
       <div className="mint-modal">
         <div className="mint-modal-preview">
           {event.imageUri ? (
