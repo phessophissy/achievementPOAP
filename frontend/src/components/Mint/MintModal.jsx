@@ -56,7 +56,7 @@ const MintModal = ({
             Cancel
           </Button>
           <Button variant="primary" onClick={onConfirm} loading={loading}>
-            {loading ? 'Minting...' : 'Confirm Mint'}
+            {loading ? 'Confirm in wallet…' : 'Confirm Mint'}
           </Button>
         </div>
       </div>
