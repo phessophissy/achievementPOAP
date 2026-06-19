@@ -22,7 +22,7 @@ export default function WalletConnect({ showBalance = true }) {
 
   if (isConnecting) {
     return (
-      <button className="wallet-btn connecting" disabled>
+      <button className="wallet-btn connecting" disabled aria-busy="true">
         <span className="wallet-btn-spinner" />
         Connecting…
       </button>
