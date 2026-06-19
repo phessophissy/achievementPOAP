@@ -15,7 +15,7 @@ const POAPCard = ({ poap, showDetails = true }) => {
         {event.imageUri ? (
           <img src={event.imageUri} alt={event.name} loading="lazy" decoding="async" />
         ) : (
-          <div className="poap-card-placeholder">
+          <div className="poap-card-placeholder" aria-hidden="true">
             <span>🏆</span>
           </div>
         )}
