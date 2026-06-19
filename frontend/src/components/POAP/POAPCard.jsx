@@ -10,12 +10,12 @@ const POAPCard = ({ poap, showDetails = true }) => {
   const event = poap.event || poap;
 
   return (
-    <Card className="poap-card" hoverable>
+    <Card className="poap-card poap-card--interactive" hoverable>
       <div className="poap-card-image">
         {event.imageUri ? (
-          <img src={event.imageUri} alt={event.name} loading="lazy" />
+          <img src={event.imageUri} alt={event.name} loading="lazy" decoding="async" />
         ) : (
-          <div className="poap-card-placeholder">
+          <div className="poap-card-placeholder" aria-hidden="true">
             <span>🏆</span>
           </div>
         )}
@@ -37,7 +37,7 @@ const POAPCard = ({ poap, showDetails = true }) => {
               </p>
             )}
             
-            <Link to={`/events/${event.id || poap.eventId}`} className="poap-card-link">
+            <Link to={`/events/${event.id || poap.eventId}`} className="poap-card-link" aria-label={`View event ${event.name}`}>
               View Event →
             </Link>
           </>

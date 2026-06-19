@@ -35,7 +35,7 @@ const POAPGrid = ({ poaps, loading, error, emptyMessage = 'No POAPs found' }) =>
   }
 
   return (
-    <div className="poap-grid">
+    <div className="poap-grid" role="list">
       {poaps.map((poap, index) => (
         <POAPCard key={poap.tokenId || poap.id || index} poap={poap} />
       ))}
