@@ -20,7 +20,7 @@ const Hero = ({
       <div className="hero-overlay" />
       <div className="hero-content">
         <h1 id="hero-title" className="hero-title">{title}</h1>
-        {subtitle && <p className="hero-subtitle">{subtitle}</p>}
+        {subtitle && <p className="hero-subtitle" id="hero-subtitle">{subtitle}</p>}
         {action && <div className="hero-action">{action}</div>}
         {stats && (
           <div className="hero-stats" role="list">
