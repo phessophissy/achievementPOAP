@@ -5,6 +5,8 @@
  * @param {number} endChars - Characters to show at end
  * @returns {string} Formatted address
  */
+export const shortenAddress = (address, start = 6, end = 4) => formatAddress(address, start, end);
+
 export const formatAddress = (address, startChars = 6, endChars = 4) => {
   if (!address) return '';
   if (address.length <= startChars + endChars) return address;
