@@ -4,6 +4,8 @@ import { openContractCall } from '@stacks/connect';
 import { fetchEvent, checkHasMinted, mintPOAP } from '../services/contractService';
 import { useWallet } from '../context/WalletContext';
 import { useToast } from '../context/ToastContext';
+import { usePageTitle } from '../hooks/usePageTitle';
+import SharePOAPButton from '../components/POAP/SharePOAPButton';
 import './EventDetail.css';
 
 export default function EventDetail() {
@@ -14,6 +16,11 @@ export default function EventDetail() {
   const [loading, setLoading] = useState(true);
   const [minting, setMinting] = useState(false);
   const [hasMinted, setHasMinted] = useState(false);
+
+  usePageTitle(
+    event?.name || (id ? `Event #${id}` : 'Event'),
+    event?.description?.slice(0, 140),
+  );
 
   useEffect(() => {
     if (!id) return;
@@ -73,6 +80,7 @@ export default function EventDetail() {
                 <span className="detail-id">ID #{id}</span>
               </div>
               <h1 className="detail-title">{event.name || `Event #${id}`}</h1>
+              <SharePOAPButton eventName={event.name || `Event #${id}`} eventId={id} />
             </div>
           </div>
 
