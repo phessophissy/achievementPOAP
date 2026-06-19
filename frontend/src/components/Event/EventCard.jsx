@@ -53,6 +53,7 @@ const EventCard = ({ event, showProgress = true }) => {
           </div>
           
           {showProgress && (
+            <div aria-label="Minting progress" role="group">
             <ProgressBar 
               value={event.currentMints} 
               max={event.maxMints} 
@@ -60,6 +61,7 @@ const EventCard = ({ event, showProgress = true }) => {
               size="small"
               variant={progress >= 90 ? 'error' : progress >= 70 ? 'warning' : 'gold'}
             />
+            </div>
           )}
         </div>
       </Card>
