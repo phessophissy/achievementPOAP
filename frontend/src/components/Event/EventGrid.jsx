@@ -35,7 +35,7 @@ const EventGrid = ({ events, loading, error, emptyMessage = 'No events found' })
   }
 
   return (
-    <div className="event-grid">
+    <div className="event-grid event-grid--responsive">
       {events.map((event) => (
         <EventCard key={event.id} event={event} />
       ))}
