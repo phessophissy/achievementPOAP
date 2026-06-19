@@ -41,7 +41,7 @@ export default function WalletConnect({ showBalance = true }) {
             </div>
           )}
           <div className="wallet-dropdown-wrap">
-            <button className="wallet-addr-btn" onClick={() => setDropdownOpen(!dropdownOpen)}>
+            <button className="wallet-addr-btn" onClick={() => setDropdownOpen(!dropdownOpen)} aria-expanded={dropdownOpen} aria-haspopup="menu">
               <span className="wallet-indicator" />
               <span>{shortenAddress(walletAddress)}</span>
               <svg className={`caret ${dropdownOpen ? 'open' : ''}`} viewBox="0 0 10 6" fill="none" width="10" height="6">
