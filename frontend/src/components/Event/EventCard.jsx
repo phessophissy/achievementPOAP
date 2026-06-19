@@ -19,7 +19,7 @@ const EventCard = ({ event, showProgress = true }) => {
       <Card className={`event-card ${isActive ? 'active' : ''}`} hoverable>
         <div className="event-card-image">
           {event.imageUri ? (
-            <img src={event.imageUri} alt={event.name} loading="lazy" />
+            <img src={event.imageUri} alt={event.name} loading="lazy" decoding="async" />
           ) : (
             <div className="event-card-placeholder">
               <span>🏆</span>
