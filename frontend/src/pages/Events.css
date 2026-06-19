@@ -21,6 +21,10 @@
 .filter-tab{padding:.375rem .875rem;border-radius:calc(var(--radius-sm) - 2px);font-size:.8125rem;font-weight:500;color:var(--text-secondary);background:none;border:none;cursor:pointer;transition:all var(--trans-fast) var(--ease)}
 .filter-tab.active{background:var(--stx);color:#fff}
 .filter-tab:not(.active):hover{color:var(--text-primary);background:var(--glass-bg-hover)}
+.events-sort{
+  padding:.5rem .75rem;background:var(--bg-card);border:1px solid var(--glass-border);
+  border-radius:var(--radius-sm);color:var(--text-primary);font-size:.8125rem;
+}
 .events-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
 .event-card{
   background:var(--bg-card);border:1px solid var(--glass-border);
