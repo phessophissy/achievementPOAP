@@ -1,46 +1,8 @@
-/** @file frontend/src/App.jsx - Frontend module documenting responsibilities and expected usage. */
-/**
- * App component - updated at Fri Mar 27 09:38:46 2026
- */
-/**
- * App component - updated at Fri Mar 27 09:38:46 2026
- */
-/**
- * App component - updated at Fri Mar 27 09:38:46 2026
- */
-/**
- * App component - updated at Fri Mar 27 09:38:46 2026
- */
-/**
- * App component - updated at Fri Mar 27 09:37:50 2026
- */
-/**
- * App component - updated at Fri Mar 27 09:37:05 2026
- */
-/**
- * App component - updated at Fri Mar 27 09:35:04 2026
- */
-/**
- * App component - updated at Fri Mar 27 09:34:01 2026
- */
-/**
- * App component - updated at Fri Mar 27 09:32:39 2026
- */
-/**
- * App component - updated at Fri Mar 27 09:30:07 2026
- */
-/**
- * App component - updated at Fri Mar 27 09:30:07 2026
- */
-/**
- * App component - updated at Fri Mar 27 09:30:07 2026
- */
 import React, { Suspense, lazy } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import Layout from './components/Layout/Layout';
 import LoadingSpinner from './components/UI/LoadingSpinner';
 
-// Lazy load pages for better performance
 const Home = lazy(() => import('./pages/Home'));
 const Events = lazy(() => import('./pages/Events'));
 const EventDetail = lazy(() => import('./pages/EventDetail'));
@@ -49,6 +11,8 @@ const CreateEvent = lazy(() => import('./pages/CreateEvent'));
 const Gallery = lazy(() => import('./pages/Gallery'));
 const About = lazy(() => import('./pages/About'));
 const Leaderboard = lazy(() => import('./pages/Leaderboard'));
+const Settings = lazy(() => import('./pages/Settings'));
+const NotFound = lazy(() => import('./pages/NotFound'));
 
 function App() {
   return (
@@ -62,7 +26,9 @@ function App() {
           <Route path="/create-event" element={<CreateEvent />} />
           <Route path="/gallery" element={<Gallery />} />
           <Route path="/leaderboard" element={<Leaderboard />} />
+          <Route path="/settings" element={<Settings />} />
           <Route path="/about" element={<About />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </Suspense>
     </Layout>
@@ -70,5 +36,3 @@ function App() {
 }
 
 export default App;
-
-// optimize performance for eslint-config-update — ref:chore/eslint-config-update#8 (1776635194269)

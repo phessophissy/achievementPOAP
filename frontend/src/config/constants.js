@@ -8,7 +8,7 @@ export const NETWORK = 'mainnet';
 export const NETWORK_TYPE = 'mainnet';
 export const STACKS_API_URL = 'https://api.mainnet.hiro.so';
 
-// Minting Fee (in microSTX)
+// Minting Fee (in microSTX) — charged per POAP mint
 export const MINT_FEE = 25000; // 0.025 STX
 export const MINT_FEE_STX = 0.025;
 

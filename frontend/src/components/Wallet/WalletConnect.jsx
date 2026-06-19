@@ -22,7 +22,7 @@ export default function WalletConnect({ showBalance = true }) {
 
   if (isConnecting) {
     return (
-      <button className="wallet-btn connecting" disabled>
+      <button className="wallet-btn connecting" disabled aria-busy="true">
         <span className="wallet-btn-spinner" />
         Connecting…
       </button>
@@ -34,14 +34,14 @@ export default function WalletConnect({ showBalance = true }) {
       <>
         <div className="wallet-connected" onMouseLeave={() => setDropdownOpen(false)}>
           {showBalance && balance !== null && (
-            <div className="balance-pill">
+            <div className="balance-pill" aria-label="STX balance">
               <span className="balance-dot" />
               <span>{balance.toFixed(2)}</span>
               <span className="balance-unit">STX</span>
             </div>
           )}
           <div className="wallet-dropdown-wrap">
-            <button className="wallet-addr-btn" onClick={() => setDropdownOpen(!dropdownOpen)}>
+            <button className="wallet-addr-btn" onClick={() => setDropdownOpen(!dropdownOpen)} aria-expanded={dropdownOpen} aria-haspopup="menu">
               <span className="wallet-indicator" />
               <span>{shortenAddress(walletAddress)}</span>
               <svg className={`caret ${dropdownOpen ? 'open' : ''}`} viewBox="0 0 10 6" fill="none" width="10" height="6">
@@ -82,7 +82,7 @@ export default function WalletConnect({ showBalance = true }) {
 
   return (
     <>
-      <button className="wallet-btn primary" onClick={connect}>
+      <button className="wallet-btn primary" onClick={connect} aria-label="Connect Stacks wallet">
         <svg viewBox="0 0 24 24" fill="none" width="15" height="15">
           <rect x="2" y="6" width="20" height="14" rx="2" stroke="currentColor" strokeWidth="2"/>
           <path d="M16 13.5a1.5 1.5 0 110-3 1.5 1.5 0 010 3z" fill="currentColor"/>

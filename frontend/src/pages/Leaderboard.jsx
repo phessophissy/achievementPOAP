@@ -1,38 +1,39 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { fetchPOAP, getTotalSupply } from '../services/contractService';
 import { useWallet } from '../context/WalletContext';
+import { usePageTitle } from '../hooks/usePageTitle';
 import './Leaderboard.css';
 
 export default function Leaderboard() {
+  usePageTitle('Leaderboard', 'Top POAP collectors on Achievement POAP');
   const { walletAddress, shortenAddress } = useWallet();
   const [entries, setEntries] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    (async () => {
-      try {
-        const supply = await getTotalSupply();
-        const ids = Array.from({ length: Math.min(supply, 200) }, (_, i) => i + 1);
-        const results = await Promise.allSettled(ids.map(id => fetchPOAP(id)));
-        const valid = results.filter(r => r.status === 'fulfilled' && r.value).map(r => r.value);
-
-        // Tally by owner
-        const tally = {};
-        for (const p of valid) {
-          if (!p.owner) continue;
-          tally[p.owner] = (tally[p.owner] || 0) + 1;
-        }
-        const sorted = Object.entries(tally)
-          .map(([address, count]) => ({ address, count }))
-          .sort((a, b) => b.count - a.count);
-        setEntries(sorted);
-      } catch (e) {
-        setEntries([]);
-      } finally {
-        setLoading(false);
+  const load = useCallback(async () => {
+    setLoading(true);
+    try {
+      const supply = await getTotalSupply();
+      const ids = Array.from({ length: Math.min(supply, 200) }, (_, i) => i + 1);
+      const results = await Promise.allSettled(ids.map(id => fetchPOAP(id)));
+      const valid = results.filter(r => r.status === 'fulfilled' && r.value).map(r => r.value);
+      const tally = {};
+      for (const p of valid) {
+        if (!p.owner) continue;
+        tally[p.owner] = (tally[p.owner] || 0) + 1;
       }
-    })();
+      const sorted = Object.entries(tally)
+        .map(([address, count]) => ({ address, count }))
+        .sort((a, b) => b.count - a.count);
+      setEntries(sorted);
+    } catch {
+      setEntries([]);
+    } finally {
+      setLoading(false);
+    }
   }, []);
+
+  useEffect(() => { load(); }, [load]);
 
   const getMedal = (rank) => {
     if (rank === 1) return '&#129351;';
@@ -44,8 +45,13 @@ export default function Leaderboard() {
   return (
     <div className="page leaderboard-page">
       <div className="lb-header">
-        <h1 className="page-title">Leaderboard</h1>
-        <p className="page-subtitle">Top collectors on the Stacks network by POAPs minted</p>
+        <div>
+          <h1 className="page-title">Leaderboard</h1>
+          <p className="page-subtitle">Top collectors on the Stacks network by POAPs minted</p>
+        </div>
+        <button type="button" className="btn btn-secondary btn-sm" onClick={load} disabled={loading}>
+          {loading ? 'Refreshing…' : 'Refresh'}
+        </button>
       </div>
 
       {loading && (

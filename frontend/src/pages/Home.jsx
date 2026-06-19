@@ -28,7 +28,7 @@ const STEPS = [
 ];
 
 export default function Home() {
-  usePageTitle('Home', 'Mint achievement POAPs on Stacks');
+  usePageTitle('Home', 'Mint achievement POAPs on Stacks — Bitcoin-secured NFT badges');
   const { isConnected, connect } = useWallet();
   const heroRef = useRef(null);
 

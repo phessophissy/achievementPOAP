@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { fetchPOAP, getTotalSupply } from '../services/contractService';
+import { usePageTitle } from '../hooks/usePageTitle';
 import './Gallery.css';
 
 export default function Gallery() {
+  usePageTitle('Gallery', 'Browse all achievement POAPs minted on Stacks');
   const [poaps, setPoaps] = useState([]);
   const [loading, setLoading] = useState(true);
   const [total, setTotal] = useState(0);

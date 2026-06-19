@@ -1,13 +1,22 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { fetchUserPOAPs } from '../services/contractService';
 import { useWallet } from '../context/WalletContext';
+import { usePageTitle } from '../hooks/usePageTitle';
 import './MyPOAPs.css';
 
 export default function MyPOAPs() {
+  usePageTitle('My POAPs', 'Your on-chain achievement collection on Stacks');
   const { isConnected, walletAddress, connect, shortenAddress } = useWallet();
   const [poaps, setPoaps] = useState([]);
+  const [sort, setSort] = useState('newest');
   const [loading, setLoading] = useState(false);
+
+  const sortedPoaps = useMemo(() => {
+    const list = [...poaps];
+    if (sort === 'name') return list.sort((a, b) => (a.eventName || '').localeCompare(b.eventName || ''));
+    return list.sort((a, b) => Number(b.tokenId) - Number(a.tokenId));
+  }, [poaps, sort]);
 
   useEffect(() => {
     if (!walletAddress) return;
@@ -39,6 +48,10 @@ export default function MyPOAPs() {
             {' '}· {poaps.length} achievements collected
           </p>
         </div>
+        <select className="poaps-sort" value={sort} onChange={(e) => setSort(e.target.value)} aria-label="Sort POAPs">
+          <option value="newest">Newest first</option>
+          <option value="name">Name A–Z</option>
+        </select>
         <Link to="/events" className="btn btn-primary btn-sm">+ Collect More</Link>
       </div>
 
@@ -56,7 +69,7 @@ export default function MyPOAPs() {
       )}
 
       <div className="poaps-grid">
-        {poaps.map((poap) => (
+        {sortedPoaps.map((poap) => (
           <div key={poap.tokenId} className="poap-card">
             <div className="poap-card-visual">
               <div className="poap-icon">&#127942;</div>

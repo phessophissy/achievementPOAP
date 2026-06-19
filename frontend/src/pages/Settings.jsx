@@ -1,7 +1,8 @@
 /** @file frontend/src/pages/Settings.jsx - Frontend module documenting responsibilities and expected usage. */
-import React, { useState } from 'react';
+import React from 'react';
 import { useWallet } from '../context/WalletContext';
 import { useToast } from '../context/ToastContext';
+import { useSettings } from '../context/SettingsContext';
 import Card from '../components/UI/Card';
 import Button from '../components/UI/Button';
 import { formatAddress, copyToClipboard } from '../utils/helpers';
@@ -11,8 +12,7 @@ import './Settings.css';
 const Settings = () => {
   const { isConnected, address, disconnect } = useWallet();
   const { showToast } = useToast();
-  const [theme, setTheme] = useState('dark');
-  const [notifications, setNotifications] = useState(true);
+  const { theme, setTheme, notifications, toggleNotifications } = useSettings();
 
   const handleCopyAddress = async () => {
     const success = await copyToClipboard(address);
@@ -120,7 +120,7 @@ const Settings = () => {
                 className="preference-select"
               >
                 <option value="dark">Dark (Default)</option>
-                <option value="light" disabled>Light (Coming Soon)</option>
+                <option value="light">Light</option>
               </select>
             </div>
             <div className="preference-row">
@@ -132,7 +132,7 @@ const Settings = () => {
                 <input 
                   type="checkbox" 
                   checked={notifications}
-                  onChange={(e) => setNotifications(e.target.checked)}
+                  onChange={() => toggleNotifications()}
                 />
                 <span className="toggle-slider"></span>
               </label>
