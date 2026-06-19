@@ -4,13 +4,14 @@ import React, { createContext, useContext, useState, useCallback } from 'react';
 const ToastContext = createContext(null);
 
 export function ToastProvider({ children }) {
+  const MAX_TOASTS = 5;
   const [toasts, setToasts] = useState([]);
 
   const addToast = useCallback((message, type = 'info', duration = 5000) => {
     const id = Date.now();
     const toast = { id, message, type };
     
-    setToasts((prev) => [...prev, toast]);
+    setToasts((prev) => [...prev, toast].slice(-MAX_TOASTS));
     
     if (duration > 0) {
       setTimeout(() => {
