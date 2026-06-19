@@ -4,13 +4,18 @@ import React, { createContext, useContext, useState, useCallback } from 'react';
 const ToastContext = createContext(null);
 
 export function ToastProvider({ children }) {
+  const MAX_TOASTS = 5;
   const [toasts, setToasts] = useState([]);
+
+  const removeToast = useCallback((id) => {
+    setToasts((prev) => prev.filter((toast) => toast.id !== id));
+  }, []);
 
   const addToast = useCallback((message, type = 'info', duration = 5000) => {
     const id = Date.now();
     const toast = { id, message, type };
     
-    setToasts((prev) => [...prev, toast]);
+    setToasts((prev) => [...prev, toast].slice(-MAX_TOASTS));
     
     if (duration > 0) {
       setTimeout(() => {
@@ -19,11 +24,7 @@ export function ToastProvider({ children }) {
     }
     
     return id;
-  }, []);
-
-  const removeToast = useCallback((id) => {
-    setToasts((prev) => prev.filter((toast) => toast.id !== id));
-  }, []);
+  }, [removeToast]);
 
   const success = useCallback((message, duration) => {
     return addToast(message, 'success', duration);
@@ -49,6 +50,7 @@ export function ToastProvider({ children }) {
     error,
     warning,
     info,
+    showToast: addToast,
   };
 
   return (
@@ -63,7 +65,7 @@ function ToastContainer({ toasts, removeToast }) {
   if (toasts.length === 0) return null;
 
   return (
-    <div className="toast-container">
+    <div className="toast-container" role="status" aria-live="polite">
       {toasts.map((toast) => (
         <Toast key={toast.id} toast={toast} onClose={() => removeToast(toast.id)} />
       ))}
@@ -83,7 +85,7 @@ function Toast({ toast, onClose }) {
     <div className={`toast toast-${toast.type}`}>
       <span className="toast-icon">{icons[toast.type]}</span>
       <span className="toast-message">{toast.message}</span>
-      <button className="toast-close" onClick={onClose}>×</button>
+      <button type="button" className="toast-close" onClick={onClose} aria-label="Dismiss notification">×</button>
     </div>
   );
 }
