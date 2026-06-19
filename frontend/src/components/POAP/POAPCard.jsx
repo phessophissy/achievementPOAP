@@ -13,7 +13,7 @@ const POAPCard = ({ poap, showDetails = true }) => {
     <Card className="poap-card" hoverable>
       <div className="poap-card-image">
         {event.imageUri ? (
-          <img src={event.imageUri} alt={event.name} loading="lazy" />
+          <img src={event.imageUri} alt={event.name} loading="lazy" decoding="async" />
         ) : (
           <div className="poap-card-placeholder">
             <span>🏆</span>
