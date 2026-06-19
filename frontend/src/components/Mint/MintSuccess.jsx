@@ -21,7 +21,7 @@ const MintSuccess = ({ event, txId }) => {
 
       <div className="success-poap">
         {event.imageUri ? (
-          <img src={event.imageUri} alt={event.name} className="success-image" />
+          <img src={event.imageUri} alt={event.name} className="success-image" loading="lazy" decoding="async" />
         ) : (
           <div className="success-placeholder">🏆</div>
         )}
