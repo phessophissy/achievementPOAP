@@ -1,0 +1,12 @@
+{
+  "name": "Achievement POAP",
+  "short_name": "POAP",
+  "description": "Proof of Attendance Protocol on Stacks",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0C0C0F",
+  "theme_color": "#FF5500",
+  "icons": [
+    { "src": "/favicon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }
+  ]
+}
