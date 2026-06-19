@@ -15,11 +15,11 @@ const EventCard = ({ event, showProgress = true }) => {
   const isActive = status.label === 'Active';
 
   return (
-    <Link to={`/events/${event.id}`} className="event-card-link">
-      <Card className={`event-card ${isActive ? 'active' : ''}`} hoverable>
+    <Link to={`/events/${event.id}`} className="event-card-link" aria-label={`Open event ${event.name}`}>
+      <Card className={`event-card ${isActive ? 'active' : 'inactive'}`} hoverable>
         <div className="event-card-image">
           {event.imageUri ? (
-            <img src={event.imageUri} alt={event.name} loading="lazy" />
+            <img src={event.imageUri} alt={event.name} loading="lazy" decoding="async" />
           ) : (
             <div className="event-card-placeholder">
               <span>🏆</span>
@@ -53,6 +53,7 @@ const EventCard = ({ event, showProgress = true }) => {
           </div>
           
           {showProgress && (
+            <div aria-label="Minting progress" role="group">
             <ProgressBar 
               value={event.currentMints} 
               max={event.maxMints} 
@@ -60,6 +61,7 @@ const EventCard = ({ event, showProgress = true }) => {
               size="small"
               variant={progress >= 90 ? 'error' : progress >= 70 ? 'warning' : 'gold'}
             />
+            </div>
           )}
         </div>
       </Card>
