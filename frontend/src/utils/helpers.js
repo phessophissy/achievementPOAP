@@ -80,7 +80,7 @@ export const formatRelativeTime = (timestamp) => {
  * @returns {string} Formatted number
  */
 export const formatNumber = (num) => {
-  if (num === null || num === undefined) return '0';
+  if (num === null || num === undefined || Number.isNaN(num)) return '0';
   return num.toLocaleString('en-US');
 };
 
