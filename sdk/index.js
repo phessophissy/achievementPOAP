@@ -69,6 +69,27 @@ export class AchievementPOAP {
     }
 
     /**
+     * Get the owner of a specific POAP token id.
+     * Mirrors the SIP-009 `get-owner` read function.
+     * @param {number} tokenId The NFT token id
+     * @returns {Promise<any>} Clarity value — `(ok (some principal))` if owned, `(ok none)` otherwise
+     */
+    async getOwner(tokenId) {
+        try {
+            return await callReadOnlyFunction({
+                contractAddress: this.contractAddress,
+                contractName: this.contractName,
+                functionName: 'get-owner',
+                functionArgs: [uintCV(tokenId)],
+                senderAddress: this.contractAddress,
+                network: this.network
+            });
+        } catch (error) {
+            throw new Error(`Failed to fetch owner for token #${tokenId}: ${error.message}`);
+        }
+    }
+
+    /**
      * Prepare a `makeContractCall` options object to mint a POAP
      * @param {number} eventId 
      * @param {string} senderKey 
