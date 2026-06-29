@@ -118,7 +118,7 @@ export class AchievementPOAP {
      * @param {string} user The Stacks principal to check
      * @returns {Promise<any>} Clarity boolean value
      */
-    async hasMintedEvent(eventId, user) {
+        async hasMintedEvent(eventId, user) {
         try {
             return await callReadOnlyFunction({
                 contractAddress: this.contractAddress,
@@ -132,6 +132,28 @@ export class AchievementPOAP {
             throw new Error(`Failed to check mint status for event #${eventId}: ${error.message}`);
         }
     }
+
+    /**
+     * Get the current and max supply for an event.
+     * Mirrors the `get-event-supply` read function.
+     * @param {number} eventId The event id
+     * @returns {Promise<any>} Clarity tuple `{ current: uint, max: uint }`
+     */
+    async getEventSupply(eventId) {
+        try {
+            return await callReadOnlyFunction({
+                contractAddress: this.contractAddress,
+                contractName: this.contractName,
+                functionName: 'get-event-supply',
+                functionArgs: [uintCV(eventId)],
+                senderAddress: this.contractAddress,
+                network: this.network
+            });
+        } catch (error) {
+            throw new Error(`Failed to fetch supply for event #${eventId}: ${error.message}`);
+        }
+    }
+
 
 
     /**
