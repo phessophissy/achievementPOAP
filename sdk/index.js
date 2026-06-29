@@ -74,7 +74,7 @@ export class AchievementPOAP {
      * @param {number} tokenId The NFT token id
      * @returns {Promise<any>} Clarity value — `(ok (some principal))` if owned, `(ok none)` otherwise
      */
-    async getOwner(tokenId) {
+        async getOwner(tokenId) {
         try {
             return await callReadOnlyFunction({
                 contractAddress: this.contractAddress,
@@ -88,6 +88,29 @@ export class AchievementPOAP {
             throw new Error(`Failed to fetch owner for token #${tokenId}: ${error.message}`);
         }
     }
+
+    /**
+     * Get the metadata URI for a specific POAP token id.
+     * Resolves to the owning event's `metadata-uri`, or `none` if the token
+     * does not exist.
+     * @param {number} tokenId The NFT token id
+     * @returns {Promise<any>} Clarity value — `(ok (some string))` or `(ok none)`
+     */
+    async getTokenUri(tokenId) {
+        try {
+            return await callReadOnlyFunction({
+                contractAddress: this.contractAddress,
+                contractName: this.contractName,
+                functionName: 'get-token-uri',
+                functionArgs: [uintCV(tokenId)],
+                senderAddress: this.contractAddress,
+                network: this.network
+            });
+        } catch (error) {
+            throw new Error(`Failed to fetch token-uri for token #${tokenId}: ${error.message}`);
+        }
+    }
+
 
     /**
      * Prepare a `makeContractCall` options object to mint a POAP
