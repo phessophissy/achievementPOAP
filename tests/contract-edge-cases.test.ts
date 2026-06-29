@@ -136,9 +136,40 @@ describe('Achievement POAP — edge cases', () => {
       );
       expect(deactivate.result).toBeOk(Cl.bool(true));
 
-      // A new wallet can no longer mint the deactivated event
+            // A new wallet can no longer mint the deactivated event
       const blockedMint = mintPoap(1, wallet2);
       expect(blockedMint.result).toBeErr(Cl.uint(106)); // ERR_EVENT_NOT_ACTIVE
+    });
+  });
+
+  describe('token-uri resolution', () => {
+    it('returns the event metadata-uri for a minted token', () => {
+      const uri = 'ipfs://QmTokenUriExample/metadata.json';
+      createEvent(deployer, {
+        name: 'URI Event',
+        maxSupply: 10,
+        metadataUri: uri,
+      });
+
+      mintPoap(1, wallet1);
+
+      const tokenUri = simnet.callReadOnlyFn(
+        CONTRACT_NAME,
+        'get-token-uri',
+        [Cl.uint(1)],
+        deployer
+      );
+      expect(tokenUri.result).toBeOk(Cl.some(Cl.stringAscii(uri)));
+    });
+
+    it('returns none for a non-existent token', () => {
+      const tokenUri = simnet.callReadOnlyFn(
+        CONTRACT_NAME,
+        'get-token-uri',
+        [Cl.uint(9999)],
+        deployer
+      );
+      expect(tokenUri.result).toBeOk(Cl.none());
     });
   });
 });
