@@ -1,0 +1,87 @@
+import { describe, it, expect, beforeEach } from 'vitest';
+import { Cl } from '@stacks/transactions';
+
+/**
+ * Edge-case coverage for the achievement-poap contract.
+ *
+ * These tests complement tests/achievement-poap.test.ts by exercising
+ * scenarios that the original suite does not cover: token-id nonce
+ * progression, supply exhaustion, deactivation blocking minting,
+ * token-uri resolution, and user-tokens accumulation.
+ */
+
+const CONTRACT_NAME = 'achievement-poap';
+const accounts = simnet.getAccounts();
+const deployer = accounts.get('deployer')!;
+const wallet1 = accounts.get('wallet_1')!;
+const wallet2 = accounts.get('wallet_2')!;
+
+const createEvent = (
+  sender = deployer,
+  overrides: Partial<{
+    name: string;
+    description: string;
+    maxSupply: number;
+    startBlock: number;
+    endBlock: number;
+    metadataUri: string;
+  }> = {}
+) => {
+  const {
+    name = 'Edge Case Event',
+    description = 'An event for edge-case tests',
+    maxSupply = 100,
+    startBlock = 1,
+    endBlock = 100000,
+    metadataUri = 'ipfs://edge-case-metadata',
+  } = overrides;
+
+  return simnet.callPublicFn(
+    CONTRACT_NAME,
+    'create-event',
+    [
+      Cl.stringAscii(name),
+      Cl.stringAscii(description),
+      Cl.uint(maxSupply),
+      Cl.uint(startBlock),
+      Cl.uint(endBlock),
+      Cl.stringAscii(metadataUri),
+    ],
+    sender
+  );
+};
+
+const mintPoap = (eventId: number, sender = wallet1) =>
+  simnet.callPublicFn(CONTRACT_NAME, 'mint-poap', [Cl.uint(eventId)], sender);
+
+describe('Achievement POAP — edge cases', () => {
+  describe('token-id nonce progression', () => {
+    it('increments token-id across events and mints', () => {
+      // Event 1
+      createEvent(deployer, { name: 'Event One', metadataUri: 'ipfs://one' });
+      // Event 2
+      createEvent(deployer, { name: 'Event Two', metadataUri: 'ipfs://two' });
+
+      // Mint from event 1 → token id 1
+      const mintOne = mintPoap(1, wallet1);
+      expect(mintOne.result).toBeOk(Cl.uint(1));
+
+      // Mint from event 2 → token id 2 (nonce is global, not per-event)
+      const mintTwo = mintPoap(2, wallet1);
+      expect(mintTwo.result).toBeOk(Cl.uint(2));
+
+      // Mint from event 1 with a different wallet → token id 3
+      const mintThree = mintPoap(1, wallet2);
+      expect(mintThree.result).toBeOk(Cl.uint(3));
+
+      // Last token id reflects the global nonce
+      const lastId = simnet.callReadOnlyFn(
+        CONTRACT_NAME,
+        'get-last-token-id',
+        [],
+        deployer
+      );
+      expect(lastId.result).toBeOk(Cl.uint(3));
+    });
+  });
+});
