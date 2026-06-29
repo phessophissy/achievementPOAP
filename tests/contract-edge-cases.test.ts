@@ -74,7 +74,7 @@ describe('Achievement POAP — edge cases', () => {
       const mintThree = mintPoap(1, wallet2);
       expect(mintThree.result).toBeOk(Cl.uint(3));
 
-      // Last token id reflects the global nonce
+            // Last token id reflects the global nonce
       const lastId = simnet.callReadOnlyFn(
         CONTRACT_NAME,
         'get-last-token-id',
@@ -82,6 +82,36 @@ describe('Achievement POAP — edge cases', () => {
         deployer
       );
       expect(lastId.result).toBeOk(Cl.uint(3));
+    });
+  });
+
+  describe('supply exhaustion', () => {
+    it('rejects minting once max-supply is reached', () => {
+      // Create an event with a single mint available
+      createEvent(deployer, {
+        name: 'Single Mint Event',
+        maxSupply: 1,
+        metadataUri: 'ipfs://single-mint',
+      });
+
+      // First mint succeeds
+      const firstMint = mintPoap(1, wallet1);
+      expect(firstMint.result).toBeOk(Cl.uint(1));
+
+      // Supply is now exhausted; a different wallet cannot mint
+      const secondMint = mintPoap(1, wallet2);
+      expect(secondMint.result).toBeErr(Cl.uint(106)); // ERR_EVENT_NOT_ACTIVE
+
+      // Supply read reflects the cap
+      const supply = simnet.callReadOnlyFn(
+        CONTRACT_NAME,
+        'get-event-supply',
+        [Cl.uint(1)],
+        deployer
+      );
+      expect(supply.result).toBeOk(
+        Cl.tuple({ current: Cl.uint(1), max: Cl.uint(1) })
+      );
     });
   });
 });
