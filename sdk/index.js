@@ -111,6 +111,28 @@ export class AchievementPOAP {
         }
     }
 
+    /**
+     * Check whether a given user has already minted a POAP for an event.
+     * Mirrors the `has-minted-event` read function.
+     * @param {number} eventId The event id
+     * @param {string} user The Stacks principal to check
+     * @returns {Promise<any>} Clarity boolean value
+     */
+    async hasMintedEvent(eventId, user) {
+        try {
+            return await callReadOnlyFunction({
+                contractAddress: this.contractAddress,
+                contractName: this.contractName,
+                functionName: 'has-minted-event',
+                functionArgs: [uintCV(eventId), principalCV(user)],
+                senderAddress: this.contractAddress,
+                network: this.network
+            });
+        } catch (error) {
+            throw new Error(`Failed to check mint status for event #${eventId}: ${error.message}`);
+        }
+    }
+
 
     /**
      * Prepare a `makeContractCall` options object to mint a POAP
