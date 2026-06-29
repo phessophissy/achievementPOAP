@@ -139,7 +139,7 @@ export class AchievementPOAP {
      * @param {number} eventId The event id
      * @returns {Promise<any>} Clarity tuple `{ current: uint, max: uint }`
      */
-    async getEventSupply(eventId) {
+async getEventSupply(eventId) {
         try {
             return await callReadOnlyFunction({
                 contractAddress: this.contractAddress,
@@ -153,6 +153,48 @@ export class AchievementPOAP {
             throw new Error(`Failed to fetch supply for event #${eventId}: ${error.message}`);
         }
     }
+
+    /**
+     * Get the list of POAP token ids owned by a user.
+     * Mirrors the `get-user-tokens` read function.
+     * @param {string} user The Stacks principal to look up
+     * @returns {Promise<any>} Clarity list of uint token ids (up to 100)
+     */
+    async getUserTokens(user) {
+        try {
+            return await callReadOnlyFunction({
+                contractAddress: this.contractAddress,
+                contractName: this.contractName,
+                functionName: 'get-user-tokens',
+                functionArgs: [principalCV(user)],
+                senderAddress: this.contractAddress,
+                network: this.network
+            });
+        } catch (error) {
+            throw new Error(`Failed to fetch tokens for ${user}: ${error.message}`);
+        }
+    }
+
+    /**
+     * Check whether the contract is currently paused.
+     * Mirrors the `is-contract-paused` read function.
+     * @returns {Promise<any>} Clarity boolean value
+     */
+    async isContractPaused() {
+        try {
+            return await callReadOnlyFunction({
+                contractAddress: this.contractAddress,
+                contractName: this.contractName,
+                functionName: 'is-contract-paused',
+                functionArgs: [],
+                senderAddress: this.contractAddress,
+                network: this.network
+            });
+        } catch (error) {
+            throw new Error(`Failed to fetch paused state: ${error.message}`);
+        }
+    }
+
 
 
 
