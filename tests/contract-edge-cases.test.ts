@@ -162,7 +162,7 @@ describe('Achievement POAP — edge cases', () => {
       expect(tokenUri.result).toBeOk(Cl.some(Cl.stringAscii(uri)));
     });
 
-    it('returns none for a non-existent token', () => {
+        it('returns none for a non-existent token', () => {
       const tokenUri = simnet.callReadOnlyFn(
         CONTRACT_NAME,
         'get-token-uri',
@@ -170,6 +170,54 @@ describe('Achievement POAP — edge cases', () => {
         deployer
       );
       expect(tokenUri.result).toBeOk(Cl.none());
+    });
+  });
+
+  describe('user-tokens accumulation', () => {
+    it('accumulates token ids across multiple events for one wallet', () => {
+      createEvent(deployer, { name: 'Collect Event A', metadataUri: 'ipfs://a' });
+      createEvent(deployer, { name: 'Collect Event B', metadataUri: 'ipfs://b' });
+
+      // wallet1 mints from both events
+      mintPoap(1, wallet1);
+      mintPoap(2, wallet1);
+
+      const userTokens = simnet.callReadOnlyFn(
+        CONTRACT_NAME,
+        'get-user-tokens',
+        [Cl.principal(wallet1)],
+        deployer
+      );
+      // The contract returns a list of uint token ids
+      expect(userTokens.result).toBeOk(Cl.list([Cl.uint(1), Cl.uint(2)]));
+
+      // A wallet that never minted gets an empty list
+      const emptyTokens = simnet.callReadOnlyFn(
+        CONTRACT_NAME,
+        'get-user-tokens',
+        [Cl.principal(wallet2)],
+        deployer
+      );
+      expect(emptyTokens.result).toBeOk(Cl.list([]));
+    });
+
+    it('records the minter and event id in token metadata', () => {
+      createEvent(deployer, { name: 'Metadata Event', metadataUri: 'ipfs://meta' });
+      mintPoap(1, wallet1);
+
+      const meta = simnet.callReadOnlyFn(
+        CONTRACT_NAME,
+        'get-token-metadata',
+        [Cl.uint(1)],
+        deployer
+      );
+      expect(meta.result).toBeOk(
+        Cl.tuple({
+          'event-id': Cl.uint(1),
+          'minted-at': Cl.uint(simnet.blockHeight),
+          minter: Cl.principal(wallet1),
+        })
+      );
     });
   });
 });
