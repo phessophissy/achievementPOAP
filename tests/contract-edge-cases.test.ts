@@ -102,7 +102,7 @@ describe('Achievement POAP — edge cases', () => {
       const secondMint = mintPoap(1, wallet2);
       expect(secondMint.result).toBeErr(Cl.uint(106)); // ERR_EVENT_NOT_ACTIVE
 
-      // Supply read reflects the cap
+            // Supply read reflects the cap
       const supply = simnet.callReadOnlyFn(
         CONTRACT_NAME,
         'get-event-supply',
@@ -112,6 +112,33 @@ describe('Achievement POAP — edge cases', () => {
       expect(supply.result).toBeOk(
         Cl.tuple({ current: Cl.uint(1), max: Cl.uint(1) })
       );
+    });
+  });
+
+  describe('event deactivation', () => {
+    it('blocks minting after an event is deactivated', () => {
+      createEvent(deployer, {
+        name: 'Deactivatable Event',
+        maxSupply: 50,
+        metadataUri: 'ipfs://deactivatable',
+      });
+
+      // Minting works while active
+      const activeMint = mintPoap(1, wallet1);
+      expect(activeMint.result).toBeOk(Cl.uint(1));
+
+      // Creator deactivates the event
+      const deactivate = simnet.callPublicFn(
+        CONTRACT_NAME,
+        'deactivate-event',
+        [Cl.uint(1)],
+        deployer
+      );
+      expect(deactivate.result).toBeOk(Cl.bool(true));
+
+      // A new wallet can no longer mint the deactivated event
+      const blockedMint = mintPoap(1, wallet2);
+      expect(blockedMint.result).toBeErr(Cl.uint(106)); // ERR_EVENT_NOT_ACTIVE
     });
   });
 });
