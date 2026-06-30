@@ -267,6 +267,20 @@ export const formatBlockHeight = (blockHeight) => {
   return value.toLocaleString('en-US');
 };
 
+/**
+ * Calculate the total STX cost to mint a given quantity of POAPs.
+ * The contract charges MINT_FEE microSTX per mint (0.025 STX = 25000 microSTX).
+ * @param {number} quantity - Number of POAPs to mint
+ * @param {number} [mintFeeMicroStx=25000] - Per-mint fee in microSTX
+ * @returns {string} Total cost formatted as STX, e.g. "0.250000"
+ */
+export const calculateMintCost = (quantity, mintFeeMicroStx = 25000) => {
+  const qty = Number(quantity);
+  if (!Number.isFinite(qty) || qty <= 0) return '0.000000';
+  const totalMicroStx = BigInt(Math.round(qty)) * BigInt(Math.round(mintFeeMicroStx));
+  return microStxToStx(totalMicroStx, 6);
+};
+
 export default {
   formatAddress,
   formatSTX,

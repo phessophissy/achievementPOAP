@@ -1,5 +1,10 @@
 import { describe, it, expect } from 'vitest';
-import { microStxToStx, stxToMicroStx, formatBlockHeight } from '../utils/helpers';
+import {
+  microStxToStx,
+  stxToMicroStx,
+  formatBlockHeight,
+  calculateMintCost,
+} from '../utils/helpers';
 
 describe('microStxToStx', () => {
   it('converts the contract mint fee (25000 microSTX) to 0.025000 STX', () => {
@@ -67,11 +72,33 @@ describe('formatBlockHeight', () => {
     expect(formatBlockHeight(180432n)).toBe('180,432');
   });
 
-  it('returns 0 for null/undefined/empty input', () => {
+    it('returns 0 for null/undefined/empty input', () => {
     expect(formatBlockHeight(null)).toBe('0');
     expect(formatBlockHeight(undefined)).toBe('0');
     expect(formatBlockHeight('')).toBe('0');
   });
 });
+
+describe('calculateMintCost', () => {
+  it('calculates the cost for a single mint at the default fee', () => {
+    expect(calculateMintCost(1)).toBe('0.025000');
+  });
+
+  it('scales linearly with quantity', () => {
+    expect(calculateMintCost(10)).toBe('0.250000');
+    expect(calculateMintCost(100)).toBe('2.500000');
+  });
+
+  it('accepts a custom per-mint fee in microSTX', () => {
+    expect(calculateMintCost(5, 50000)).toBe('0.250000');
+  });
+
+  it('returns 0.000000 for zero or invalid quantity', () => {
+    expect(calculateMintCost(0)).toBe('0.000000');
+    expect(calculateMintCost(-5)).toBe('0.000000');
+    expect(calculateMintCost(NaN)).toBe('0.000000');
+  });
+});
+
 
 
