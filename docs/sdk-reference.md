@@ -4,6 +4,25 @@ The `achievement-poap` SDK (`sdk/index.js`) wraps the on-chain `achievement-poap
 Clarity contract. It provides read-only lookups (no signing required) and unsigned
 transaction builders that you sign and broadcast yourself or via a wallet.
 
+## Table of contents
+
+- [Initialization](#initialization)
+- [Read-only methods](#read-only-methods)
+  - [`getEvent(eventId)`](#geteventeventid)
+  - [`getMintFee()`](#getmintfee)
+  - [`getOwner(tokenId)`](#getownertokenid)
+  - [`getTokenUri(tokenId)`](#gettokenuritokenid)
+  - [`hasMintedEvent(eventId, user)`](#hasmintedeventeventid-user)
+  - [`getEventSupply(eventId)`](#geteventsupplyeventid)
+  - [`getUserTokens(user)`](#getusertokensuser)
+  - [`isContractPaused()`](#iscontractpaused)
+- [Transaction builders](#transaction-builders)
+  - [`buildMintTransaction`](#buildminttransactioneventid-senderkey-fee-nonce)
+  - [`buildTransferTransaction`](#buildtransfertransactiontokenid-senderaddress-recipientaddress-senderkey-fee-nonce)
+  - [`buildCreateEventTransaction`](#buildcreateeventtransactioneventoptions-senderkey-fee-nonce)
+- [Broadcasting a transaction](#broadcasting-a-transaction)
+- [Error handling](#error-handling)
+
 ## Initialization
 
 ```js

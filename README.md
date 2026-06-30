@@ -203,6 +203,7 @@ Contributions are welcome! Please open an issue or submit a pull request.
 - Keep wallet exports and local snapshots out of git.
 - Run `npm run audit:sensitive` before opening a PR.
 - See [SECURITY.md](SECURITY.md) and [docs/security/sensitive-files.md](docs/security/sensitive-files.md) for the full policy.
+- See [docs/sdk-reference.md](docs/sdk-reference.md) for the complete SDK method reference and examples.
 
 <!-- Maintenance update 536 -->
 
