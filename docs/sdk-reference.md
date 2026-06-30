@@ -91,3 +91,82 @@ Read the current and max mint counts for an event.
 const supply = await poap.getEventSupply(1);
 // supply → (ok { current: u5, max: u100 })
 ```
+
+### `getUserTokens(user)`
+
+List the token ids owned by a wallet (up to 100, per the contract cap).
+
+```js
+const tokens = await poap.getUserTokens('SP2KYZRNME33Y39GP3RKC90DQJ45EF1N0NZNVRE09');
+// tokens → (ok (list u1 u3 u7))
+```
+
+### `isContractPaused()`
+
+Check whether the contract is currently paused (minting is blocked when paused).
+
+```js
+const paused = await poap.isContractPaused();
+// paused → (ok false)
+```
+
+## Transaction builders
+
+Transaction builders return a **signed** Stacks transaction object (via
+`makeContractCall`). They do **not** broadcast — you broadcast the serialized
+transaction yourself or hand it to a wallet.
+
+All builders accept an optional `fee` (in microSTX, default `2500`) and `nonce`.
+Pass a `senderKey` (private key hex) to sign.
+
+### `buildMintTransaction(eventId, senderKey, fee?, nonce?)`
+
+Build a `mint-poap` transaction. The sender must pay the contract mint fee
+(0.025 STX) in addition to the transaction fee.
+
+```js
+const tx = await poap.buildMintTransaction(1, senderKey);
+// Broadcast `tx.serialize()` to the Stacks API.
+```
+
+### `buildTransferTransaction(tokenId, senderAddress, recipientAddress, senderKey, fee?, nonce?)`
+
+Build a SIP-009 `transfer` transaction to move a POAP between wallets. The
+`senderAddress` must own the token and match the `senderKey`.
+
+```js
+const tx = await poap.buildTransferTransaction(
+  1,
+  'SP2KYZRNME33Y39GP3RKC90DQJ45EF1N0NZNVRE09', // sender
+  'ST2KYZRNME33Y39GP3RKC90DQJ45EF1N0NZNVRE09', // recipient
+  senderKey,
+);
+```
+
+### `buildCreateEventTransaction(eventOptions, senderKey, fee?, nonce?)`
+
+Build a `create-event` transaction (admin). `eventOptions` is an object:
+
+| Field          | Type   | Description                          |
+|----------------|--------|--------------------------------------|
+| `name`         | string | Event name (max 64 ASCII chars)      |
+| `description`  | string | Event description (max 256 ASCII)    |
+| `maxSupply`    | number | Maximum mintable POAPs               |
+| `startBlock`   | number | Start block of the mint window       |
+| `endBlock`     | number | End block of the mint window         |
+| `metadataUri`  | string | IPFS/HTTPS metadata URI              |
+
+```js
+const tx = await poap.buildCreateEventTransaction(
+  {
+    name: 'Stacks Summit 2026',
+    description: 'Attendance POAP for the Stacks Summit builder track.',
+    maxSupply: 1000,
+    startBlock: 180000,
+    endBlock: 200000,
+    metadataUri: 'ipfs://QmExample/metadata.json',
+  },
+  senderKey,
+);
+```
+
