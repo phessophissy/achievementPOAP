@@ -281,6 +281,34 @@ export const calculateMintCost = (quantity, mintFeeMicroStx = 25000) => {
   return microStxToStx(totalMicroStx, 6);
 };
 
+/**
+ * Parse and normalize a POAP event metadata JSON object (as served from
+ * frontend/public/metadata/events/<id>.json) into a flat display shape.
+ * Returns null for invalid input rather than throwing.
+ * @param {Object|string} metadata - Raw metadata object or JSON string
+ * @returns {Object|null} Normalized { name, description, image, attributes, externalUrl }
+ */
+export const parseEventMetadata = (metadata) => {
+  if (!metadata) return null;
+  let raw = metadata;
+  if (typeof metadata === 'string') {
+    try {
+      raw = JSON.parse(metadata);
+    } catch {
+      return null;
+    }
+  }
+  if (typeof raw !== 'object' || Array.isArray(raw)) return null;
+
+  return {
+    name: typeof raw.name === 'string' ? raw.name : '',
+    description: typeof raw.description === 'string' ? raw.description : '',
+    image: typeof raw.image === 'string' ? raw.image : '',
+    attributes: Array.isArray(raw.attributes) ? raw.attributes : [],
+    externalUrl: typeof raw.external_url === 'string' ? raw.external_url : '',
+  };
+};
+
 export default {
   formatAddress,
   formatSTX,

@@ -4,6 +4,7 @@ import {
   stxToMicroStx,
   formatBlockHeight,
   calculateMintCost,
+  parseEventMetadata,
 } from '../utils/helpers';
 
 describe('microStxToStx', () => {
@@ -99,6 +100,52 @@ describe('calculateMintCost', () => {
     expect(calculateMintCost(NaN)).toBe('0.000000');
   });
 });
+
+describe('parseEventMetadata', () => {
+  const sample = {
+    name: 'Colathon',
+    description: 'Build event for builders',
+    image: 'https://achievement-poap.vercel.app/favicon.svg',
+    attributes: [{ trait_type: 'Event Type', value: 'Hackathon' }],
+    external_url: 'https://achievement-poap.vercel.app/events/20',
+  };
+
+  it('normalizes a full metadata object', () => {
+    const parsed = parseEventMetadata(sample);
+    expect(parsed.name).toBe('Colathon');
+    expect(parsed.description).toBe('Build event for builders');
+    expect(parsed.image).toContain('favicon.svg');
+    expect(parsed.attributes).toHaveLength(1);
+    expect(parsed.externalUrl).toContain('/events/20');
+  });
+
+  it('parses a JSON string input', () => {
+    const parsed = parseEventMetadata(JSON.stringify(sample));
+    expect(parsed.name).toBe('Colathon');
+    expect(parsed.attributes[0].value).toBe('Hackathon');
+  });
+
+  it('provides safe defaults for missing optional fields', () => {
+    const parsed = parseEventMetadata({ name: 'Bare Event' });
+    expect(parsed.name).toBe('Bare Event');
+    expect(parsed.description).toBe('');
+    expect(parsed.image).toBe('');
+    expect(parsed.attributes).toEqual([]);
+    expect(parsed.externalUrl).toBe('');
+  });
+
+  it('returns null for invalid JSON string', () => {
+    expect(parseEventMetadata('{not json')).toBeNull();
+  });
+
+  it('returns null for null, undefined, array, or primitive input', () => {
+    expect(parseEventMetadata(null)).toBeNull();
+    expect(parseEventMetadata(undefined)).toBeNull();
+    expect(parseEventMetadata([1, 2, 3])).toBeNull();
+    expect(parseEventMetadata('just a string')).toBeNull();
+  });
+});
+
 
 
 
