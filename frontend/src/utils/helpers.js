@@ -241,6 +241,19 @@ export const microStxToStx = (microStx, decimals = 6) => {
   });
 };
 
+/**
+ * Convert a human-readable STX amount to microSTX (integer bigint).
+ * Used to build contract call arguments from UI inputs.
+ * @param {number|string} stx - Amount in STX
+ * @returns {bigint} Amount in microSTX
+ */
+export const stxToMicroStx = (stx) => {
+  if (stx === null || stx === undefined || stx === '') return 0n;
+  const value = Number(stx);
+  if (Number.isNaN(value)) return 0n;
+  return BigInt(Math.round(value * 1_000_000));
+};
+
 export default {
   formatAddress,
   formatSTX,

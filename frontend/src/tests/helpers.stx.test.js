@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { microStxToStx } from '../utils/helpers';
+import { microStxToStx, stxToMicroStx } from '../utils/helpers';
 
 describe('microStxToStx', () => {
   it('converts the contract mint fee (25000 microSTX) to 0.025000 STX', () => {
@@ -25,3 +25,30 @@ describe('microStxToStx', () => {
     expect(microStxToStx(25000, 2)).toBe('0.03');
   });
 });
+
+describe('stxToMicroStx', () => {
+  it('converts the mint fee back to microSTX', () => {
+    expect(stxToMicroStx(0.025)).toBe(25000n);
+  });
+
+  it('converts whole STX values', () => {
+    expect(stxToMicroStx(1)).toBe(1_000_000n);
+    expect(stxToMicroStx(10)).toBe(10_000_000n);
+  });
+
+  it('rounds fractional microSTX correctly', () => {
+    expect(stxToMicroStx(0.0000004)).toBe(0n);
+    expect(stxToMicroStx(0.0000006)).toBe(1n);
+  });
+
+  it('returns 0n for null/undefined/empty input', () => {
+    expect(stxToMicroStx(null)).toBe(0n);
+    expect(stxToMicroStx(undefined)).toBe(0n);
+    expect(stxToMicroStx('')).toBe(0n);
+  });
+
+  it('accepts string inputs from form fields', () => {
+    expect(stxToMicroStx('0.025')).toBe(25000n);
+  });
+});
+
