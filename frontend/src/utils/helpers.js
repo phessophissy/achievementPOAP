@@ -225,6 +225,90 @@ export const generateId = () => {
   return `${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
 };
 
+/**
+ * Convert a microSTX amount (1 STX = 1,000,000 microSTX) to a human-readable STX string.
+ * @param {number|string|bigint} microStx - Amount in microSTX
+ * @param {number} [decimals=6] - Decimal places to display
+ * @returns {string} STX amount, e.g. "0.025000"
+ */
+export const microStxToStx = (microStx, decimals = 6) => {
+  if (microStx === null || microStx === undefined || microStx === '') return '0';
+  const value = Number(BigInt(microStx)) / 1_000_000;
+  if (Number.isNaN(value)) return '0';
+  return value.toLocaleString('en-US', {
+    minimumFractionDigits: decimals,
+    maximumFractionDigits: decimals,
+  });
+};
+
+/**
+ * Convert a human-readable STX amount to microSTX (integer bigint).
+ * Used to build contract call arguments from UI inputs.
+ * @param {number|string} stx - Amount in STX
+ * @returns {bigint} Amount in microSTX
+ */
+export const stxToMicroStx = (stx) => {
+  if (stx === null || stx === undefined || stx === '') return 0n;
+  const value = Number(stx);
+  if (Number.isNaN(value)) return 0n;
+  return BigInt(Math.round(value * 1_000_000));
+};
+
+/**
+ * Format a Stacks block height for display, adding thousands separators.
+ * Accepts numbers, strings, or bigints (the forms Clarity uints arrive in).
+ * @param {number|string|bigint} blockHeight - Stacks block height
+ * @returns {string} Formatted block height, e.g. "180,432"
+ */
+export const formatBlockHeight = (blockHeight) => {
+  if (blockHeight === null || blockHeight === undefined || blockHeight === '') return '0';
+  const value = Number(BigInt(blockHeight));
+  if (Number.isNaN(value)) return '0';
+  return value.toLocaleString('en-US');
+};
+
+/**
+ * Calculate the total STX cost to mint a given quantity of POAPs.
+ * The contract charges MINT_FEE microSTX per mint (0.025 STX = 25000 microSTX).
+ * @param {number} quantity - Number of POAPs to mint
+ * @param {number} [mintFeeMicroStx=25000] - Per-mint fee in microSTX
+ * @returns {string} Total cost formatted as STX, e.g. "0.250000"
+ */
+export const calculateMintCost = (quantity, mintFeeMicroStx = 25000) => {
+  const qty = Number(quantity);
+  if (!Number.isFinite(qty) || qty <= 0) return '0.000000';
+  const totalMicroStx = BigInt(Math.round(qty)) * BigInt(Math.round(mintFeeMicroStx));
+  return microStxToStx(totalMicroStx, 6);
+};
+
+/**
+ * Parse and normalize a POAP event metadata JSON object (as served from
+ * frontend/public/metadata/events/<id>.json) into a flat display shape.
+ * Returns null for invalid input rather than throwing.
+ * @param {Object|string} metadata - Raw metadata object or JSON string
+ * @returns {Object|null} Normalized { name, description, image, attributes, externalUrl }
+ */
+export const parseEventMetadata = (metadata) => {
+  if (!metadata) return null;
+  let raw = metadata;
+  if (typeof metadata === 'string') {
+    try {
+      raw = JSON.parse(metadata);
+    } catch {
+      return null;
+    }
+  }
+  if (typeof raw !== 'object' || Array.isArray(raw)) return null;
+
+  return {
+    name: typeof raw.name === 'string' ? raw.name : '',
+    description: typeof raw.description === 'string' ? raw.description : '',
+    image: typeof raw.image === 'string' ? raw.image : '',
+    attributes: Array.isArray(raw.attributes) ? raw.attributes : [],
+    externalUrl: typeof raw.external_url === 'string' ? raw.external_url : '',
+  };
+};
+
 export default {
   formatAddress,
   formatSTX,
