@@ -225,6 +225,22 @@ export const generateId = () => {
   return `${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
 };
 
+/**
+ * Convert a microSTX amount (1 STX = 1,000,000 microSTX) to a human-readable STX string.
+ * @param {number|string|bigint} microStx - Amount in microSTX
+ * @param {number} [decimals=6] - Decimal places to display
+ * @returns {string} STX amount, e.g. "0.025000"
+ */
+export const microStxToStx = (microStx, decimals = 6) => {
+  if (microStx === null || microStx === undefined || microStx === '') return '0';
+  const value = Number(BigInt(microStx)) / 1_000_000;
+  if (Number.isNaN(value)) return '0';
+  return value.toLocaleString('en-US', {
+    minimumFractionDigits: decimals,
+    maximumFractionDigits: decimals,
+  });
+};
+
 export default {
   formatAddress,
   formatSTX,
