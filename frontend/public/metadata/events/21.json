@@ -1,0 +1,13 @@
+{
+  "name": "Stacks Summit 2026",
+  "description": "Attendance POAP for the Stacks Summit builder track.",
+  "image": "https://achievement-poap.vercel.app/favicon.svg",
+  "attributes": [
+    { "trait_type": "Event Type", "value": "Summit" },
+    { "trait_type": "Ecosystem", "value": "Stacks" },
+    { "trait_type": "Edition", "value": "Builder" },
+    { "trait_type": "Max Supply", "value": "1000" },
+    { "trait_type": "Mint Limit Per Wallet", "value": "1" }
+  ],
+  "external_url": "https://achievement-poap.vercel.app/events/21"
+}

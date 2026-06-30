@@ -1,0 +1,13 @@
+{
+  "name": "Bitcoin Builders Workshop",
+  "description": "Hands-on workshop POAP for Bitcoin L2 builders.",
+  "image": "https://achievement-poap.vercel.app/favicon.svg",
+  "attributes": [
+    { "trait_type": "Event Type", "value": "Workshop" },
+    { "trait_type": "Ecosystem", "value": "Bitcoin L2" },
+    { "trait_type": "Format", "value": "Hands-on" },
+    { "trait_type": "Max Supply", "value": "500" },
+    { "trait_type": "Mint Limit Per Wallet", "value": "1" }
+  ],
+  "external_url": "https://achievement-poap.vercel.app/events/22"
+}
