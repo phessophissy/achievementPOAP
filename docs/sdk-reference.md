@@ -170,3 +170,40 @@ const tx = await poap.buildCreateEventTransaction(
 );
 ```
 
+## Broadcasting a transaction
+
+The SDK intentionally stops at building + signing. To broadcast, POST the
+serialized transaction to a Stacks API endpoint:
+
+```js
+const response = await fetch('https://api.mainnet.hiro.so/v2/transactions', {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/octet-stream' },
+  body: tx.serialize(),
+});
+const txid = (await response.text()).replace(/"/g, '');
+console.log('Broadcast txid:', txid);
+console.log(`https://explorer.stacks.co/txid/${txid}?chain=mainnet`);
+```
+
+## Error handling
+
+All read methods wrap lower-level failures in a descriptive `Error`. Catch and
+handle them at the call site:
+
+```js
+try {
+  const event = await poap.getEvent(999);
+} catch (err) {
+  console.error(err.message); // "Failed to fetch event #999: ..."
+}
+```
+
+Common failure reasons:
+
+- **Network / API errors** — the Stacks API was unreachable or returned a non-200.
+- **Invalid arguments** — e.g. a non-numeric `eventId` or malformed principal.
+- **Contract revert on read** — rare for read-only functions, but possible if a
+  precondition inside the function is not met.
+
+
