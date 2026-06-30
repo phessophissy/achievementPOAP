@@ -69,6 +69,136 @@ export class AchievementPOAP {
     }
 
     /**
+     * Get the owner of a specific POAP token id.
+     * Mirrors the SIP-009 `get-owner` read function.
+     * @param {number} tokenId The NFT token id
+     * @returns {Promise<any>} Clarity value — `(ok (some principal))` if owned, `(ok none)` otherwise
+     */
+        async getOwner(tokenId) {
+        try {
+            return await callReadOnlyFunction({
+                contractAddress: this.contractAddress,
+                contractName: this.contractName,
+                functionName: 'get-owner',
+                functionArgs: [uintCV(tokenId)],
+                senderAddress: this.contractAddress,
+                network: this.network
+            });
+        } catch (error) {
+            throw new Error(`Failed to fetch owner for token #${tokenId}: ${error.message}`);
+        }
+    }
+
+    /**
+     * Get the metadata URI for a specific POAP token id.
+     * Resolves to the owning event's `metadata-uri`, or `none` if the token
+     * does not exist.
+     * @param {number} tokenId The NFT token id
+     * @returns {Promise<any>} Clarity value — `(ok (some string))` or `(ok none)`
+     */
+    async getTokenUri(tokenId) {
+        try {
+            return await callReadOnlyFunction({
+                contractAddress: this.contractAddress,
+                contractName: this.contractName,
+                functionName: 'get-token-uri',
+                functionArgs: [uintCV(tokenId)],
+                senderAddress: this.contractAddress,
+                network: this.network
+            });
+        } catch (error) {
+            throw new Error(`Failed to fetch token-uri for token #${tokenId}: ${error.message}`);
+        }
+    }
+
+    /**
+     * Check whether a given user has already minted a POAP for an event.
+     * Mirrors the `has-minted-event` read function.
+     * @param {number} eventId The event id
+     * @param {string} user The Stacks principal to check
+     * @returns {Promise<any>} Clarity boolean value
+     */
+        async hasMintedEvent(eventId, user) {
+        try {
+            return await callReadOnlyFunction({
+                contractAddress: this.contractAddress,
+                contractName: this.contractName,
+                functionName: 'has-minted-event',
+                functionArgs: [uintCV(eventId), principalCV(user)],
+                senderAddress: this.contractAddress,
+                network: this.network
+            });
+        } catch (error) {
+            throw new Error(`Failed to check mint status for event #${eventId}: ${error.message}`);
+        }
+    }
+
+    /**
+     * Get the current and max supply for an event.
+     * Mirrors the `get-event-supply` read function.
+     * @param {number} eventId The event id
+     * @returns {Promise<any>} Clarity tuple `{ current: uint, max: uint }`
+     */
+async getEventSupply(eventId) {
+        try {
+            return await callReadOnlyFunction({
+                contractAddress: this.contractAddress,
+                contractName: this.contractName,
+                functionName: 'get-event-supply',
+                functionArgs: [uintCV(eventId)],
+                senderAddress: this.contractAddress,
+                network: this.network
+            });
+        } catch (error) {
+            throw new Error(`Failed to fetch supply for event #${eventId}: ${error.message}`);
+        }
+    }
+
+    /**
+     * Get the list of POAP token ids owned by a user.
+     * Mirrors the `get-user-tokens` read function.
+     * @param {string} user The Stacks principal to look up
+     * @returns {Promise<any>} Clarity list of uint token ids (up to 100)
+     */
+    async getUserTokens(user) {
+        try {
+            return await callReadOnlyFunction({
+                contractAddress: this.contractAddress,
+                contractName: this.contractName,
+                functionName: 'get-user-tokens',
+                functionArgs: [principalCV(user)],
+                senderAddress: this.contractAddress,
+                network: this.network
+            });
+        } catch (error) {
+            throw new Error(`Failed to fetch tokens for ${user}: ${error.message}`);
+        }
+    }
+
+    /**
+     * Check whether the contract is currently paused.
+     * Mirrors the `is-contract-paused` read function.
+     * @returns {Promise<any>} Clarity boolean value
+     */
+    async isContractPaused() {
+        try {
+            return await callReadOnlyFunction({
+                contractAddress: this.contractAddress,
+                contractName: this.contractName,
+                functionName: 'is-contract-paused',
+                functionArgs: [],
+                senderAddress: this.contractAddress,
+                network: this.network
+            });
+        } catch (error) {
+            throw new Error(`Failed to fetch paused state: ${error.message}`);
+        }
+    }
+
+
+
+
+    /**
      * Prepare a `makeContractCall` options object to mint a POAP
      * @param {number} eventId 
      * @param {string} senderKey 
