@@ -114,6 +114,45 @@ The contract follows the SIP-009 NFT standard and can be integrated with:
 - Event platforms
 - Achievement systems
 
+## SDK
+
+A JavaScript SDK is published from `sdk/index.js` and exposes the `AchievementPOAP`
+class for both read-only lookups and unsigned transaction building.
+
+### Installation
+
+```bash
+npm install achievement-poap
+```
+
+### Quick start
+
+```js
+import { AchievementPOAP } from 'achievement-poap';
+
+const poap = new AchievementPOAP(); // defaults to mainnet + deployed contract
+
+// Read event details and mint fee
+const event = await poap.getEvent(1);
+const fee = await poap.getMintFee();
+
+// Check whether a wallet already claimed
+const claimed = await poap.hasMintedEvent(1, 'SP2KYZRNME33Y39GP3RKC90DQJ45EF1N0NZNVRE09');
+```
+
+### Building a mint transaction
+
+The SDK builds (but does not broadcast) signed transactions. Pass a sender key and
+broadcast the resulting transaction yourself, or hand it to a wallet for signing.
+
+```js
+const tx = await poap.buildMintTransaction(1, senderKey, 2500);
+// tx is a signed Stacks transaction — broadcast via the Stacks API or a wallet.
+```
+
+See [docs/sdk-reference.md](docs/sdk-reference.md) for the full method reference
+and more examples.
+
 ## API Reference
 
 ### Data Structures
@@ -164,6 +203,7 @@ Contributions are welcome! Please open an issue or submit a pull request.
 - Keep wallet exports and local snapshots out of git.
 - Run `npm run audit:sensitive` before opening a PR.
 - See [SECURITY.md](SECURITY.md) and [docs/security/sensitive-files.md](docs/security/sensitive-files.md) for the full policy.
+- See [docs/sdk-reference.md](docs/sdk-reference.md) for the complete SDK method reference and examples.
 
 <!-- Maintenance update 536 -->
 
