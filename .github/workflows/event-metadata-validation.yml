@@ -1,0 +1,27 @@
+name: Event Metadata Validation
+
+on:
+  pull_request:
+    paths:
+      - 'frontend/public/metadata/events/**'
+      - 'scripts/validate-event-metadata.mjs'
+      - 'package.json'
+  push:
+    branches:
+      - main
+
+jobs:
+  validate-event-metadata:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Validate event metadata files
+        run: npm run validate:metadata

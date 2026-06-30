@@ -8,9 +8,10 @@
     "sdk/index.js"
   ],
   "scripts": {
-    "test": "vitest run",
+        "test": "vitest run",
     "deploy": "node deploy.js",
     "audit:sensitive": "node scripts/audit-sensitive-files.mjs",
+    "validate:metadata": "node scripts/validate-event-metadata.mjs",
     "generate-wallets": "node tools/generate-wallets.js",
     "fund-wallets": "node tools/fund-wallets.js",
     "interact": "node tools/interact.js",
