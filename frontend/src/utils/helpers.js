@@ -254,6 +254,19 @@ export const stxToMicroStx = (stx) => {
   return BigInt(Math.round(value * 1_000_000));
 };
 
+/**
+ * Format a Stacks block height for display, adding thousands separators.
+ * Accepts numbers, strings, or bigints (the forms Clarity uints arrive in).
+ * @param {number|string|bigint} blockHeight - Stacks block height
+ * @returns {string} Formatted block height, e.g. "180,432"
+ */
+export const formatBlockHeight = (blockHeight) => {
+  if (blockHeight === null || blockHeight === undefined || blockHeight === '') return '0';
+  const value = Number(BigInt(blockHeight));
+  if (Number.isNaN(value)) return '0';
+  return value.toLocaleString('en-US');
+};
+
 export default {
   formatAddress,
   formatSTX,

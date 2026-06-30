@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { microStxToStx, stxToMicroStx } from '../utils/helpers';
+import { microStxToStx, stxToMicroStx, formatBlockHeight } from '../utils/helpers';
 
 describe('microStxToStx', () => {
   it('converts the contract mint fee (25000 microSTX) to 0.025000 STX', () => {
@@ -47,8 +47,31 @@ describe('stxToMicroStx', () => {
     expect(stxToMicroStx('')).toBe(0n);
   });
 
-  it('accepts string inputs from form fields', () => {
+    it('accepts string inputs from form fields', () => {
     expect(stxToMicroStx('0.025')).toBe(25000n);
   });
 });
+
+describe('formatBlockHeight', () => {
+  it('adds thousands separators to large block heights', () => {
+    expect(formatBlockHeight(180432)).toBe('180,432');
+    expect(formatBlockHeight(1000000)).toBe('1,000,000');
+  });
+
+  it('handles small values without separators', () => {
+    expect(formatBlockHeight(1)).toBe('1');
+    expect(formatBlockHeight(0)).toBe('0');
+  });
+
+  it('accepts bigint inputs from Clarity uint responses', () => {
+    expect(formatBlockHeight(180432n)).toBe('180,432');
+  });
+
+  it('returns 0 for null/undefined/empty input', () => {
+    expect(formatBlockHeight(null)).toBe('0');
+    expect(formatBlockHeight(undefined)).toBe('0');
+    expect(formatBlockHeight('')).toBe('0');
+  });
+});
+
 
